@@ -1,0 +1,17 @@
+.img{
+    height: 100%;
+    overflow: hidden;
+    overflow-y: hidden;
+}
+
+.color {
+    background-color: #40AEF8;
+}
+
+.form {
+    padding: 50px;
+}
+
+.step {
+    padding: 20px;
+}

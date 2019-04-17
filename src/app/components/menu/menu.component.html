@@ -1,0 +1,22 @@
+<div class="row">
+    <button [routerLink]="['/home']" class="btn btn-danger atras">Atras</button>
+</div>
+
+<div class="row justify-content-center full">
+  <div class="col-md-6 full">
+    <div class="modify">
+        <h1>{{tipo}}</h1>
+        <ul class="list-group opciones">
+            <li [routerLinkActive]="['active']" [routerLink]="['agregar',tipo]" class="list-group-item">Agregar</li>
+            <li class="list-group-item">Dapibus ac facilisis in</li>
+            <li class="list-group-item">Morbi leo risus</li>
+            <li class="list-group-item">Porta ac consectetur ac</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+          </ul>
+    </div>
+    
+  </div>
+  <div class="col-md-6">
+      <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="row justify-content-center" style="margin-top:10px;">
+  <h3>Agregar {{tipo}}</h3>
+</div>
+
+<div class="row justify-content-center">
+    <form (ngSubmit)="agregar(forma)" #forma="ngForm">
+        <div *ngFor="let opcion of opciones" class="form-group">
+          <label for="exampleInputEmail1">{{opcion}}</label>
+          <input [(ngModel)]="tipo[opcion]" name={{opcion}} type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder={{opcion}}>
+        </div>
+        <button type="submit" class="btn btn-primary">Ingresar</button>
+      </form>
+</div>

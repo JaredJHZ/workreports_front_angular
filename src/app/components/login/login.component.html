@@ -1,0 +1,33 @@
+<div class="row full">
+    <div class="col-md-6 full">
+        <div class="img">
+                <img class="img" src="/assets/material1.jpg" alt="img">
+        </div>
+    </div>
+    <div class="col-md-6 full color">
+        <h1 style="text-align:center">{{name}}</h1>
+        <h2 style="text-align:center">WorkReports</h2>
+        
+        <form novalidate (ngSubmit)="enter(forma)" #forma="ngForm" class="form">
+                <div class="form-group">
+                  <label for="usuario">Usuario</label>
+                  <input type="text" class="form-control" id="usuario" aria-describedby="usuario"
+                  [(ngModel)]="user.usuario"
+                  name="usuario"
+                  placeholder="Ingresar usuario">
+                </div>
+
+                <div class="form-group">
+                  <label for="Contraseña">Contraseña</label>
+                  <input type="password"
+                  name="password"
+                  [(ngModel)]="user.password"
+                  class="form-control" id="contraseña" placeholder="contraseña">
+                </div>
+                <button type="submit" class="btn btn-primary">Ingresar</button>
+        </form>
+        <div *ngIf="error" class="alert alert-danger step" role="alert">
+            {{error}}
+        </div>
+    </div>
+</div>
