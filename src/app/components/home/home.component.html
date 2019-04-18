@@ -6,7 +6,7 @@
                     <div class="card-body">
                       <h5 class="card-title">Bienvenidx {{usuario.user}}</h5>
                       <p class="card-text">¿Qué hará hoy usuario {{usuario.permission}}?</p>
-                      <a *ngFor="let opcion of menu" class="btn btn-primary opc">
+                      <a *ngFor="let opcion of menu" class="btn btn-primary opc" [routerLink]="['/menu',opcion]">
                           {{opcion}}
                       </a>
                     </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
 import { Router } from '@angular/router';
+import { Usuario } from 'src/app/interfaces/interfaces';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  usuario:Object;
+  usuario:Usuario;
   menu:String[] = [];
 
   constructor(private loginService: LoginService, private router:Router) {
@@ -21,6 +22,7 @@ export class HomeComponent implements OnInit {
       this.menu.push("Clientes");
       this.menu.push("Empleados");
       this.menu.push("Materiales");
+      this.menu.push("Direcciones");
     
     }
    }

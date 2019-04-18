@@ -12,6 +12,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { AgregarComponent } from './components/menu/agregar/agregar.component';
+import { SeleccionarComponent } from './components/seleccionar/seleccionar.component';
+import { ModificarComponent } from './components/modificar/modificar.component';
+import { ConsultarComponent } from './components/menu/consultar/consultar.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { AgregarComponent } from './components/menu/agregar/agregar.component';
     FooterComponent,
     NavbarComponent,
     MenuComponent,
-    AgregarComponent
+    AgregarComponent,
+    SeleccionarComponent,
+    ModificarComponent,
+    ConsultarComponent
   ],
   imports: [
     BrowserModule,

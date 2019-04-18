@@ -14,4 +14,13 @@
 
 .step {
     padding: 20px;
+    width: 70%;
+    margin: auto;
+    text-align: center;
+}
+
+.text-decor{
+    text-align: center;
+    margin-top: 10px;
+    color: white;
 }

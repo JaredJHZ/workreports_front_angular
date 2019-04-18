@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import * as jwt_decode from "jwt-decode";
+import { Usuario } from '../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,7 @@ export class LoginService {
     return localStorage.getItem("token");
   }
 
-  login(user:Object){
+  login(user:Usuario){
     return this.http.post('http://127.0.0.1:5000/login/'+user.usuario, user);
   }
 

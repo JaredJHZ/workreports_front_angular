@@ -1,0 +1,24 @@
+<h3 style="text-align:center;">{{tipo}}</h3>
+<div class="seleccionar">
+    <ul *ngIf="tipo === 'Materiales'" class="list-group opciones">
+        <div *ngFor="let item of actuales"  [routerLinkActive]="['active']" [routerLink]="['/material',accion,item.id]" class="alert alert-primary selec" role="alert">
+           <h2 class="center">{{item.nombre}}</h2>
+           <h3 class="center">Costo: {{item.costo_unitario}}</h3>  
+        </div>
+    </ul>
+    <ul *ngIf="tipo === 'Direcciones'" class="list-group opciones">
+            <div *ngFor="let item of actuales"  [routerLinkActive]="['active']" [routerLink]="['/direccion',accion,item.id]" class="alert alert-primary selec" role="alert">
+               <h2 class="center">{{item.calle}}</h2>
+               <h3 class="center">Costo: {{item.ciudad}}</h3>  
+               <h3 class="center">Costo: {{item.estado}}</h3>  
+               <h3 class="center">Costo: {{item.cp}}</h3>  
+            </div>
+        </ul>
+</div>
+<div class=" center">
+        <div class="btn-toolbar ajustar" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <button (click)="anterior()" type="button" class="btn btn-secondary">Anterior</button>
+              <button (click)="siguiente()" type="button" class="btn btn-secondary">Siguiente</button>
+            </div>
+    </div>

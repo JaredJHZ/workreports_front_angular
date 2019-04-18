@@ -1,0 +1,24 @@
+h3{
+    margin: 0;
+}
+.seleccionar {
+    padding: 30px;
+    margin-bottom: 0;
+}
+
+.selec:hover {
+    background-color:#615789;
+    color: white;
+    cursor: pointer;
+}
+
+.ajustar {
+    margin-top: 0;
+    margin-left: 40%;
+
+}
+
+.ajustar Button {
+    margin-left: 15px;
+    margin-right: 15px;
+}

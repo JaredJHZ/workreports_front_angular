@@ -12,4 +12,14 @@
 
 .atras{
     margin-left: 25px;
+    margin-top: 15px;
+}
+
+li {
+    cursor: pointer;
+} 
+
+li:hover {
+    background-color: #167AF6;
+    color:white;
 }

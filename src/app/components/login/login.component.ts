@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import { LoginService } from 'src/app/services/login.service';
 import {Router} from '@angular/router'
+import { Usuario, Token } from 'src/app/interfaces/interfaces';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   name:String = "Login";
   ob = null;
-  user:Object = {
+  user:Usuario = {
     usuario : '',
     password: ''
   }
@@ -26,8 +28,7 @@ export class LoginComponent implements OnInit {
 
   enter(forma:NgForm):void {
     this.ob = this.loginService.login(this.user).subscribe(
-      (data) => {
-        console.log(data);
+      (data:Token) => {
         if (data) {
           this.loginService.setToken(data.sesion);
           this.ob.unsubscribe();
