@@ -17,6 +17,8 @@ export interface Respuesta {
     direcciones?:[];
     direccion?: Direccion;
     usuarios?: Usuario[];
+    empleados?:[];
+    empleado?: Empleado;
 }
 
 export interface Direccion {
@@ -31,4 +33,13 @@ export interface Material {
     id?: String;
     nombre: String;
     costo_unitario?: number;
+}
+
+export interface Empleado {
+    id?: String;
+    nombre:String;
+    ap_paterno:String;
+    ap_materno:String;
+    direccion:String;
+    id_direccion?:String;
 }

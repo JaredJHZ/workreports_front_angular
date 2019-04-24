@@ -4,6 +4,7 @@ import { MaterialesService } from 'src/app/services/materiales.service';
 import { Respuesta } from 'src/app/interfaces/interfaces';
 import { DireccionesService } from 'src/app/services/direcciones.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
+import { EmpleadosService } from 'src/app/services/empleados.service';
 
 @Component({
   selector: 'app-seleccionar',
@@ -21,7 +22,8 @@ export class SeleccionarComponent implements OnInit {
   
 
   constructor(private activatedRoute: ActivatedRoute, private materialesService: MaterialesService
-    , private direccionesService: DireccionesService, private usuariosService: UsuariosService
+    , private direccionesService: DireccionesService, private usuariosService: UsuariosService,
+    private empleadosService:EmpleadosService
     ) {
     this.activatedRoute.params.subscribe((data) => {
         this.tipo = data['tipo'];
@@ -86,7 +88,28 @@ export class SeleccionarComponent implements OnInit {
             this.paginaActual = 1; 
           }
         )
+      } else if (this.tipo === 'Empleados') {
+        this.empleadosService.getEmpleados().subscribe(
+          (empleados: Respuesta) => {
+            this.items = empleados.empleados;
+            console.log(this.items);
+            this.actuales = this.items.filter(
+              (value,index) => {
+                if(index <= 2) {
+                  return true;
+                }else{
+                  return false
+                }
+              }
+            );
+            this.paginasTotales = (this.items.length / 2 ) + 1;
+            this.paginaActual = 1; 
+          }
+        )
       }
+
+
+
   }
 
 

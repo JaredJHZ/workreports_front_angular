@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Material, Direccion, Respuesta, Usuario } from 'src/app/interfaces/interfaces';
+import { Material, Direccion, Respuesta, Usuario, Empleado } from 'src/app/interfaces/interfaces';
 import { MaterialesService } from 'src/app/services/materiales.service';
 import { DireccionesService } from 'src/app/services/direcciones.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from "sweetalert2";
 import { UsuariosService } from 'src/app/services/usuarios.service';
+import { EmpleadosService } from 'src/app/services/empleados.service';
 
 @Component({
   selector: 'app-eliminar',
@@ -35,12 +36,21 @@ export class EliminarComponent implements OnInit {
     usuario:'',
     privilegios:''
   }
+
+  empleado: Empleado = {
+    id:'',
+    nombre:'',
+    ap_materno:'',
+    ap_paterno:'',
+    direccion:''
+  }
   
   aux = {}
   opciones:String[] = [];
 
   constructor(private materialService:MaterialesService, private direccionesService: DireccionesService,
-    private activatedRoute: ActivatedRoute, private router: Router, private usuariosService: UsuariosService) { 
+    private activatedRoute: ActivatedRoute, private router: Router, private usuariosService: UsuariosService,
+    private empleadosService: EmpleadosService) { 
     this.activatedRoute.params.subscribe(
       (data) => {
           this.id = data['id'];
@@ -87,6 +97,7 @@ export class EliminarComponent implements OnInit {
           this.aux = this.direccion;
         }
       )
+
     } else if (this.tipo === 'usuarios') {
       this.opciones.push("id");
       this.opciones.push("usuario");
@@ -101,7 +112,29 @@ export class EliminarComponent implements OnInit {
         }
       )
       
+    } else if (this.tipo === 'empleados'){
+      this.opciones.push("id");
+      this.opciones.push("nombre");
+      this.opciones.push("ap_paterno");
+      this.opciones.push("ap_materno");
+      this.opciones.push("direccion");
+
+      this.empleadosService.getEmpleado(this.id)
+        .subscribe(
+          (data: Respuesta) => {
+            let empleado: Empleado = data.empleado;
+            this.empleado = empleado;
+            this.aux = this.empleado;
+            this.direccionesService.getDireccion(this.empleado.id_direccion)
+              .subscribe(
+                data => this.empleado.direccion = data.direccion.calle + ". " + data.direccion.ciudad+", "+data.direccion.estado
+              )
+          }
+        )
+      
     }
+
+
   }
 
   imagenes(tipo):void{
@@ -113,6 +146,8 @@ export class EliminarComponent implements OnInit {
       this.img = '/assets/usuarios.png';
     } else if (tipo === 'direccion'){
       this.img = '/assets/direcciones.jpeg'
+    } else if (tipo === 'empleados') {
+      this.img = '/assets/empleados.jpg';
     }
   }
 
@@ -155,6 +190,16 @@ export class EliminarComponent implements OnInit {
                 this.regresar();
               }
             )
+          }
+
+          if (this.tipo === 'empleados'){
+            this.empleadosService.eliminarEmpleado(this.id)
+              .subscribe(
+                (mensaje: Respuesta) => {
+                  this.invocarMensaje(mensaje.mensaje);
+                  this.regresar();
+                }
+              )
           }
 
           

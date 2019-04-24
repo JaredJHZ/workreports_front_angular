@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { MaterialesService } from 'src/app/services/materiales.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { Respuesta, Usuario, Material, Direccion } from 'src/app/interfaces/interfaces';
+import { Respuesta, Usuario, Material, Direccion, Empleado } from 'src/app/interfaces/interfaces';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import Swal from 'sweetalert2';
 import { DireccionesService } from 'src/app/services/direcciones.service';
+import { EmpleadosService } from 'src/app/services/empleados.service';
 
 @Component({
   selector: 'app-modificar',
@@ -18,6 +19,7 @@ export class ModificarComponent implements OnInit {
   id:string;
   opciones:string[] = [];
   mensaje: string;
+  direcciones: Direccion[] = [];
 
 
   material: Material = {
@@ -38,9 +40,16 @@ export class ModificarComponent implements OnInit {
     estado:''
   }
 
+  empleado: Empleado = {
+    nombre:'',
+    ap_paterno:'',
+    ap_materno:'',
+    direccion:''
+  }
+
 
   constructor(private materialS:MaterialesService, private activatedRoute:ActivatedRoute, private usuarioService:UsuariosService
-    , private direccionesService: DireccionesService
+    , private direccionesService: DireccionesService, private empleadosService: EmpleadosService
     ) { 
       this.activatedRoute.params.subscribe(
         (data) => {
@@ -93,6 +102,29 @@ export class ModificarComponent implements OnInit {
               
             }
 
+            if (this.tipo === 'empleados') {
+                this.opciones.push("nombre");
+                this.opciones.push("ap_paterno");
+                this.opciones.push("ap_materno");
+                this.opciones.push("direccion");
+                this.empleadosService.getEmpleado(this.id)
+                  .subscribe(
+                    (data: Respuesta) => {
+                      let empleado = data.empleado;
+                      this.empleado.ap_paterno = empleado.ap_paterno;
+                      this.empleado.ap_materno = empleado.ap_materno;
+                      this.empleado.direccion = empleado.id_direccion;
+                      this.empleado.nombre = empleado.nombre;
+                      this.direccionesService.getDirecciones()
+                        .subscribe(
+                          (data: Respuesta) => {
+                            this.direcciones = data.direcciones;
+                          }
+                        )
+                    }
+                  )
+            }
+
             
 
 
@@ -116,6 +148,8 @@ export class ModificarComponent implements OnInit {
             confirmButtonText: "aceptar"
           }).then((result) => {
             if (result) {
+
+              
               if (this.tipo === 'materiales') {
                 this.materialS.modifyMaterial(this.id, this.material).subscribe(
                   (data: Respuesta) => {
@@ -133,7 +167,6 @@ export class ModificarComponent implements OnInit {
                     this.invocarMensaje(data.mensaje);
                   },
                   (error: Respuesta) => {
-                    console.log(error);
                     this.invocarMensaje(error.mensaje);
                   }
                 )
@@ -145,11 +178,23 @@ export class ModificarComponent implements OnInit {
                     this.invocarMensaje(data.mensaje);
                   },
                   (error: Respuesta) => {
-                    console.log(error);
                     this.invocarMensaje(error.mensaje);
                   }
                 )
               }
+              
+              if (this.tipo === 'empleados') {
+                this.empleadosService.modificarEmpleado(this.id, this.empleado)
+                  .subscribe(
+                    (data: Respuesta) => {
+                      this.invocarMensaje(data.mensaje);
+                    },
+                    (error: Respuesta) => {
+                      this.invocarMensaje(error.mensaje);
+                    }
+                  )
+              }
+             
 
 
             }
@@ -175,7 +220,9 @@ export class ModificarComponent implements OnInit {
     } else if (tipo === 'usuarios'){
       this.img = '/assets/usuarios.png';
     } else if (tipo === 'direccion'){
-      this.img = '/assets/direcciones.jpeg'
+      this.img = '/assets/direcciones.jpeg';
+    } else if (tipo === 'empleados'){
+      this.img = '/assets/empleados.jpg';
     }
   }
 

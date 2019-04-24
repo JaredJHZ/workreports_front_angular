@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MaterialesService } from 'src/app/services/materiales.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Respuesta, Direccion, Material, Usuario } from 'src/app/interfaces/interfaces';
+import { Respuesta, Direccion, Material, Usuario, Empleado } from 'src/app/interfaces/interfaces';
 import { DireccionesService } from 'src/app/services/direcciones.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
+import { EmpleadosService } from 'src/app/services/empleados.service';
 
 @Component({
   selector: 'app-consultar',
@@ -34,12 +35,21 @@ export class ConsultarComponent implements OnInit {
     id:'',
     privilegios:''
   }
+
+  empleado: Empleado = {
+    id:'',
+    nombre:'',
+    ap_materno:'',
+    ap_paterno:'',
+    direccion:''
+  }
   
   aux = {}
   opciones:String[] = [];
 
   constructor(private materialService:MaterialesService, private activatedRoute:ActivatedRoute,
-    private direccionesService: DireccionesService, private usuariosService: UsuariosService) { 
+    private direccionesService: DireccionesService, private usuariosService: UsuariosService,
+    private empleadosService: EmpleadosService) { 
       this.activatedRoute.params.subscribe(
         (data) => {
           this.id = data['id'];
@@ -68,6 +78,8 @@ export class ConsultarComponent implements OnInit {
             this.aux = this.material;
           }
         )
+
+
     } else if (this.tipo === 'direccion'){
       this.opciones.push("id");
       this.opciones.push("calle");
@@ -86,6 +98,8 @@ export class ConsultarComponent implements OnInit {
           this.aux = this.direccion;
         }
       )
+
+
     } else if (this.tipo === 'usuarios') {
       this.opciones.push("id");
       this.opciones.push("usuario");
@@ -98,6 +112,27 @@ export class ConsultarComponent implements OnInit {
           this.aux = this.usuario;
         }
       )
+
+
+    } else if (this.tipo === 'empleados'){
+      this.opciones.push("id");
+      this.opciones.push("nombre");
+      this.opciones.push("ap_paterno");
+      this.opciones.push("ap_materno");
+      this.opciones.push("direccion");
+
+      this.empleadosService.getEmpleado(this.id)
+        .subscribe(
+          (data: Respuesta) => {
+            let empleado: Empleado = data.empleado;
+            this.empleado = empleado;
+            this.aux = this.empleado;
+            this.direccionesService.getDireccion(this.empleado.id_direccion)
+              .subscribe(
+                data => this.empleado.direccion = data.direccion.calle + ". " + data.direccion.ciudad+", "+data.direccion.estado
+              )
+          }
+        )
     }
 
 
@@ -109,7 +144,9 @@ export class ConsultarComponent implements OnInit {
     } else if (tipo === 'usuarios'){
       this.img = '/assets/usuarios.png';
     } else if (tipo === 'direccion'){
-      this.img = '/assets/direcciones.jpeg'
+      this.img = '/assets/direcciones.jpeg';
+    } else if (tipo === 'empleados') {
+      this.img = '/assets/empleados.jpg';
     }
   }
 

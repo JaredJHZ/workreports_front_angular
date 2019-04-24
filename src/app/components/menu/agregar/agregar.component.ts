@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { MaterialesService } from 'src/app/services/materiales.service';
-import { Respuesta } from 'src/app/interfaces/interfaces';
+import { Respuesta, Material, Direccion, Usuario, Empleado } from 'src/app/interfaces/interfaces';
 import { DireccionesService } from 'src/app/services/direcciones.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import Swal from "sweetalert2";
+import { EmpleadosService } from 'src/app/services/empleados.service';
 
 @Component({
   selector: 'app-agregar',
@@ -17,13 +18,13 @@ export class AgregarComponent implements OnInit {
   opciones:String[] = [];
   mensaje:String;
 
-  material = {
+  material: Material = {
     id:'',
     nombre:'',
     costo_unitario: 0
   }
 
-  direccion =  {
+  direccion: Direccion =  {
     id: '',
     calle:'',
     ciudad:'',
@@ -31,17 +32,29 @@ export class AgregarComponent implements OnInit {
     cp:''
   }
 
-  usuario = {
+  usuario: Usuario = {
     id:'',
     usuario:'',
     password:'',
     privilegios:''
   }
 
+  empleado: Empleado = {
+    id: '',
+    nombre:'',
+    ap_paterno:'',
+    ap_materno:'',
+    direccion:''
+  }
+
+  direcciones: Direccion[] = [];
+
 
 
   constructor(private activatedRoute: ActivatedRoute, private materialService:MaterialesService,
-     private direccionesService: DireccionesService, private usuariosService: UsuariosService) {
+     private direccionesService: DireccionesService, private usuariosService: UsuariosService,
+     private empleadoService: EmpleadosService
+     ) {
 
     this.activatedRoute.params.subscribe(
       (data) => {
@@ -65,12 +78,16 @@ export class AgregarComponent implements OnInit {
         confirmButtonText: "aceptar"
       }).then((result) => {
         if (result.value) {
+
+
                 switch (this.tipo){
+                  // switch para elegir el tipo de informacion que se va a agregar
                   case 'Materiales':
             
             
                   this.material = forma.value;
                   this.material.costo_unitario = Number(this.material.costo_unitario);
+                  // transformo el costo_unitario de cadena a numero
 
                   this.materialService.agregarMaterial(this.material).subscribe(
                     (data: Respuesta) => {
@@ -104,19 +121,35 @@ export class AgregarComponent implements OnInit {
                     )
                   
                 case 'Usuarios':
+                    
                     this.usuario = forma.value;
                     this.usuariosService.agregarUsuario(this.usuario).subscribe(
                       (data: Respuesta) => {
-                        console.log(data);
                         this.mensaje = data.mensaje;
                         this.invocarMensaje(this.mensaje);
                       },
                       (error) => {
-                        this.mensaje = "Error al agregar direccion";
+                        this.mensaje = "Error al agregar usuario";
                         this.invocarMensaje(this.mensaje);
                       }
                     )
-            
+
+
+                case 'Empleados':
+                    this.empleado = forma.value;
+                    this.empleadoService.agregarEmpleado(this.empleado)
+                      .subscribe(
+                        (data: Respuesta) => {
+                          this.mensaje = data.mensaje;
+                          this.invocarMensaje(this.mensaje);
+                        },
+                        (error) => {
+                          this.mensaje = "Error al agregar empleado";
+                          this.invocarMensaje(this.mensaje);
+                        }
+                      )
+                    
+                    
             }
         }
       })
@@ -141,6 +174,17 @@ export class AgregarComponent implements OnInit {
       this.opciones.push('usuario');
       this.opciones.push('password');
       this.opciones.push('privilegios');
+    } else if (this.tipo.includes("Empleados")){
+      this.opciones.push('id');
+      this.opciones.push('nombre');
+      this.opciones.push('ap_paterno');
+      this.opciones.push('ap_materno');
+      this.opciones.push('direccion');
+      this.direccionesService.getDirecciones().subscribe(
+        (direcciones: Respuesta)=> {
+          this.direcciones = direcciones.direcciones;
+        }
+      )
     }
    }
    
@@ -176,6 +220,14 @@ export class AgregarComponent implements OnInit {
         ciudad:'',
         estado:'',
         cp:''
+      }
+    } else if (this.tipo === 'Empleados') {
+      this.empleado = {
+        id: '',
+        nombre:'',
+        ap_paterno:'',
+        ap_materno:'',
+        direccion:''
       }
     }
    }

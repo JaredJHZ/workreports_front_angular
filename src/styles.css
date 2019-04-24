@@ -4,6 +4,7 @@ html,body{
     background-color: #ECC564;
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
+    overflow-x: hidden;
 }
 
 .full {
