@@ -15,6 +15,7 @@ import { AgregarComponent } from './components/menu/agregar/agregar.component';
 import { SeleccionarComponent } from './components/seleccionar/seleccionar.component';
 import { ModificarComponent } from './components/modificar/modificar.component';
 import { ConsultarComponent } from './components/menu/consultar/consultar.component';
+import { EliminarComponent } from './components/menu/eliminar/eliminar.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ConsultarComponent } from './components/menu/consultar/consultar.compon
     AgregarComponent,
     SeleccionarComponent,
     ModificarComponent,
-    ConsultarComponent
+    ConsultarComponent,
+    EliminarComponent
   ],
   imports: [
     BrowserModule,

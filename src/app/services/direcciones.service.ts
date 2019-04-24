@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginService } from './login.service';
+import { Direccion } from '../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,22 @@ export class DireccionesService {
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.append('authentication',this.loginService.getToken());
     return this.http.get(this.url+id, {
+      headers: headers
+    });
+  }
+
+  modificarDireccion(id:String, direccion: Direccion) {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('authentication',this.loginService.getToken());
+    return this.http.put(this.url+id,direccion,{
+      headers: headers
+    });
+  }
+
+  eliminarDireccion(id:String){
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('authentication',this.loginService.getToken());
+    return this.http.delete(this.url+id,{
       headers: headers
     });
   }

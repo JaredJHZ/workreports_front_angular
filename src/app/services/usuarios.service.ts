@@ -1,60 +1,57 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginService } from './login.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MaterialesService {
+export class UsuariosService {
 
-  url = "http://127.0.0.1:5000/materiales/"
+  url:string = 'http://127.0.0.1:5000/usuario/';
 
-  constructor(private loginService:LoginService, private http:HttpClient) { 
+  constructor(private loginService:LoginService, private http: HttpClient) {
+      
+   }
 
-  }
-
-  agregarMaterial(material: Object){
+   agregarUsuario(usuario) {
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.append('authentication',this.loginService.getToken());
-    return this.http.post(this.url, material, {
+    return this.http.post(this.url, usuario, {
       headers: headers
     });
-  }
+   }
 
+   modificarUsuario(id, usuario) {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('authentication',this.loginService.getToken());
+    return this.http.put(this.url+'update/'+id, usuario, {
+      headers: headers
+    });
+   }
 
-  getTodosMateriales() {
+   getUsuarios() {
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.append('authentication',this.loginService.getToken());
     return this.http.get(this.url, {
       headers: headers
     });
-  }
+   }
 
-  getMaterial(id:String) {
+   getUsuario(id:String) {
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.append('authentication',this.loginService.getToken());
     return this.http.get(this.url+id, {
       headers: headers
     });
-  }
+   }
 
-  modifyMaterial(id:String, material) {
+   eliminarUsuario(id:String) {
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.append('authentication',this.loginService.getToken());
-    return this.http.put(this.url+id, material, {
+    return this.http.delete(this.url+'delete/'+id, {
       headers: headers
     });
-  }
-
-  eliminarMaterial(id:String) {
-    let headers: HttpHeaders = new HttpHeaders();
-    headers = headers.append('authentication',this.loginService.getToken());
-    return this.http.delete(this.url+id, {
-      headers: headers
-    });
-  }
-
-
+   }
 
 
 }

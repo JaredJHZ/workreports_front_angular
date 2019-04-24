@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MaterialesService } from 'src/app/services/materiales.service';
 import { Respuesta } from 'src/app/interfaces/interfaces';
 import { DireccionesService } from 'src/app/services/direcciones.service';
+import { UsuariosService } from 'src/app/services/usuarios.service';
 
 @Component({
   selector: 'app-seleccionar',
@@ -11,20 +12,22 @@ import { DireccionesService } from 'src/app/services/direcciones.service';
 })
 export class SeleccionarComponent implements OnInit {
 
-  items:[] = [];
-  paginasTotales: Number;
-  paginaActual:Number;
-  tipo:String;
-  actuales:[] = [];
-  accion:String;
+  items:any[] = [];
+  paginasTotales: number;
+  paginaActual:number;
+  tipo:string;
+  actuales:any[] = [];
+  accion:string;
+  
 
   constructor(private activatedRoute: ActivatedRoute, private materialesService: MaterialesService
-    , private direccionesService: DireccionesService
+    , private direccionesService: DireccionesService, private usuariosService: UsuariosService
     ) {
     this.activatedRoute.params.subscribe((data) => {
         this.tipo = data['tipo'];
         this.accion = data['accion'];
         this.completar();
+      
     });
    }
 
@@ -64,7 +67,23 @@ export class SeleccionarComponent implements OnInit {
             );
             this.paginasTotales = (this.items.length / 2 ) + 1;
             this.paginaActual = 1; 
-            console.log(this.actuales);
+          }
+        )
+      } else if (this.tipo === 'Usuarios') {
+        this.usuariosService.getUsuarios().subscribe(
+          (usuarios: Respuesta) => {
+            this.items = usuarios.usuarios;
+            this.actuales = this.items.filter(
+              (value,index) => {
+                if(index <= 2) {
+                  return true;
+                }else{
+                  return false
+                }
+              }
+            );
+            this.paginasTotales = (this.items.length / 2 ) + 1;
+            this.paginaActual = 1; 
           }
         )
       }
@@ -112,4 +131,7 @@ export class SeleccionarComponent implements OnInit {
         }
     );
   }
+
+ 
+
 }

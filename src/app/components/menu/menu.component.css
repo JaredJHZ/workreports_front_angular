@@ -23,3 +23,12 @@ li:hover {
     background-color: #167AF6;
     color:white;
 }
+
+.img {
+    margin-top: 0px;
+    margin-left: 80px;
+}
+
+.cm {
+    margin-bottom: 50px;
+}

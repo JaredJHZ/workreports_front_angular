@@ -8,6 +8,7 @@ import { AgregarComponent } from './components/menu/agregar/agregar.component';
 import { SeleccionarComponent } from './components/seleccionar/seleccionar.component';
 import { ModificarComponent } from './components/modificar/modificar.component';
 import { ConsultarComponent } from './components/menu/consultar/consultar.component';
+import { EliminarComponent } from './components/menu/eliminar/eliminar.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path:':tipo/consultar/:id',
     component: ConsultarComponent
+  },
+  {
+    path:':tipo/eliminar/:id',
+    component: EliminarComponent
   },
   {
 

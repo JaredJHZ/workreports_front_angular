@@ -9,12 +9,14 @@ import {Location} from '@angular/common';
 export class MenuComponent implements OnInit {
 
   tipo: String;
+  img: String;
 
   constructor(private activatedRouter: ActivatedRoute, private location:Location) {
     this.activatedRouter.params.subscribe(
       (data) => {
         if (data["tipo"]) {
           this.tipo = this.capitalize(data.tipo);
+          this.imagenes(this.tipo);
         }
       }
     )
@@ -28,6 +30,16 @@ export class MenuComponent implements OnInit {
 
    atras() {
       this.location.back();
+   }
+
+   imagenes(tipo){
+     if (tipo === 'Materiales'){
+       this.img = '/assets/cons.jpg';
+     } else if (tipo === 'Usuarios'){
+       this.img = '/assets/usuarios.png';
+     } else if (tipo === 'Direcciones'){
+       this.img = '/assets/direcciones.jpeg'
+     }
    }
 
   ngOnInit() {

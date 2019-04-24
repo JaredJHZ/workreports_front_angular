@@ -2,6 +2,8 @@
 html,body{
     height: 100%;
     background-color: #ECC564;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
 }
 
 .full {
@@ -33,4 +35,25 @@ a{
 
 .paginacion {
     margin: auto;
+}
+
+.Hide {
+    text-align: justify;
+}
+
+.Title {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 34px;
+    border-bottom: 3px solid #266886;
+    color: white;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+
+@media only screen and (min-device-width : 375px) and (max-device-width : 667px){
+    .Hide {
+        display: none;
+    }
 }

@@ -1,12 +1,15 @@
 <div class="row full">
-    <div class="col-md-6 full">
+    <div class="col-md-6 full Hide">
         <div class="img">
                 <img class="img" src="/assets/material1.jpg" alt="img">
         </div>
     </div>
     <div class="col-md-6 full color">
-        <h1 class="text-decor">{{name}}</h1>
-        <h2 class="text-decor">WorkReports</h2>
+      
+      <div class="Title">
+          <h1 >{{name}}</h1>
+          <h2 >WorkReports</h2>
+      </div>
         
         <form novalidate (ngSubmit)="enter(forma)" #forma="ngForm" class="form">
                 <div class="form-group">
@@ -30,4 +33,4 @@
             {{error}}
         </div>
     </div>
-</div>
+  </div>
