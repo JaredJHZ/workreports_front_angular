@@ -5,6 +5,7 @@ import { Respuesta } from 'src/app/interfaces/interfaces';
 import { DireccionesService } from 'src/app/services/direcciones.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { EmpleadosService } from 'src/app/services/empleados.service';
+import { ClientesService } from 'src/app/services/clientes.service';
 
 @Component({
   selector: 'app-seleccionar',
@@ -23,7 +24,7 @@ export class SeleccionarComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, private materialesService: MaterialesService
     , private direccionesService: DireccionesService, private usuariosService: UsuariosService,
-    private empleadosService:EmpleadosService
+    private empleadosService:EmpleadosService, private clientesService: ClientesService
     ) {
     this.activatedRoute.params.subscribe((data) => {
         this.tipo = data['tipo'];
@@ -54,6 +55,8 @@ export class SeleccionarComponent implements OnInit {
               this.paginaActual = 1; 
             }
           )
+
+
       } else if (this.tipo === 'Direcciones'){
         this.direccionesService.getDirecciones().subscribe(
           (direcciones:Respuesta) => {
@@ -71,6 +74,8 @@ export class SeleccionarComponent implements OnInit {
             this.paginaActual = 1; 
           }
         )
+
+
       } else if (this.tipo === 'Usuarios') {
         this.usuariosService.getUsuarios().subscribe(
           (usuarios: Respuesta) => {
@@ -88,11 +93,12 @@ export class SeleccionarComponent implements OnInit {
             this.paginaActual = 1; 
           }
         )
+
+
       } else if (this.tipo === 'Empleados') {
         this.empleadosService.getEmpleados().subscribe(
           (empleados: Respuesta) => {
             this.items = empleados.empleados;
-            console.log(this.items);
             this.actuales = this.items.filter(
               (value,index) => {
                 if(index <= 2) {
@@ -106,6 +112,26 @@ export class SeleccionarComponent implements OnInit {
             this.paginaActual = 1; 
           }
         )
+
+
+      } else if (this.tipo === 'Clientes') {
+        this.clientesService.getClientes()
+          .subscribe(
+            (clientes: Respuesta) => {
+              this.items = clientes.clientes;
+              this.actuales = this.items.filter(
+                (value,index) => {
+                  if(index <= 2) {
+                    return true;
+                  }else{
+                    return false
+                  }
+                }
+              );
+              this.paginasTotales = (this.items.length / 2 ) + 1;
+              this.paginaActual = 1; 
+            }
+          )
       }
 
 

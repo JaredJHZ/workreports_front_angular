@@ -12,13 +12,14 @@ export interface Token {
 
 export interface Respuesta {
     mensaje?: String;
-    cliente?: {};
     materiales?:[];
     direcciones?:[];
     direccion?: Direccion;
     usuarios?: Usuario[];
     empleados?:[];
     empleado?: Empleado;
+    clientes?:[];
+    cliente?:Cliente
 }
 
 export interface Direccion {
@@ -42,4 +43,14 @@ export interface Empleado {
     ap_materno:String;
     direccion:String;
     id_direccion?:String;
+}
+
+export interface Cliente {
+    id?: String;
+    nombre: String;
+    ap_paterno: String;
+    ap_materno: String;
+    direccion:String;
+    id_direccion?:String;
+    email?:String;
 }

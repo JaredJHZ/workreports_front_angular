@@ -41,6 +41,8 @@ export class MenuComponent implements OnInit {
        this.img = '/assets/direcciones.jpeg';
      } else if (tipo === 'Empleados') {
        this.img = '/assets/empleados.jpg';
+     } else if (tipo === 'Clientes') {
+       this.img = '/assets/clientes.jpeg';
      }
    }
 

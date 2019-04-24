@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Material, Direccion, Respuesta, Usuario, Empleado } from 'src/app/interfaces/interfaces';
+import { Material, Direccion, Respuesta, Usuario, Empleado, Cliente } from 'src/app/interfaces/interfaces';
 import { MaterialesService } from 'src/app/services/materiales.service';
 import { DireccionesService } from 'src/app/services/direcciones.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from "sweetalert2";
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { EmpleadosService } from 'src/app/services/empleados.service';
+import { ClientesService } from 'src/app/services/clientes.service';
 
 @Component({
   selector: 'app-eliminar',
@@ -44,13 +45,21 @@ export class EliminarComponent implements OnInit {
     ap_paterno:'',
     direccion:''
   }
+
+  cliente: Cliente = {
+    nombre:'',
+    ap_paterno:'',
+    ap_materno:'',
+    direccion:'',
+    email:''
+  }
   
   aux = {}
   opciones:String[] = [];
 
   constructor(private materialService:MaterialesService, private direccionesService: DireccionesService,
     private activatedRoute: ActivatedRoute, private router: Router, private usuariosService: UsuariosService,
-    private empleadosService: EmpleadosService) { 
+    private empleadosService: EmpleadosService, private clienteService: ClientesService) { 
     this.activatedRoute.params.subscribe(
       (data) => {
           this.id = data['id'];
@@ -132,6 +141,26 @@ export class EliminarComponent implements OnInit {
           }
         )
       
+    } else if (this.tipo === 'clientes'){
+      this.opciones.push("id");
+      this.opciones.push("nombre");
+      this.opciones.push("ap_paterno");
+      this.opciones.push("ap_materno");
+      this.opciones.push("direccion");
+      this.opciones.push("email");
+      this.clienteService.getCliente(this.id)
+        .subscribe(
+          (data: Respuesta) => {
+            let cliente : Cliente = data.cliente;
+            this.cliente = cliente;
+            this.aux = this.cliente;
+            this.direccionesService.getDireccion(this.cliente.id_direccion)
+              .subscribe(
+                data => this.cliente.direccion = data.direccion.calle + ". " + data.direccion.ciudad+", "+data.direccion.estado
+              )
+          }
+        )
+      
     }
 
 
@@ -148,6 +177,8 @@ export class EliminarComponent implements OnInit {
       this.img = '/assets/direcciones.jpeg'
     } else if (tipo === 'empleados') {
       this.img = '/assets/empleados.jpg';
+    } else if (tipo === 'clientes'){
+      this.img = '/assets/clientes.jpeg';
     }
   }
 
@@ -194,6 +225,16 @@ export class EliminarComponent implements OnInit {
 
           if (this.tipo === 'empleados'){
             this.empleadosService.eliminarEmpleado(this.id)
+              .subscribe(
+                (mensaje: Respuesta) => {
+                  this.invocarMensaje(mensaje.mensaje);
+                  this.regresar();
+                }
+              )
+          }
+
+          if (this.tipo === 'clientes'){
+            this.clienteService.eliminarCliente(this.id)
               .subscribe(
                 (mensaje: Respuesta) => {
                   this.invocarMensaje(mensaje.mensaje);

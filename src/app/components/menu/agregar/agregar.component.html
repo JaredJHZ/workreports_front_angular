@@ -89,4 +89,29 @@
       </div>
     </form>
 
+        <!--Si el tipo es clientes-->
+        <form *ngIf="tipo === 'Clientes'" class="custom-form" (ngSubmit)="agregar(forma)" #forma="ngForm">
+            <div *ngFor="let opcion of opciones" class="form-group">
+              <label for="exampleInputEmail1">{{opcion}}</label>
+      
+              <select [(ngModel)]="cliente[opcion]" class="form-control" *ngIf="opcion === 'direccion'"  name="direcccion" id="">
+                  <option *ngFor="let direccion of direcciones;" value={{direccion.id}}>{{direccion.calle}}</option>
+              </select>
+      
+              <input *ngIf="opcion !== 'direccion' && opcion !== 'email' " [(ngModel)]="cliente[opcion]" name={{opcion}} type="text" class="form-control" id="exampleInputEmail1"  placeholder={{opcion}}>
+              
+              <input *ngIf="opcion === 'email' " [(ngModel)]="cliente[opcion]" name={{opcion}} type="email" class="form-control" id="exampleInputEmail1"  placeholder={{opcion}}>
+              
+      
+            </div>
+      
+            <button type="submit" class="btn btn-primary">Agregar</button>
+            <button style="margin-left: 5px" [routerLink]="['/menu']" class="btn btn-danger">Cancelar</button>
+      
+            
+            <div *ngIf="mensaje" class="alert alert-danger" style="margin-top: 15px;" role="alert">
+                {{mensaje}}
+            </div>
+          </form>  
+
 </div>

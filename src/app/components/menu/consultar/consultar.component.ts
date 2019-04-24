@@ -5,6 +5,7 @@ import { Respuesta, Direccion, Material, Usuario, Empleado } from 'src/app/inter
 import { DireccionesService } from 'src/app/services/direcciones.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { EmpleadosService } from 'src/app/services/empleados.service';
+import { ClientesService } from 'src/app/services/clientes.service';
 
 @Component({
   selector: 'app-consultar',
@@ -43,13 +44,21 @@ export class ConsultarComponent implements OnInit {
     ap_paterno:'',
     direccion:''
   }
+
+  cliente: Cliente = {
+    nombre:'',
+    ap_paterno:'',
+    ap_materno:'',
+    direccion:'',
+    email:''
+  }
   
   aux = {}
   opciones:String[] = [];
 
   constructor(private materialService:MaterialesService, private activatedRoute:ActivatedRoute,
     private direccionesService: DireccionesService, private usuariosService: UsuariosService,
-    private empleadosService: EmpleadosService) { 
+    private empleadosService: EmpleadosService, private clienteService:ClientesService) { 
       this.activatedRoute.params.subscribe(
         (data) => {
           this.id = data['id'];
@@ -133,6 +142,28 @@ export class ConsultarComponent implements OnInit {
               )
           }
         )
+
+
+    } else if (this.tipo === 'clientes') {
+      this.opciones.push("id");
+      this.opciones.push("nombre");
+      this.opciones.push("ap_paterno");
+      this.opciones.push("ap_materno");
+      this.opciones.push("direccion");
+      this.opciones.push("email");
+      this.clienteService.getCliente(this.id)
+        .subscribe(
+          (data: Respuesta) => {
+            let cliente : Cliente = data.cliente;
+            this.cliente = cliente;
+            this.aux = this.cliente;
+            this.direccionesService.getDireccion(this.cliente.id_direccion)
+              .subscribe(
+                data => this.cliente.direccion = data.direccion.calle + ". " + data.direccion.ciudad+", "+data.direccion.estado
+              )
+          }
+        )
+      
     }
 
 
@@ -147,6 +178,8 @@ export class ConsultarComponent implements OnInit {
       this.img = '/assets/direcciones.jpeg';
     } else if (tipo === 'empleados') {
       this.img = '/assets/empleados.jpg';
+    } else if (tipo === 'clientes'){
+      this.img = '/assets/clientes.jpeg';
     }
   }
 
