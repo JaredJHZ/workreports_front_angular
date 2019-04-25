@@ -16,7 +16,7 @@ export class SeleccionarComponent implements OnInit {
 
   items:any[] = [];
   paginasTotales: number;
-  paginaActual:number;
+  paginaActual:number = 1;
   tipo:string;
   actuales:any[] = [];
   accion:string;
@@ -40,76 +40,44 @@ export class SeleccionarComponent implements OnInit {
   completar(){
         if(this.tipo === 'Materiales') {
           this.materialesService.getTodosMateriales().subscribe(
-            (materiales:Respuesta) => {
-              this.items = materiales.materiales;
-              this.actuales = this.items.filter(
-                (value,index) => {
-                  if(index <= 3) {
-                    return true;
-                  }else{
-                    return false
-                  }
-                }
-              );
-              this.paginasTotales = (this.items.length / 3 ) + 1;
-              this.paginaActual = 1; 
+            (respuesta:Respuesta) => {
+              this.items = respuesta.materiales;
+              this.paginasTotales =  this.paginasTotales = respuesta.materiales.length / 4;
+              this.paginasTotales = (respuesta.materiales.length % 4 === 1 ? this.paginasTotales + 1 : this.paginasTotales );
+              this.paginar();
             }
           )
 
 
       } else if (this.tipo === 'Direcciones'){
         this.direccionesService.getDirecciones().subscribe(
-          (direcciones:Respuesta) => {
-            this.items = direcciones.direcciones;
-            this.actuales = this.items.filter(
-              (value,index) => {
-                if(index <= 2) {
-                  return true;
-                }else{
-                  return false
-                }
-              }
-            );
-            this.paginasTotales = (this.items.length / 2 ) + 1;
-            this.paginaActual = 1; 
+          (respuesta:Respuesta) => {
+            this.items = respuesta.direcciones;
+            this.paginasTotales =  this.paginasTotales = respuesta.direcciones.length / 4;
+            this.paginasTotales = (respuesta.direcciones.length % 4 === 1 ? this.paginasTotales + 1 : this.paginasTotales );
+            this.paginar();
           }
         )
 
 
       } else if (this.tipo === 'Usuarios') {
         this.usuariosService.getUsuarios().subscribe(
-          (usuarios: Respuesta) => {
-            this.items = usuarios.usuarios;
-            this.actuales = this.items.filter(
-              (value,index) => {
-                if(index <= 2) {
-                  return true;
-                }else{
-                  return false
-                }
-              }
-            );
-            this.paginasTotales = (this.items.length / 2 ) + 1;
-            this.paginaActual = 1; 
+          (respuesta: Respuesta) => {
+            this.items = respuesta.usuarios;
+            this.paginasTotales =  this.paginasTotales = respuesta.usuarios.length / 4;
+            this.paginasTotales = (respuesta.usuarios.length % 4 === 1 ? this.paginasTotales + 1 : this.paginasTotales );
+            this.paginar();
           }
         )
 
 
       } else if (this.tipo === 'Empleados') {
         this.empleadosService.getEmpleados().subscribe(
-          (empleados: Respuesta) => {
-            this.items = empleados.empleados;
-            this.actuales = this.items.filter(
-              (value,index) => {
-                if(index <= 2) {
-                  return true;
-                }else{
-                  return false
-                }
-              }
-            );
-            this.paginasTotales = (this.items.length / 2 ) + 1;
-            this.paginaActual = 1; 
+          (respuesta: Respuesta) => {
+            this.items = respuesta.empleados;
+            this.paginasTotales =  this.paginasTotales = respuesta.empleados.length / 4;
+            this.paginasTotales = (respuesta.empleados.length % 4 === 1 ? this.paginasTotales + 1 : this.paginasTotales );
+            this.paginar();
           }
         )
 
@@ -117,68 +85,34 @@ export class SeleccionarComponent implements OnInit {
       } else if (this.tipo === 'Clientes') {
         this.clientesService.getClientes()
           .subscribe(
-            (clientes: Respuesta) => {
-              this.items = clientes.clientes;
-              this.actuales = this.items.filter(
-                (value,index) => {
-                  if(index <= 2) {
-                    return true;
-                  }else{
-                    return false
-                  }
-                }
-              );
-              this.paginasTotales = (this.items.length / 2 ) + 1;
-              this.paginaActual = 1; 
-            }
-          )
+            (respuesta: Respuesta) => {
+              this.items = respuesta.clientes;
+              this.paginasTotales =  this.paginasTotales = respuesta.clientes.length / 4;
+              this.paginasTotales = (respuesta.clientes.length % 4 === 1 ? this.paginasTotales + 1 : this.paginasTotales );
+              this.paginar();
+          })
+        }
+
       }
 
-
+  paginar() {
+      let li = (this.paginaActual === 1 ? 1 : this.paginaActual * 4 - 3);
+      let ls = li + 3;
+      this.actuales = this.items.filter(
+      ( tarea, idx) => idx+1 >= li && idx+1 <= ls
+    )
 
   }
-
-
 
 
   siguiente() {
-
-      if (this.paginaActual + 1 > this.paginasTotales) {
-        this.paginaActual = 0;
-      }
-
-      this.paginaActual = this.paginaActual += 1;
-      let limiteSuperior = 3 * this.paginaActual;
-      let limiteInferior = limiteSuperior - 3;
-      this.actuales = this.items.filter(
-          (value,i) => {
-            if (i >= limiteInferior && i<=limiteSuperior){
-              return true;
-            }else {
-              return false;
-            }
-          }
-      );
+    this.paginaActual = (this.paginaActual + 1 <= this.paginasTotales ? this.paginaActual + 1 : 1);
+    this.paginar();
   }
 
   anterior() {
-    if (this.paginaActual - 1 <= 0) {
-      this.paginaActual = 1;
-    }else {
-      this.paginaActual = this.paginaActual -= 1;
-    }
-    
-    let limiteSuperior = 3 * this.paginaActual;
-    let limiteInferior = limiteSuperior - 3;
-    this.actuales = this.items.filter(
-        (value,i) => {
-          if (i >= limiteInferior && i<=limiteSuperior){
-            return true;
-          }else {
-            return false;
-          }
-        }
-    );
+    this.paginaActual = (this.paginaActual - 1 === 0 ? 1 : this.paginaActual - 1 );
+    this.paginar();
   }
 
  

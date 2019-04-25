@@ -136,7 +136,7 @@ export class EliminarComponent implements OnInit {
             this.aux = this.empleado;
             this.direccionesService.getDireccion(this.empleado.id_direccion)
               .subscribe(
-                data => this.empleado.direccion = data.direccion.calle + ". " + data.direccion.ciudad+", "+data.direccion.estado
+                (data: Respuesta) => this.empleado.direccion = data.direccion.calle + ". " + data.direccion.ciudad+", "+data.direccion.estado
               )
           }
         )
@@ -156,7 +156,7 @@ export class EliminarComponent implements OnInit {
             this.aux = this.cliente;
             this.direccionesService.getDireccion(this.cliente.id_direccion)
               .subscribe(
-                data => this.cliente.direccion = data.direccion.calle + ". " + data.direccion.ciudad+", "+data.direccion.estado
+                (data: Respuesta) => this.cliente.direccion = data.direccion.calle + ". " + data.direccion.ciudad+", "+data.direccion.estado
               )
           }
         )

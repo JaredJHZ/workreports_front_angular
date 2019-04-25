@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+<div class="row">
+    <button [routerLink]="['/home']" class="btn btn-danger atras">Atras</button>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h1 class="Title">Menu principal de tareas</h1>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-md-12">
+    <div class="row justify-content-center">
+        <img src="/assets/tareas.jpg" alt="tarea" class="img">
+    </div>
+    <div class="row justify-content-center" style="margin-top:15px;">
+        <button class="btn btn-primary" [routerLink]="['agregar']" >Agregar tareas</button>
+    </div>
+    <div class="row justify-content-center" style="margin-top:15px;">
+        <button class="btn btn-primary" [routerLink]="['seleccionar']">Modificar tareas</button>
+    </div>
+    <div class="row justify-content-center" style="margin-top:15px;">
+        <button class="btn btn-primary">Eliminar tareas</button>
+    </div>
+    <div class="row justify-content-center" style="margin-top:15px;">
+        <button class="btn btn-primary">Consultar tareas</button>
+    </div>
+  </div>
+</div>

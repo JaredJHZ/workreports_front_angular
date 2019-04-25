@@ -16,6 +16,10 @@ import { SeleccionarComponent } from './components/seleccionar/seleccionar.compo
 import { ModificarComponent } from './components/modificar/modificar.component';
 import { ConsultarComponent } from './components/menu/consultar/consultar.component';
 import { EliminarComponent } from './components/menu/eliminar/eliminar.component';
+import { TareasComponent } from './components/tareas/tareas.component';
+import { AgregarTareaComponent } from './components/tareas/agregar-tarea/agregar-tarea.component';
+import { ConsultarTareaComponent } from './components/tareas/consultar-tarea/consultar-tarea.component';
+import { SeleccionarTareaComponent } from './components/tareas/seleccionar-tarea/seleccionar-tarea.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,11 @@ import { EliminarComponent } from './components/menu/eliminar/eliminar.component
     SeleccionarComponent,
     ModificarComponent,
     ConsultarComponent,
-    EliminarComponent
+    EliminarComponent,
+    TareasComponent,
+    AgregarTareaComponent,
+    ConsultarTareaComponent,
+    SeleccionarTareaComponent
   ],
   imports: [
     BrowserModule,

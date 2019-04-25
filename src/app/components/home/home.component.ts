@@ -16,8 +16,6 @@ export class HomeComponent implements OnInit {
   constructor(private loginService: LoginService, private router:Router) {
     this.usuario = this.loginService.getInfo();
     if (this.usuario.permission === 'ADMIN') {
-      this.menu.push("Ordenes de trabajo");
-      this.menu.push("Tareas");
       this.menu.push("Usuarios");
       this.menu.push("Clientes");
       this.menu.push("Empleados");

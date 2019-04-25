@@ -19,7 +19,8 @@ export interface Respuesta {
     empleados?:[];
     empleado?: Empleado;
     clientes?:[];
-    cliente?:Cliente
+    cliente?:Cliente;
+    tareas?:Tarea[]
 }
 
 export interface Direccion {
@@ -53,4 +54,12 @@ export interface Cliente {
     direccion:String;
     id_direccion?:String;
     email?:String;
+}
+
+export interface Tarea{
+    id?: String;
+    nombre: String;
+    tarifa_hora: number;
+    estimado_horas: number;
+    estado: String;
 }

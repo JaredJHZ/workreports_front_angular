@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MaterialesService } from 'src/app/services/materiales.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Respuesta, Direccion, Material, Usuario, Empleado } from 'src/app/interfaces/interfaces';
+import { Respuesta, Direccion, Material, Usuario, Empleado, Cliente } from 'src/app/interfaces/interfaces';
 import { DireccionesService } from 'src/app/services/direcciones.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { EmpleadosService } from 'src/app/services/empleados.service';
@@ -138,7 +138,7 @@ export class ConsultarComponent implements OnInit {
             this.aux = this.empleado;
             this.direccionesService.getDireccion(this.empleado.id_direccion)
               .subscribe(
-                data => this.empleado.direccion = data.direccion.calle + ". " + data.direccion.ciudad+", "+data.direccion.estado
+                (data: Respuesta) => this.empleado.direccion = data.direccion.calle + ". " + data.direccion.ciudad+", "+data.direccion.estado
               )
           }
         )
@@ -159,7 +159,7 @@ export class ConsultarComponent implements OnInit {
             this.aux = this.cliente;
             this.direccionesService.getDireccion(this.cliente.id_direccion)
               .subscribe(
-                data => this.cliente.direccion = data.direccion.calle + ". " + data.direccion.ciudad+", "+data.direccion.estado
+                (data: Respuesta) => this.cliente.direccion = data.direccion.calle + ". " + data.direccion.ciudad+", "+data.direccion.estado
               )
           }
         )
