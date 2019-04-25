@@ -13,6 +13,8 @@ import { TareasComponent } from './components/tareas/tareas.component';
 import { AgregarTareaComponent } from './components/tareas/agregar-tarea/agregar-tarea.component';
 import { SeleccionarTareaComponent } from './components/tareas/seleccionar-tarea/seleccionar-tarea.component';
 import { ConsultarTareaComponent } from './components/tareas/consultar-tarea/consultar-tarea.component';
+import { ModificarTareaComponent } from './componennts/tareas/modificar-tarea/modificar-tarea.component';
+import { EliminarTareaComponent } from './components/tareas/eliminar-tarea/eliminar-tarea.component';
 
 const routes: Routes = [
   {
@@ -49,8 +51,16 @@ const routes: Routes = [
     component: SeleccionarTareaComponent
   },
   {
-    path:'tareas/seleccionar/:tipo/:id',
+    path:'tareas/seleccionar/consultar/:id',
     component:ConsultarTareaComponent
+  },
+  {
+    path: 'tareas/seleccionar/modificar/:id',
+    component: ModificarTareaComponent
+  },
+  {
+    path:'tareas/seleccionar/eliminar/:id',
+    component: EliminarTareaComponent
   }
   ,
   {

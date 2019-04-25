@@ -34,14 +34,14 @@ export class ConsultarTareaComponent implements OnInit {
             this.id = data['id'];
             this.tareaService.getTarea(this.id)
               .subscribe(
-                (data) => {
+                (data: Respuesta) => {
                   let tarea = data.tarea;
-                  console.log(tarea);
                   this.tarea.id = tarea.id;
                   this.tarea.estado = tarea.estado;
                   this.tarea.estimado_horas = tarea.estimado;
                   this.tarea.nombre = tarea.nombre;
                   this.tarea.tarifa_hora = tarea.tarifa;
+                  this.tarea.fecha_termino = tarea.fecha_termino;
                 }
               )
           }

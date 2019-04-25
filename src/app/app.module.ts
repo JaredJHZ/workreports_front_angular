@@ -20,6 +20,8 @@ import { TareasComponent } from './components/tareas/tareas.component';
 import { AgregarTareaComponent } from './components/tareas/agregar-tarea/agregar-tarea.component';
 import { ConsultarTareaComponent } from './components/tareas/consultar-tarea/consultar-tarea.component';
 import { SeleccionarTareaComponent } from './components/tareas/seleccionar-tarea/seleccionar-tarea.component';
+import { ModificarTareaComponent } from './componennts/tareas/modificar-tarea/modificar-tarea.component';
+import { EliminarTareaComponent } from './components/tareas/eliminar-tarea/eliminar-tarea.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { SeleccionarTareaComponent } from './components/tareas/seleccionar-tarea
     TareasComponent,
     AgregarTareaComponent,
     ConsultarTareaComponent,
-    SeleccionarTareaComponent
+    SeleccionarTareaComponent,
+    ModificarTareaComponent,
+    EliminarTareaComponent
   ],
   imports: [
     BrowserModule,

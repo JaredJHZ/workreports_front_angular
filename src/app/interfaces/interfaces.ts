@@ -21,6 +21,7 @@ export interface Respuesta {
     clientes?:[];
     cliente?:Cliente;
     tareas?:Tarea[]
+    tarea?: Tarea
 }
 
 export interface Direccion {
@@ -62,5 +63,7 @@ export interface Tarea{
     tarifa_hora: number;
     estimado_horas: number;
     estado: String;
-    fecha_termino:String;
+    fecha_termino?:String;
+    estimado?: any;
+    tarifa?: any;
 }

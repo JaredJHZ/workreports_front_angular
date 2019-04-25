@@ -21,6 +21,7 @@ export class TareasService {
     return this.http.post(this.url, tarea, {
       headers: headers
     });
+
    }
 
    getAll(){
@@ -30,6 +31,7 @@ export class TareasService {
     return this.http.get(this.url, {
       headers: headers
     });
+
    }
 
    getTarea(id:String) {
@@ -39,5 +41,27 @@ export class TareasService {
     return this.http.get(this.url+id, {
       headers: headers
     });
+
    }
+
+   modificarTarea(id: String, tarea: Tarea) {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('authentication',this.loginService.getToken());
+
+    return this.http.put(this.url+id, tarea ,{
+      headers: headers
+    });
+   }
+
+   eliminarTarea(id: String) {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('authentication',this.loginService.getToken());
+
+    return this.http.delete(this.url+id ,{
+      headers: headers
+    });
+   }
+   
+
+ 
 }
