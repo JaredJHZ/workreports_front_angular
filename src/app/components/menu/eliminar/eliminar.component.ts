@@ -260,7 +260,25 @@ export class EliminarComponent implements OnInit {
 
   regresar(): void{
     // Funcion que permite regresar a la pagina de menu
-    this.router.navigate(['/menu']);
+    let ruta;
+    switch (this.tipo) {
+      case 'material':
+        ruta = 'materiales';
+        break;
+      case 'usuarios':
+        ruta = 'usuarios';
+        break;
+      case 'direccion':
+        ruta = 'direcciones';
+        break;
+      case 'empleados':
+        ruta = 'empleados';
+        break;
+      case 'clientes':
+        ruta = 'clientes';
+        break;
+    }
+    this.router.navigate(['/menu',ruta]);
   }
 
 

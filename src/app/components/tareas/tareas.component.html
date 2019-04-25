@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <div class="row">
-    <button [routerLink]="['/home']" class="btn btn-danger atras">Atras</button>
+    <button [routerLink]="['/home']" class="btn btn-danger atras colord">Atras</button>
 </div>
 
 <div class="row">
@@ -14,17 +14,19 @@
     <div class="row justify-content-center">
         <img src="/assets/tareas.jpg" alt="tarea" class="img">
     </div>
-    <div class="row justify-content-center" style="margin-top:15px;">
-        <button class="btn btn-primary" [routerLink]="['agregar']" >Agregar tareas</button>
+    <div class="botonera">
+      <div class="row justify-content-center" style="margin-top:15px;">
+        <button class="btn btn-primary colorb" [routerLink]="['agregar']" >Agregar tareas</button>
     </div>
     <div class="row justify-content-center" style="margin-top:15px;">
-        <button class="btn btn-primary" [routerLink]="['seleccionar','modificar']">Modificar tareas</button>
+        <button class="btn btn-primary colorb"  [routerLink]="['seleccionar','modificar']">Modificar tareas</button>
     </div>
     <div class="row justify-content-center" style="margin-top:15px;">
-        <button class="btn btn-primary" [routerLink]="['seleccionar','eliminar']" >Eliminar tareas</button>
+        <button class="btn btn-primary colorb" [routerLink]="['seleccionar','eliminar']" >Eliminar tareas</button>
     </div>
     <div class="row justify-content-center" style="margin-top:15px;">
-        <button class="btn btn-primary" [routerLink]="['seleccionar','consultar']" >Consultar tareas</button>
+        <button class="btn btn-primary colorb" [routerLink]="['seleccionar','consultar']" >Consultar tareas</button>
+    </div>
     </div>
   </div>
 </div>

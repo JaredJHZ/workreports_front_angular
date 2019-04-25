@@ -6,10 +6,14 @@ h3{
     margin-bottom: 0;
 }
 
+.selec {
+    background-color: #D671DF !important;
+}
+
 .selec:hover {
-    background-color:#615789;
     color: white;
     cursor: pointer;
+    background-color: #BF2650 !important;
 }
 
 .ajustar Button {

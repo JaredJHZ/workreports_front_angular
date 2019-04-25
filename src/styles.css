@@ -1,10 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 html,body{
     height: 100%;
-    background-color: #ECC564;
+    background-color: #8e329a;
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
     overflow-x: hidden;
+    color: #fef0fb;
 }
 
 .full {
@@ -21,7 +22,7 @@ a{
 }
 
 .custom-form{
-    border: 3px solid #167AF6;
+    border-bottom: 2px solid #E6C7FF;
     padding: 10px;
     border-radius: 5px;
 }
@@ -46,7 +47,7 @@ a{
     text-align: center;
     font-family: 'Open Sans', sans-serif;
     font-size: 34px;
-    border-bottom: 3px solid #266886;
+    border-bottom: 2px solid #E6C7FF;
     color: white;
     padding: 5px;
     margin-bottom: 10px;
@@ -60,9 +61,48 @@ a{
     height: 400px;
 }
 
+.colorb {
+    background-color: #b88cbd !important;
+    
+}
+
+.colorb:hover {
+    background-color: #3B4BD3 !important;
+}
+
+.colord {
+    background-color: #B8001C;
+
+}
+
+.colord:hover {
+    background-color: #CD16C7 !important;
+}
+
+.list-group-item.active {
+    background-color: #3B4BD3 !important;
+}
+
+.text-color-in-white {
+    color: #770087;
+}
+
+.activated {
+    color: black !important;
+    border-left: 1px #C3BEC9 solid;
+    border-right: 1px #C3BEC9 solid;
+}
+
 
 @media only screen and (min-device-width : 375px) and (max-device-width : 667px){
     .Hide {
+        display: flex;
+        justify-content: center;
+    }
+
+    .newh {
         display: none;
     }
 }
+
+

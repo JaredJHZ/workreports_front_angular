@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <div class="row">
-    <button style="margin:30px; margin-bottom: 0; margin-top: 5px;" [routerLink]="['/tareas']" class="btn btn-danger atras">Atras</button>
+    <button style="margin:30px; margin-bottom: 0; margin-top: 5px;" [routerLink]="['/tareas']" class="btn btn-danger atras colord">Atras</button>
 </div>
 <div class="row">
   <div class="col-md-12">
@@ -10,7 +10,7 @@
 
 <div class="row">
   <div class="col-md-12">
-      <div class="card-group custom">
+      <div class="card-group custom text-color-in-white">
           <div *ngFor="let tarea of tareasActuales" class="card selection" [routerLink]="[tarea.id]">
             <div class="card-body">
               <h5 class="card-title">{{tarea.nombre}}</h5>
@@ -27,8 +27,9 @@
     <div class="col-md-12">
             <div class="btn-toolbar" style="justify-content: center; display: flex;" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group mr-2" role="group" aria-label="First group">
-                            <button (click)="anterior()" type="button" class="btn btn-secondary">Anterior</button>
-                      <button (click)="siguiente()" type="button" class="btn btn-secondary">Siguiente</button>
-            </div>
-    </div>
+                      <button (click)="anterior()" type="button" class="btn btn-secondary colord">Anterior</button>
+                      <button (click)="siguiente()" type="button" class="btn btn-secondary colorb">Siguiente</button>
+                    </div>
+              </div>
+      </div>
 </div>

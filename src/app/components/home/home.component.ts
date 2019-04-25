@@ -16,12 +16,17 @@ export class HomeComponent implements OnInit {
   constructor(private loginService: LoginService, private router:Router) {
     this.usuario = this.loginService.getInfo();
     if (this.usuario.permission === 'ADMIN') {
-      this.menu.push("Usuarios");
-      this.menu.push("Clientes");
-      this.menu.push("Empleados");
-      this.menu.push("Materiales");
-      this.menu.push("Direcciones");
+      this.menu.push("usuarios");
+      this.menu.push("clientes");
+      this.menu.push("empleados");
+      this.menu.push("materiales");
+      this.menu.push("direcciones");
     
+    } else {
+      this.menu.push("clientes");
+      this.menu.push("empleados");
+      this.menu.push("materiales");
+      this.menu.push("direcciones");
     }
    }
 

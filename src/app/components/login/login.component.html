@@ -1,5 +1,5 @@
 <div class="row full">
-    <div class="col-md-6 full Hide">
+    <div class="col-md-6 full Hide newh">
         <div class="img">
                 <img class="img" src="/assets/material1.jpg" alt="img">
         </div>
@@ -7,8 +7,8 @@
     <div class="col-md-6 full color">
       
       <div class="Title">
-          <h1 >{{name}}</h1>
-          <h2 >WorkReports</h2>
+          <h1 >WorkReports</h1>
+          <h3 >Iniciar sesión</h3>
       </div>
         
         <form novalidate (ngSubmit)="enter(forma)" #forma="ngForm" class="form">
@@ -27,7 +27,9 @@
                   [(ngModel)]="user.password"
                   class="form-control" id="contraseña" placeholder="contraseña">
                 </div>
-                <button type="submit" class="btn btn-primary">Ingresar</button>
+                <div class="row justify-content-center">
+                  <button type="submit" class="btn btn-primary colorb">Ingresar</button>
+                </div>
         </form>
         <div *ngIf="error" class="alert alert-danger step" role="alert">
             {{error}}

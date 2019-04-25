@@ -8,14 +8,14 @@
     <div class="modify">
         <h1 class="Title">{{tipo}}</h1>
         <ul class="list-group opciones">
-            <li [routerLinkActive]="['active']" [routerLink]="['agregar',tipo]" class="list-group-item">Agregar</li>
-            <li class="list-group-item" [routerLinkActive]="['active']" [routerLink]="['modificar',tipo]">Modificar</li>
-            <li class="list-group-item" [routerLinkActive]="['active']" [routerLink]="['eliminar',tipo]">Eliminar</li>
-            <li class="list-group-item" [routerLinkActive]="['active']" [routerLink]="['consultar',tipo]">Consultar</li>
+            <li [routerLinkActive]="['active']" [routerLink]="['agregar',tipo]" class="list-group-item colorb">Agregar</li>
+            <li class="list-group-item colorb" [routerLinkActive]="['active']" [routerLink]="['modificar',tipo]">Modificar</li>
+            <li class="list-group-item colorb" [routerLinkActive]="['active']" [routerLink]="['eliminar',tipo]">Eliminar</li>
+            <li class="list-group-item colorb" [routerLinkActive]="['active']" [routerLink]="['consultar',tipo]">Consultar</li>
           </ul>
     </div>    
-    <div class="row Hide cm">
-            <div class="col-md-6">
+    <div class="row justify-content-center">
+            <div class="col-md-6 Hide">
                 <div class="img">
                     <img class="img" [src]="img" alt="imagen">
                 </div>

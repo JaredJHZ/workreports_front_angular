@@ -1,0 +1,9 @@
+.mycustom {
+    background-color: #9484ED !important;
+}
+
+.mycustom a:hover {
+    color: white;
+    border-bottom: 1px #C3BEC9 solid;
+}
+

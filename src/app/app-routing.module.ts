@@ -80,7 +80,7 @@ const routes: Routes = [
   },
   {
     path:'**',
-    component:HomeComponent
+    redirectTo:'/home'
   },
   { path: '',
   redirectTo: '/home',
