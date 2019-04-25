@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TareasService } from 'src/app/services/tareas.service';
 import { Respuesta, Tarea } from 'src/app/interfaces/interfaces';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-seleccionar-tarea',
@@ -13,8 +14,16 @@ export class SeleccionarTareaComponent implements OnInit {
   tareasActuales: Tarea[];
   paginaActual = 1;
   paginasTotales = 0;
+  tipo: String;
 
-  constructor(private tareaService:TareasService) { 
+  constructor(private tareaService:TareasService, private activatedRoute: ActivatedRoute) { 
+
+    this.activatedRoute.params
+      .subscribe(
+        (data) => this.tipo = data['tipo']
+      )
+
+
     this.tareaService.getAll()
         .subscribe(
           (data: Respuesta) => {

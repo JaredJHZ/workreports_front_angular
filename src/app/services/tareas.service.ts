@@ -31,4 +31,13 @@ export class TareasService {
       headers: headers
     });
    }
+
+   getTarea(id:String) {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('authentication',this.loginService.getToken());
+
+    return this.http.get(this.url+id, {
+      headers: headers
+    });
+   }
 }

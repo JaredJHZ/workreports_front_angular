@@ -62,4 +62,5 @@ export interface Tarea{
     tarifa_hora: number;
     estimado_horas: number;
     estado: String;
+    fecha_termino:String;
 }

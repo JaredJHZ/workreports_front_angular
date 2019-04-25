@@ -12,6 +12,7 @@ import { EliminarComponent } from './components/menu/eliminar/eliminar.component
 import { TareasComponent } from './components/tareas/tareas.component';
 import { AgregarTareaComponent } from './components/tareas/agregar-tarea/agregar-tarea.component';
 import { SeleccionarTareaComponent } from './components/tareas/seleccionar-tarea/seleccionar-tarea.component';
+import { ConsultarTareaComponent } from './components/tareas/consultar-tarea/consultar-tarea.component';
 
 const routes: Routes = [
   {
@@ -44,8 +45,12 @@ const routes: Routes = [
     component:AgregarTareaComponent
   },
   {
-    path:'tareas/seleccionar',
+    path:'tareas/seleccionar/:tipo',
     component: SeleccionarTareaComponent
+  },
+  {
+    path:'tareas/seleccionar/:tipo/:id',
+    component:ConsultarTareaComponent
   }
   ,
   {

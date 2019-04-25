@@ -1,3 +1,41 @@
-<p>
-  consultar-tarea works!
-</p>
+<app-navbar></app-navbar>
+<div class="row">
+    <button style="margin:30px; margin-bottom: 0; margin-top: 5px;" [routerLink]="['/tareas/seleccionar/consultar']" class="btn btn-danger atras">Atras</button>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h1 class="Title">Consulta de tarea</h1>
+  </div>
+</div>
+
+
+<div class="row">
+
+  <div class="col-md-6 Hide">
+    <div class="row justify-content-center">
+        <img src="/assets/tareas.jpg" alt="tarea" class="img">
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="row justify-content-center">
+        <form   (ngSubmit)="guardar(forma)" #forma="ngForm">
+            <div *ngFor="let opcion of opciones" class="form-group">
+                <label>{{opcion}}</label>
+    
+                  <input *ngIf="opcion !== 'estado'"
+                  disabled
+                  [(ngModel)]="tarea[opcion]" name={{opcion}} type="text" class="form-control"
+                   id="exampleInputEmail1"  placeholder={{opcion}}>
+
+                   <select disabled [(ngModel)]="tarea[opcion]" class="form-control" *ngIf="opcion === 'estado'"  name="direcccion" id="">
+                      <option *ngFor="let estado of estados;" value={{estado}}>{{estado}}</option>
+                  </select>
+
+
+                </div>
+        </form>
+    </div>
+  </div>
+</div>

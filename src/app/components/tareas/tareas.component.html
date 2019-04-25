@@ -18,13 +18,13 @@
         <button class="btn btn-primary" [routerLink]="['agregar']" >Agregar tareas</button>
     </div>
     <div class="row justify-content-center" style="margin-top:15px;">
-        <button class="btn btn-primary" [routerLink]="['seleccionar']">Modificar tareas</button>
+        <button class="btn btn-primary" [routerLink]="['seleccionar','modificar']">Modificar tareas</button>
     </div>
     <div class="row justify-content-center" style="margin-top:15px;">
         <button class="btn btn-primary">Eliminar tareas</button>
     </div>
     <div class="row justify-content-center" style="margin-top:15px;">
-        <button class="btn btn-primary">Consultar tareas</button>
+        <button class="btn btn-primary" [routerLink]="['seleccionar','consultar']" >Consultar tareas</button>
     </div>
   </div>
 </div>
