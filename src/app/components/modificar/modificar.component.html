@@ -30,7 +30,7 @@
 
           </div>
           <button type="submit" class="btn btn-primary colorb">Modificar</button>
-          <button style="margin-left: 5px" [routerLink]="['/menu',tipo+'es']" class="btn btn-danger colord">Cancelar</button>
+          <button style="margin-left: 5px" [routerLink]="['/menu',tipo]" class="btn btn-danger colord">Cancelar</button>
           <div *ngIf="mensaje" class="alert alert-danger" style="margin-top: 15px;" role="alert">
               {{mensaje}}
           </div>
@@ -42,7 +42,7 @@
               <input *ngIf="opcion !== 'privilegios'" [(ngModel)]="direccion[opcion]" name={{opcion}} type="text" class="form-control"  aria-describedby="emailHelp" placeholder={{opcion}}>
             </div>
             <button type="submit" class="btn btn-primary colorb">Modificar</button>
-            <button style="margin-left: 5px" [routerLink]="['/menu',tipo+'es']" class="btn btn-danger colord">Cancelar</button>
+            <button style="margin-left: 5px" [routerLink]="['/menu',tipo]" class="btn btn-danger colord">Cancelar</button>
             <div *ngIf="mensaje" class="alert alert-danger" style="margin-top: 15px;" role="alert">
                 {{mensaje}}
             </div>
@@ -89,9 +89,5 @@
 
   </div>
 
-  <div class="col-md-6 in">
-    <div class="img Hide">
-      <img class="img" [src]="img" alt="imagen">
-    </div>
-  </div>
+ 
 </div>

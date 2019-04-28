@@ -88,9 +88,7 @@ a{
 }
 
 .activated {
-    color: black !important;
-    border-left: 1px #C3BEC9 solid;
-    border-right: 1px #C3BEC9 solid;
+    color: white !important;
 }
 
 

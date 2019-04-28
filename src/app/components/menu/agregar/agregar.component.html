@@ -7,16 +7,16 @@
   <!--Si el tipo es usuario-->
     <form *ngIf="tipo === 'Usuarios'" class="custom-form" (ngSubmit)="agregar(forma)" #forma="ngForm">
         <div *ngFor="let opcion of opciones" class="form-group">
-          <label for="exampleInputEmail1">{{opcion}}</label>
+          <label >{{opcion}}</label>
 
-          <select [(ngModel)]="usuario[opcion]" class="form-control" *ngIf="opcion === 'privilegios'"  name="privilegios" id="">
+          <select [(ngModel)]="usuario[opcion]" class="form-control" *ngIf="opcion === 'privilegios'"  name="privilegios" >
               <option selected value="ADMIN">ADMIN</option>
               <option value="USER">USER</option>
           </select>
 
-          <input *ngIf="opcion !== 'password' && opcion !== 'privilegios' " [(ngModel)]="usuario[opcion]" name={{opcion}} type="text" class="form-control" id="exampleInputEmail1"  placeholder={{opcion}}>
+          <input *ngIf="opcion !== 'password' && opcion !== 'privilegios' " [(ngModel)]="usuario[opcion]" name={{opcion}} type="text" class="form-control"   placeholder={{opcion}}>
           
-          <input *ngIf="opcion === 'password' " [(ngModel)]="usuario[opcion]" name={{opcion}} type="password" class="form-control" id="exampleInputEmail1" placeholder={{opcion}}>
+          <input *ngIf="opcion === 'password' " [(ngModel)]="usuario[opcion]" name={{opcion}} type="password" class="form-control"  placeholder={{opcion}}>
 
         </div>
 

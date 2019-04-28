@@ -2,8 +2,11 @@
     background-color: #9484ED !important;
 }
 
+.mycustom a{
+    color:black ;
+}
+
 .mycustom a:hover {
-    color: white;
-    border-bottom: 1px #C3BEC9 solid;
+    color: white !important;
 }
 

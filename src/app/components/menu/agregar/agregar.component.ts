@@ -129,6 +129,7 @@ export class AgregarComponent implements OnInit {
                         
                       }
                     )
+                    break;
                   
                 case 'Usuarios':
                     
@@ -143,7 +144,7 @@ export class AgregarComponent implements OnInit {
                         this.invocarMensaje(this.mensaje);
                       }
                     )
-
+                    break;
 
                 case 'Empleados':
                     this.empleado = forma.value;
@@ -158,6 +159,7 @@ export class AgregarComponent implements OnInit {
                           this.invocarMensaje(this.mensaje);
                         }
                       )
+                      break;
                     
                case 'Clientes':
                     this.cliente = forma.value;
@@ -172,6 +174,7 @@ export class AgregarComponent implements OnInit {
                             this.invocarMensaje(this.mensaje);
                           }
                         )
+                        break;
             }
         }
       })

@@ -8,7 +8,7 @@
 
               <div *ngFor="let opcion of opciones" class="form-group">
                 <label for="exampleInputEmail1">{{opcion}}</label>
-                <input disabled [(ngModel)]="aux[opcion]" name={{opcion}} type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder={{opcion}}>
+                <input disabled [(ngModel)]="aux[opcion]" name={{opcion}} type="text" class="form-control" aria-describedby="emailHelp" placeholder={{opcion}}>
               </div>
 
               <div class="row justify-content-center">
@@ -26,13 +26,11 @@
             </form>
         </div>
 
-        <div class="row Hide cimg">
-            <div class="col-md-6">
-                <div class="img">
-                    <img class="img" [src]="img" alt="imagen">
-                </div>
+        <div class="col-md-6 in">
+            <div class="img Hide">
+              <img class="img" [src]="img" alt="imagen">
             </div>
-        </div>
+          </div>
       
         
  </div>

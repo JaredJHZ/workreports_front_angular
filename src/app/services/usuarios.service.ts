@@ -16,6 +16,7 @@ export class UsuariosService {
    agregarUsuario(usuario) {
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.append('authentication',this.loginService.getToken());
+    console.log(this.url);
     return this.http.post(this.url, usuario, {
       headers: headers
     });
@@ -40,6 +41,7 @@ export class UsuariosService {
    getUsuario(id:String) {
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.append('authentication',this.loginService.getToken());
+    console.log(id);
     return this.http.get(this.url+id, {
       headers: headers
     });
