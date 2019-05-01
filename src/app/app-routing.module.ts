@@ -15,6 +15,8 @@ import { SeleccionarTareaComponent } from './components/tareas/seleccionar-tarea
 import { ConsultarTareaComponent } from './components/tareas/consultar-tarea/consultar-tarea.component';
 import { ModificarTareaComponent } from './componennts/tareas/modificar-tarea/modificar-tarea.component';
 import { EliminarTareaComponent } from './components/tareas/eliminar-tarea/eliminar-tarea.component';
+import { OrdenComponent } from './components/orden/orden/orden.component';
+import { AgregarOrdenComponent } from './components/orden/agregar-orden/agregar-orden.component';
 
 const routes: Routes = [
   {
@@ -61,6 +63,14 @@ const routes: Routes = [
   {
     path:'tareas/seleccionar/eliminar/:id',
     component: EliminarTareaComponent
+  },
+  {
+    path:'orden',
+    component: OrdenComponent
+  },
+  {
+    path:'orden/agregar',
+    component:AgregarOrdenComponent
   }
   ,
   {

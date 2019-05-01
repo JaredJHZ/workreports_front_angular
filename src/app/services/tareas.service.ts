@@ -9,6 +9,7 @@ import { Tarea } from '../interfaces/interfaces';
 export class TareasService {
 
   url:string = 'http://127.0.0.1:5000/tareas/';
+  //url:string = 'http://ec2-3-121-195-173.eu-central-1.compute.amazonaws.com/tareas/';
 
   constructor(private http:HttpClient, private loginService: LoginService) {
 

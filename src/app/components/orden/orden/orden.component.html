@@ -1,0 +1,32 @@
+<app-navbar></app-navbar>
+<div class="row">
+    <button style="margin-left:30px; margin-top:10px;" [routerLink]="['/home']" class="btn btn-danger atras colord">Atras</button>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h1 class="Title">Menu principal de ordenes</h1>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-md-12">
+    <div class="row justify-content-center">
+        <img src="/assets/orden.jpeg" alt="orden" class="img">
+    </div>
+    <div class="botonera">
+      <div class="row justify-content-center" style="margin-top:15px;">
+        <button class="btn btn-primary colorb" [routerLink]="['agregar']" >Agregar orden</button>
+    </div>
+    <div class="row justify-content-center" style="margin-top:15px;">
+        <button class="btn btn-primary colorb"  [routerLink]="['seleccionar','modificar']">Modificar orden</button>
+    </div>
+    <div class="row justify-content-center" style="margin-top:15px;">
+        <button class="btn btn-primary colorb" [routerLink]="['seleccionar','eliminar']" >Eliminar orden</button>
+    </div>
+    <div class="row justify-content-center" style="margin-top:15px;">
+        <button class="btn btn-primary colorb" [routerLink]="['seleccionar','consultar']" >Consultar orden</button>
+    </div>
+    </div>
+  </div>
+</div>

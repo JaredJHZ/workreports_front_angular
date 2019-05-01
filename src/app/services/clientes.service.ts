@@ -9,6 +9,7 @@ import { Cliente } from '../interfaces/interfaces';
 export class ClientesService {
 
   private url: string = 'http://127.0.0.1:5000/clientes/';
+  //url:string = 'http://ec2-3-121-195-173.eu-central-1.compute.amazonaws.com/clientes/'
 
   constructor(private http: HttpClient, private loginService: LoginService) { }
 

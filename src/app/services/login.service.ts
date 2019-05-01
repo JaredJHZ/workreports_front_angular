@@ -7,6 +7,10 @@ import { Usuario } from '../interfaces/interfaces';
   providedIn: 'root'
 })
 export class LoginService {
+  private url:string = 'http://127.0.0.1:5000/login/';
+
+  //url:string = 'http://ec2-3-121-195-173.eu-central-1.compute.amazonaws.com/login/'
+
 
 
   constructor(
@@ -32,7 +36,8 @@ export class LoginService {
   }
 
   login(user:Usuario){
-    return this.http.post('http://127.0.0.1:5000/login/'+user.usuario, user);
+    console.log(this.url);
+    return this.http.post(this.url+user.usuario, user);
   }
 
   logout(){

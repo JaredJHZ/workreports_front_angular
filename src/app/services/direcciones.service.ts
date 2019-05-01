@@ -9,6 +9,7 @@ import { Direccion } from '../interfaces/interfaces';
 export class DireccionesService {
 
   url = "http://127.0.0.1:5000/direcciones/"
+  //url:string = 'http://ec2-3-121-195-173.eu-central-1.compute.amazonaws.com/direcciones/'
 
   constructor(private http:HttpClient, private loginService:LoginService) {
 

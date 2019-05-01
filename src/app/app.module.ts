@@ -22,6 +22,14 @@ import { ConsultarTareaComponent } from './components/tareas/consultar-tarea/con
 import { SeleccionarTareaComponent } from './components/tareas/seleccionar-tarea/seleccionar-tarea.component';
 import { ModificarTareaComponent } from './componennts/tareas/modificar-tarea/modificar-tarea.component';
 import { EliminarTareaComponent } from './components/tareas/eliminar-tarea/eliminar-tarea.component';
+import { AgregarOrdenComponent } from './components/orden/agregar-orden/agregar-orden.component';
+import { OrdenComponent } from './components/orden/orden/orden.component';
+
+// datepicker
+
+import {OwlRadioModule} from 'owl-ng'
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 @NgModule({
   declarations: [
@@ -41,13 +49,19 @@ import { EliminarTareaComponent } from './components/tareas/eliminar-tarea/elimi
     ConsultarTareaComponent,
     SeleccionarTareaComponent,
     ModificarTareaComponent,
-    EliminarTareaComponent
+    EliminarTareaComponent,
+    AgregarOrdenComponent,
+    OrdenComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NoopAnimationsModule,
+    OwlRadioModule,
+    OwlDateTimeModule,
+     OwlNativeDateTimeModule,
 
   ],
   providers: [],

@@ -11,7 +11,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~7.2.0",
+    "@angular/animations": "^7.2.14",
     "@angular/common": "~7.2.0",
     "@angular/compiler": "~7.2.0",
     "@angular/core": "~7.2.0",
@@ -22,6 +22,9 @@
     "c": "^0.1.0",
     "core-js": "^2.5.4",
     "jwt-decode": "^2.2.0",
+    "ng-pick-datetime": "^7.0.0",
+    "ng2-datepicker": "^3.1.1",
+    "owl-ng": "^1.0.0-beta.19",
     "rxjs": "~6.3.3",
     "sweetalert2": "^8.8.7",
     "tslib": "^1.9.0",

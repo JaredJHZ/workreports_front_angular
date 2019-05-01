@@ -1,0 +1,29 @@
+.contenedor-de-cartas{
+        display: flex;
+        Overflow:scroll; 
+        overflow-y:hidden;
+        padding: 5px;
+        height: auto !important;
+        
+}
+
+.carta{
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        margin-left:20px;
+        z-index: 5;
+        overflow:hidden;
+        max-width: 500px;
+        min-width: 280px;
+        background: #E6C6FC;
+        max-height: auto !important;
+}
+
+.subtitle{
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    border-bottom: 2px solid #E6C7FF;
+    color: white;
+    padding: 5px;
+    margin-bottom: 10px;
+}

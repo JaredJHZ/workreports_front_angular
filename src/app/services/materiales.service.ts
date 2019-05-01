@@ -8,6 +8,7 @@ import { LoginService } from './login.service';
 export class MaterialesService {
 
   url = "http://127.0.0.1:5000/materiales/"
+  //url:string = 'http://ec2-3-121-195-173.eu-central-1.compute.amazonaws.com/materiales/'
 
   constructor(private loginService:LoginService, private http:HttpClient) { 
 

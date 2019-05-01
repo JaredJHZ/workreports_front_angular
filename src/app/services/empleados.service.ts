@@ -9,6 +9,7 @@ import { Empleado } from '../interfaces/interfaces';
 export class EmpleadosService {
 
   private url:string = 'http://127.0.0.1:5000/empleados/';
+  //url:string = 'http://ec2-3-121-195-173.eu-central-1.compute.amazonaws.com/empleados/'
 
   constructor(private http: HttpClient, private loginService: LoginService) { }
 

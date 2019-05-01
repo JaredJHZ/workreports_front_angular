@@ -36,6 +36,7 @@ export interface Material {
     id?: String;
     nombre: String;
     costo_unitario?: number;
+    cantidad?: number;
 }
 
 export interface Empleado {
@@ -66,4 +67,22 @@ export interface Tarea{
     fecha_termino?:String;
     estimado?: any;
     tarifa?: any;
+}
+
+export interface Orden {
+    id?:String;
+    cliente?:String;
+    fecha_creacion:Date;
+    fecha_requerida?:Date;
+    fecha_termino?:Date;
+    empleado?:String;
+    direccion?:String;
+    serie_tareas?:String[];
+    lista_materiales?:MaterialesParaOrden[];
+    tareas:String[];
+}
+
+export interface MaterialesParaOrden  {
+    id:String;
+    cantidad:number
 }
