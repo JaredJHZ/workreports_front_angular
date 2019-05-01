@@ -20,8 +20,10 @@ export interface Respuesta {
     empleado?: Empleado;
     clientes?:[];
     cliente?:Cliente;
-    tareas?:Tarea[]
-    tarea?: Tarea
+    tareas?:Tarea[];
+    tarea?: Tarea;
+    orden?:Orden;
+    ordenes?:Orden[];
 }
 
 export interface Direccion {
@@ -77,9 +79,10 @@ export interface Orden {
     fecha_termino?:Date;
     empleado?:String;
     direccion?:String;
-    serie_tareas?:String[];
-    lista_materiales?:MaterialesParaOrden[];
+    serie_de_tareas?:any;
+    materiales?:MaterialesParaOrden[];
     tareas:String[];
+    lista_de_materiales?:any;
 }
 
 export interface MaterialesParaOrden  {

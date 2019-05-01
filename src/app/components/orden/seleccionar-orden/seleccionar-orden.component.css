@@ -1,0 +1,18 @@
+.custom {
+    padding: 30px;
+}
+
+.custom div {
+    margin: 10px;
+    width: 100%;
+    height: 300px;
+}
+
+.botonera{
+    margin-bottom: 100px;
+}
+
+.selection:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    cursor: pointer;
+}

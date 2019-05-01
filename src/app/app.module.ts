@@ -30,6 +30,8 @@ import { OrdenComponent } from './components/orden/orden/orden.component';
 import {OwlRadioModule} from 'owl-ng'
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { ConsultarOrdenComponent } from './components/orden/consultar-orden/consultar-orden.component';
+import { SeleccionarOrdenComponent } from './components/orden/seleccionar-orden/seleccionar-orden.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
     ModificarTareaComponent,
     EliminarTareaComponent,
     AgregarOrdenComponent,
-    OrdenComponent
+    OrdenComponent,
+    ConsultarOrdenComponent,
+    SeleccionarOrdenComponent
   ],
   imports: [
     BrowserModule,
