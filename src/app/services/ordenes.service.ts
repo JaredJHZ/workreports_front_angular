@@ -3,6 +3,9 @@ import { LoginService } from './login.service';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Orden } from '../interfaces/interfaces';
 
+import {saveAs} from 'file-saver';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -37,11 +40,31 @@ export class OrdenesService {
    getAllOrdenes(){
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.append('authentication',this.loginService.getToken());
-    
+    console.log(this.url);
     return this.http.get(this.url, {
       headers: headers
     });
    }
 
+   generatePDF(id) {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('authentication',this.loginService.getToken());
+
+    let pdfUrl = 'http://127.0.0.1:5000/pdf/'+id;
+
+    var mediaType = 'application/pdf';
+
+    let name = "reporte-"+id+" fecha-"+Date.now();
+
+    this.http.get(pdfUrl, {
+      headers: headers,
+      responseType: 'blob'
+    }).subscribe(
+      (data) => {
+          var blob = new Blob([data], { type: mediaType });
+          saveAs(blob, name+'.pdf');
+      }
+    );
+   }
    
 }

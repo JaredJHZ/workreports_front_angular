@@ -7,13 +7,16 @@ h3{
 }
 
 .selec {
-    background-color: #D671DF !important;
+    background-color: #E3E3E3 !important;
+    color: black;
+    border-color: black;
 }
 
 .selec:hover {
     color: white;
     cursor: pointer;
-    background-color: #BF2650 !important;
+    background-color: black !important;
+    border-color: #E3E3E3;
 }
 
 .ajustar Button {

@@ -1,15 +1,17 @@
 <app-navbar></app-navbar>
 <div class="row justify-content-center">
-    <div class="col-md-12">
+    <div class="col-md-6">
+                <app-carrusel></app-carrusel>
+    </div>
+    <div style="margin-bottom:50px;" class="col-md-6">
             <div class="card centrado" style="width: 18rem;">
                     <img class="card-img-top fit" src="/assets/personaje.jpeg" alt="Card image cap">
                     <div class="card-body">
-                      <h5 class="card-title text-color-in-white">Bienvenido {{usuario.usuario}}</h5>
-                      <p class="card-text text-color-in-white">Tipo de usuario: {{usuario.permission}}</p>
+                      <h5 style="text-align:center;" class="card-title text-color-in-white">Bienvenido {{usuario.usuario}}</h5>
+                      <h5 style="text-align:center;"  class="card-text text-color-in-white">Tipo de usuario: {{usuario.permission}}</h5>
                       <a class="btn btn-primary opc colorb" [routerLink]="['/orden']" > ordenes </a>
-                      <a class="btn btn-primary opc colorb" [routerLink]="['/tareas']" > tareas </a>
-                      <a *ngFor="let opcion of menu" class="btn btn-primary opc colorb" [routerLink]="['/menu',opcion]">
-                          {{opcion}}
+                      <a class="btn btn-primary opc colorb" [routerLink]="['/tareas']" > tareas </a>                          <a *ngFor="let opcion of menu" class="btn btn-primary opc colorb" [routerLink]="['/menu',opcion]">
+                              {{opcion}}
                       </a>
                     </div>
             </div>

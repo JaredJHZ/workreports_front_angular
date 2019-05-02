@@ -6,7 +6,7 @@
           
           <form #forma="ngForm">
 
-              <div *ngFor="let opcion of opciones" class="form-group">
+              <div *ngFor="let opcion of opciones" class="form-group custom-form">
                 <label for="exampleInputEmail1">{{opcion}}</label>
                 <input disabled [(ngModel)]="aux[opcion]" name={{opcion}} type="text" class="form-control" aria-describedby="emailHelp" placeholder={{opcion}}>
               </div>

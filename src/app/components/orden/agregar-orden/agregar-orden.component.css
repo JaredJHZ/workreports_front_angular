@@ -15,15 +15,15 @@
         overflow:hidden;
         max-width: 500px;
         min-width: 280px;
-        background: #E6C6FC;
+        background: #687371;
         max-height: auto !important;
 }
 
 .subtitle{
     text-align: center;
     font-family: 'Open Sans', sans-serif;
-    border-bottom: 2px solid #E6C7FF;
-    color: white;
+    border-bottom: 2px solid #687371;
+    color: #687371;
     padding: 5px;
     margin-bottom: 10px;
 }

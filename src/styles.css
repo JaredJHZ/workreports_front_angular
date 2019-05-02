@@ -3,8 +3,8 @@
 
 html,body{
     height: 100%;
-    background-color: #8e329a;
-    font-family: 'Montserrat', sans-serif;
+    background-color: #F9F9F9;
+    font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     overflow-x: hidden;
     color: #fef0fb;
@@ -24,9 +24,9 @@ a{
 }
 
 .custom-form{
-    border-bottom: 2px solid #E6C7FF;
     padding: 10px;
-    border-radius: 5px;
+    color: #202020;
+    text-align: center;
 }
 
 .titulo-form {
@@ -47,10 +47,10 @@ a{
 
 .Title {
     text-align: center;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 34px;
-    border-bottom: 2px solid #E6C7FF;
-    color: white;
+    border-bottom: 2px solid #E3E3E3;
+    color: #202020;
     padding: 5px;
     margin-bottom: 10px;
 }
@@ -64,36 +64,62 @@ a{
 }
 
 .colorb {
-    background-color: #b88cbd !important;
+    background-color: #E3E3E3 !important;
+    color: #202020;
+    border-color: black;
     
 }
 
 .colorb:hover {
-    background-color: #3B4BD3 !important;
+    background-color: #202020 !important;
+    color: white;
+}
+
+.colorb:active{
+    border-color: #E3E3E3;
 }
 
 .colord {
-    background-color: #B8001C;
+    background-color: #202020 !important;
+    color: white;
 
 }
 
 .colord:hover {
-    background-color: #CD16C7 !important;
+    background-color: #E3E3E3 !important;
+    color: #202020;
+}
+.colord:active{
+    border-color: #E3E3E3;
 }
 
 .list-group-item.active {
-    background-color: #3B4BD3 !important;
+    background-color: #202020 !important;
+    border: #202020;
+    outline: black;
+}
+
+.list-group-item:active {
+    outline: black;
 }
 
 .text-color-in-white {
-    color: #770087;
+    color: #1F1F1F;
 }
 
 .activated {
-    color: white !important;
+    color: rgba(196, 191, 191, 0.822) !important;
+    border-bottom: 1px solid black;
+    
 }
 
+.selected {
+    background-color: rgba(196, 191, 191, 0.822) !important;
+}
 
+.cst:active {
+    border-color: #202020;
+}
 @media only screen and (min-device-width : 375px) and (max-device-width : 667px){
     .Hide {
         display: flex;
@@ -106,6 +132,3 @@ a{
 }
 
 
-.selected {
-    background-color: red !important;
-}

@@ -111,12 +111,13 @@ export class AgregarOrdenComponent implements OnInit {
 
   }
 
-  unselectTarea(id:String){
+  unselectTarea(tarea:Tarea){
     this.orden.tareas = this.orden.tareas.filter(
       tareaActual => {
-        return id !== tareaActual
+        return tarea.id !== tareaActual
       }
     );
+    console.log(this.orden.tareas);
   }
 
   materialEstaEnMateriales(id) {

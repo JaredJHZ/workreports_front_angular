@@ -58,19 +58,19 @@
                 <p class="card-text">Tarifa por hora: <strong>$ {{tarea.tarifa_hora}}</strong></p>
                 <p class="card-text">Estado: <strong>{{tarea.estado}}</strong></p>
                 
-                <button *ngIf="!tareaEnTareas(tarea.id)" (click)="selectTarea(tarea)"  style="margin-top:10px" class="btn btn-primary btn-lg btn-block">
+                <button *ngIf="!tareaEnTareas(tarea.id)" (click)="selectTarea(tarea)"  style="margin-top:10px" class="btn btn-primary btn-lg btn-block colorb">
                   Agregar
                 </button>
-                <button  *ngIf="tareaEnTareas(tarea.id)" (click)="unselectTarea(tarea)" style="margin-top:10px" class="btn btn-primary btn-lg btn-block">
+                <button type="button" *ngIf="tareaEnTareas(tarea.id)" (click)="unselectTarea(tarea)" style="margin-top:10px" class="btn btn-primary btn-lg btn-block colord">
                     Eliminar
                 </button>
               </div>
             </div>
 
           </div>
-          <h5 class="subtitle">No encuentro la tarea?</h5>
+          <h5 class="subtitle"> ¿No encuentra la tarea?</h5>
           <div class="row justify-content-center subtitle">
-              <button [routerLink]="['/tareas','agregar']" class="btn btn-primary">Agregar nueva tarea</button>
+              <button [routerLink]="['/tareas','agregar']" class="btn btn-primary colord">Agregar nueva tarea</button>
           </div>
       </div>
 
@@ -82,19 +82,19 @@
                   <h3 class="card-title">{{material.nombre}}</h3>
                   <p class="card-text">Costo unitario: <strong>$ {{material.costo_unitario}}</strong></p>
                   <input name="cantidad" type="number" class="form-control" placeholder="cantidad" [(ngModel)]="material['cantidad']">
-                  <button *ngIf="!materialEstaEnMateriales(material.id)" (click)="selected(material)"  style="margin-top:10px" class="btn btn-primary btn-lg btn-block">
+                  <button *ngIf="!materialEstaEnMateriales(material.id)" (click)="selected(material)"  style="margin-top:10px" class="btn btn-primary btn-lg btn-block colorb">
                     Agregar
                   </button>
-                  <button *ngIf="materialEstaEnMateriales(material.id)" (click)="unselect(material)"  style="margin-top:10px" class="btn btn-primary btn-lg btn-block">
+                  <button *ngIf="materialEstaEnMateriales(material.id)" (click)="unselect(material)"  style="margin-top:10px" class="btn btn-primary btn-lg btn-block colord">
                       Eliminar
                   </button>
                 </div>
               </div>
   
             </div>
-            <h5 class="subtitle">No encuentra el material?</h5>
+            <h5 class="subtitle"> ¿No encuentra el material?</h5>
             <div class="row justify-content-center subtitle">
-                <button [routerLink]="['/menu','materiales']" class="btn btn-primary">Agregar nuevo material</button>
+                <button [routerLink]="['/menu','materiales']" class="btn btn-primary colord">Agregar nuevo material</button>
             </div>
       </div>
 

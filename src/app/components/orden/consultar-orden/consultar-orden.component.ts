@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrdenesService } from 'src/app/services/ordenes.service';
+import { ActivatedRoute } from '@angular/router';
+import { Respuesta, Orden } from 'src/app/interfaces/interfaces';
 
 @Component({
   selector: 'app-consultar-orden',
@@ -8,12 +10,32 @@ import { OrdenesService } from 'src/app/services/ordenes.service';
 })
 export class ConsultarOrdenComponent implements OnInit {
 
-  constructor(private ordenService: OrdenesService) {
-    this.ordenService.getOrden('1')
+  id:string;
+  orden: Orden;
+
+  constructor(private ordenService: OrdenesService, private activatedRoute: ActivatedRoute) {
+
+    this.activatedRoute.params
         .subscribe(
-          (data) => console.log(data)
+          (parametros) => {
+            this.id = parametros.id
+            this.ordenService.getOrden(this.id)
+                .subscribe(
+                  (data: Respuesta) => {
+                    this.orden = data.orden
+                  }
+                )
+          }
         )
-   }
+       
+  }
+
+  generatePDF():void{
+    
+    this.ordenService.generatePDF(this.id);
+  
+  }
+  
 
   ngOnInit() {
   }

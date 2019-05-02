@@ -11,7 +11,7 @@
 <div class="row">
   <div class="col-md-12">
       <div class="card-group custom text-color-in-white">
-          <div *ngFor="let tarea of tareasActuales" class="card selection" [routerLink]="[tarea.id]">
+          <div *ngFor="let tarea of tareasActuales" class="card selection cst" [routerLink]="[tarea.id]">
             <div class="card-body">
               <h5 class="card-title">{{tarea.nombre}}</h5>
               <p class="card-text">Tarifa por hora: ${{tarea.tarifa_hora}}</p>

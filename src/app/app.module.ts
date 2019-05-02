@@ -32,6 +32,7 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { ConsultarOrdenComponent } from './components/orden/consultar-orden/consultar-orden.component';
 import { SeleccionarOrdenComponent } from './components/orden/seleccionar-orden/seleccionar-orden.component';
+import { CarruselComponent } from './components/carrusel/carrusel.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { SeleccionarOrdenComponent } from './components/orden/seleccionar-orden/
     AgregarOrdenComponent,
     OrdenComponent,
     ConsultarOrdenComponent,
-    SeleccionarOrdenComponent
+    SeleccionarOrdenComponent,
+    CarruselComponent
   ],
   imports: [
     BrowserModule,

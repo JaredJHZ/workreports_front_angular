@@ -5,7 +5,7 @@
 <div class="row justify-content-center">
 
   <!--Si el tipo es usuario-->
-    <form *ngIf="tipo === 'Usuarios'" class="custom-form" (ngSubmit)="agregar(forma)" #forma="ngForm">
+    <form *ngIf="tipo === 'Usuarios'" class="custom-form " (ngSubmit)="agregar(forma)" #forma="ngForm">
         <div *ngFor="let opcion of opciones" class="form-group">
           <label >{{opcion}}</label>
 
