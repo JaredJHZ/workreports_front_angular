@@ -10,7 +10,8 @@
                       <h5 style="text-align:center;" class="card-title text-color-in-white">Bienvenido {{usuario.usuario}}</h5>
                       <h5 style="text-align:center;"  class="card-text text-color-in-white">Tipo de usuario: {{usuario.permission}}</h5>
                       <a class="btn btn-primary opc colorb" [routerLink]="['/orden']" > ordenes </a>
-                      <a class="btn btn-primary opc colorb" [routerLink]="['/tareas']" > tareas </a>                          <a *ngFor="let opcion of menu" class="btn btn-primary opc colorb" [routerLink]="['/menu',opcion]">
+                      <a class="btn btn-primary opc colorb" [routerLink]="['/tareas']" > tareas </a>                          
+                      <a *ngFor="let opcion of menu" class="btn btn-primary opc colorb" [routerLink]="['/menu',opcion]">
                               {{opcion}}
                       </a>
                     </div>

@@ -20,13 +20,11 @@ export class HomeComponent implements OnInit {
       this.menu.push("clientes");
       this.menu.push("empleados");
       this.menu.push("materiales");
-      this.menu.push("direcciones");
     
     } else {
       this.menu.push("clientes");
       this.menu.push("empleados");
       this.menu.push("materiales");
-      this.menu.push("direcciones");
     }
    }
 

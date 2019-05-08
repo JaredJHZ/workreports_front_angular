@@ -42,8 +42,8 @@ export class SeleccionarComponent implements OnInit {
           this.materialesService.getTodosMateriales().subscribe(
             (respuesta:Respuesta) => {
               this.items = respuesta.materiales;
-              this.paginasTotales =  this.paginasTotales = respuesta.materiales.length / 4;
-              this.paginasTotales = (respuesta.materiales.length % 4 === 1 ? this.paginasTotales + 1 : this.paginasTotales );
+              this.paginasTotales = respuesta.materiales.length / 4;
+              this.paginasTotales = (respuesta.materiales.length % 4 !== 1 ? this.paginasTotales + 1 : this.paginasTotales );
               this.paginar();
             }
           )
@@ -53,8 +53,8 @@ export class SeleccionarComponent implements OnInit {
         this.direccionesService.getDirecciones().subscribe(
           (respuesta:Respuesta) => {
             this.items = respuesta.direcciones;
-            this.paginasTotales =  this.paginasTotales = respuesta.direcciones.length / 4;
-            this.paginasTotales = (respuesta.direcciones.length % 4 === 1 ? this.paginasTotales + 1 : this.paginasTotales );
+            this.paginasTotales = respuesta.direcciones.length / 4;
+            this.paginasTotales = (respuesta.direcciones.length % 4 !== 1 ? this.paginasTotales + 1 : this.paginasTotales );
             this.paginar();
           }
         )
@@ -63,9 +63,10 @@ export class SeleccionarComponent implements OnInit {
       } else if (this.tipo === 'Usuarios') {
         this.usuariosService.getUsuarios().subscribe(
           (respuesta: Respuesta) => {
+            console.log(respuesta);
             this.items = respuesta.usuarios;
-            this.paginasTotales =  this.paginasTotales = respuesta.usuarios.length / 4;
-            this.paginasTotales = (respuesta.usuarios.length % 4 === 1 ? this.paginasTotales + 1 : this.paginasTotales );
+            this.paginasTotales = respuesta.usuarios.length / 4;
+            this.paginasTotales = (respuesta.usuarios.length % 4 !== 1 ? this.paginasTotales + 1 : this.paginasTotales );
             this.paginar();
           }
         )
@@ -75,8 +76,8 @@ export class SeleccionarComponent implements OnInit {
         this.empleadosService.getEmpleados().subscribe(
           (respuesta: Respuesta) => {
             this.items = respuesta.empleados;
-            this.paginasTotales =  this.paginasTotales = respuesta.empleados.length / 4;
-            this.paginasTotales = (respuesta.empleados.length % 4 === 1 ? this.paginasTotales + 1 : this.paginasTotales );
+            this.paginasTotales = respuesta.empleados.length / 4;
+            this.paginasTotales = (respuesta.empleados.length % 4 !== 0 ? this.paginasTotales + 1 : this.paginasTotales );
             this.paginar();
           }
         )
@@ -87,8 +88,8 @@ export class SeleccionarComponent implements OnInit {
           .subscribe(
             (respuesta: Respuesta) => {
               this.items = respuesta.clientes;
-              this.paginasTotales =  this.paginasTotales = respuesta.clientes.length / 4;
-              this.paginasTotales = (respuesta.clientes.length % 4 === 1 ? this.paginasTotales + 1 : this.paginasTotales );
+              this.paginasTotales = respuesta.clientes.length / 4;
+              this.paginasTotales = (respuesta.clientes.length % 4 !== 1 ? this.paginasTotales + 1 : this.paginasTotales );
               this.paginar();
           })
         }

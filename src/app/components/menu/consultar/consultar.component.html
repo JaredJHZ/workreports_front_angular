@@ -2,7 +2,7 @@
 <div class="row">
         <div class="col-md-6 in">
           <h1 class="Title">Consulta de {{tipo}}</h1>
-          <form >
+          <form class="custom-form" >
 
             <div *ngFor="let opcion of opciones" class="form-group">
                 <label for="exampleInputEmail1">{{opcion}}</label>
@@ -10,7 +10,8 @@
             </div>
 
             <div class="row justify-content-center">
-                <button style="margin-left: 5px" [routerLink]="['/menu',tipo]" class="btn btn-danger colord">Atras</button>  
+                <button *ngIf="tipo !== 'material'" style="margin-left: 5px" [routerLink]="['/menu',tipo]" class="btn btn-danger colord">Atras</button> 
+                <button *ngIf="tipo === 'material'" style="margin-left: 5px" [routerLink]="['/menu',tipo+'es']" class="btn btn-danger colord">Atras</button>  
             </div>
 
               
@@ -20,9 +21,11 @@
         </div>
       
         <div class="col-md-6 in">
-            <div class="img Hide">
-              <img class="img" [src]="img" alt="imagen">
-            </div>
+          <div class="row justify-content-center">
+              <div class="img Hide">
+                  <img class="img" [src]="img" alt="imagen">
+                </div>
+          </div>
           </div>
   
     </div>

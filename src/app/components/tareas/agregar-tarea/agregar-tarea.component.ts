@@ -21,9 +21,9 @@ export class AgregarTareaComponent implements OnInit {
     estado:''
   }
 
-  estados: String [] = ['sin iniciar','en progreso','completa'];
+  estados: String [] = ['SIN INICIAR','EN PROGRESO','COMPLETA'];
 
-  opciones: String [] = ['id','nombre','tarifa_hora','estimado_horas','estado'];
+  opciones: String [] = ['id','nombre','tarifa_hora','estimado_horas','estado','horas_reales'];
 
   guardar(forma: NgForm):void {
     Swal.fire({

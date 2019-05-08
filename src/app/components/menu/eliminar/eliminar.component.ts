@@ -64,6 +64,11 @@ export class EliminarComponent implements OnInit {
       (data) => {
           this.id = data['id'];
           this.tipo = data['tipo'];
+          if (this.tipo === 'material') {
+            this.tipo = 'materiales';
+          } else if (this.tipo === 'direccion') {
+            this.tipo = 'direcciones';
+          }
           this.cargar();
           this.imagenes(this.tipo);
       }
@@ -75,7 +80,7 @@ export class EliminarComponent implements OnInit {
 
   cargar(){
     // Carga los elementos de acuerdo al tipo
-    if (this.tipo === 'material'){
+    if (this.tipo === 'materiales'){
       this.opciones.push("id");
       this.opciones.push("nombre");
       this.opciones.push("costo_unitario");
@@ -88,7 +93,7 @@ export class EliminarComponent implements OnInit {
             this.aux = this.material;
           }
         )
-    } else if (this.tipo === 'direccion'){
+    } else if (this.tipo === 'direcciones'){
       this.opciones.push("id");
       this.opciones.push("calle");
       this.opciones.push("ciudad");
@@ -169,11 +174,11 @@ export class EliminarComponent implements OnInit {
   imagenes(tipo):void{
 
     // Carga de imagenes
-    if (tipo === 'material'){
+    if (tipo === 'materiales'){
       this.img = '/assets/cons.jpg';
     } else if (tipo === 'usuarios'){
       this.img = '/assets/usuarios.png';
-    } else if (tipo === 'direccion'){
+    } else if (tipo === 'direcciones'){
       this.img = '/assets/direcciones.jpeg'
     } else if (tipo === 'empleados') {
       this.img = '/assets/empleados.jpg';

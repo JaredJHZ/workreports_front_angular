@@ -14,7 +14,6 @@ export interface Respuesta {
     mensaje?: String;
     materiales?:[];
     direcciones?:[];
-    direccion?: Direccion;
     usuarios?: Usuario[];
     empleados?:[];
     empleado?: Empleado;
@@ -26,18 +25,11 @@ export interface Respuesta {
     ordenes?:Orden[];
 }
 
-export interface Direccion {
-    id?: String;
-    calle: String;
-    ciudad: String;
-    estado: String;
-    cp: String;
-}
 
 export interface Material {
     id?: String;
     nombre: String;
-    costo_unitario?: number;
+    costo?: number;
     cantidad?: number;
 }
 
@@ -46,8 +38,6 @@ export interface Empleado {
     nombre:String;
     ap_paterno:String;
     ap_materno:String;
-    direccion:String;
-    id_direccion?:String;
 }
 
 export interface Cliente {
@@ -55,9 +45,12 @@ export interface Cliente {
     nombre: String;
     ap_paterno: String;
     ap_materno: String;
-    direccion:String;
     id_direccion?:String;
     email?:String;
+    calle?:string;
+    ciudad?:string;
+    estado?:string;
+    cp?:string;
 }
 
 export interface Tarea{

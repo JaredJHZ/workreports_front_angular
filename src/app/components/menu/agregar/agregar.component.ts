@@ -22,16 +22,9 @@ export class AgregarComponent implements OnInit {
   material: Material = {
     id:'',
     nombre:'',
-    costo_unitario: 0
+    costo: 0
   }
 
-  direccion: Direccion =  {
-    id: '',
-    calle:'',
-    ciudad:'',
-    estado:'',
-    cp:''
-  }
 
   usuario: Usuario = {
     id:'',
@@ -44,8 +37,7 @@ export class AgregarComponent implements OnInit {
     id: '',
     nombre:'',
     ap_paterno:'',
-    ap_materno:'',
-    direccion:''
+    ap_materno:''
   }
 
   cliente: Cliente = {
@@ -53,7 +45,10 @@ export class AgregarComponent implements OnInit {
     nombre:'',
     ap_paterno:'',
     ap_materno:'',
-    direccion:'',
+    calle:'',
+    ciudad:'',
+    estado:'',
+    cp:'',
     email:''
   }
 
@@ -61,8 +56,8 @@ export class AgregarComponent implements OnInit {
 
 
 
-  constructor(private activatedRoute: ActivatedRoute, private materialService:MaterialesService,
-     private direccionesService: DireccionesService, private usuariosService: UsuariosService,
+  constructor(private activatedRoute: ActivatedRoute, private materialService:MaterialesService
+    , private usuariosService: UsuariosService,
      private empleadoService: EmpleadosService, private clienteService: ClientesService
      ) {
 
@@ -96,7 +91,7 @@ export class AgregarComponent implements OnInit {
             
             
                   this.material = forma.value;
-                  this.material.costo_unitario = Number(this.material.costo_unitario);
+                  this.material.costo = Number(this.material.costo);
                   // transformo el costo_unitario de cadena a numero
 
                   this.materialService.agregarMaterial(this.material).subscribe(
@@ -106,42 +101,25 @@ export class AgregarComponent implements OnInit {
                           this.invocarMensaje(this.mensaje);
                       }
                     },
-                    (error) => {
-                      this.mensaje = error.mensaje;
-                      this.invocarMensaje(this.mensaje);
+                    (respuesta) => {
+                      this.mensaje = respuesta.error.mensaje;
+                      this.invocarMensaje(respuesta.error.mensaje);
                     }
                   );
                   break;
             
-            
-                case 'Direcciones':
-            
-            
-                    this.direccion = forma.value;
-                    this.direccionesService.agregarDireccion(this.direccion).subscribe(
-                      (data: Respuesta) => {
-                        this.mensaje = data.mensaje;
-                        this.invocarMensaje(this.mensaje);
-                      },
-                      (error) => {
-                        this.mensaje = "Error al agregar direccion";
-                        this.invocarMensaje(this.mensaje);
-                        
-                      }
-                    )
-                    break;
-                  
                 case 'Usuarios':
                     
                     this.usuario = forma.value;
                     this.usuariosService.agregarUsuario(this.usuario).subscribe(
                       (data: Respuesta) => {
+                        console.log(data);
                         this.mensaje = data.mensaje;
                         this.invocarMensaje(this.mensaje);
                       },
-                      (error) => {
-                        this.mensaje = "Error al agregar usuario";
-                        this.invocarMensaje(this.mensaje);
+                      (respuesta) => {
+                        console.log();
+                        this.invocarMensaje(respuesta.error.mensaje);
                       }
                     )
                     break;
@@ -169,15 +147,16 @@ export class AgregarComponent implements OnInit {
                             this.mensaje = data.mensaje;
                             this.invocarMensaje(this.mensaje);
                           },
-                          (error) => {
+                          (respuesta) => {
                             this.mensaje = "Error al agregar empleado";
-                            this.invocarMensaje(this.mensaje);
+                            this.invocarMensaje(respuesta.error.mensaje);
                           }
                         )
                         break;
             }
         }
-      })
+      }
+      )
         
 
    }
@@ -187,7 +166,7 @@ export class AgregarComponent implements OnInit {
     if(this.tipo.includes("Materiales")) {
       this.opciones.push('id');
       this.opciones.push("nombre");
-      this.opciones.push("costo_unitario");
+      this.opciones.push("costo");
 
 
     }  else if (this.tipo.includes("Direcciones")){
@@ -210,12 +189,7 @@ export class AgregarComponent implements OnInit {
       this.opciones.push('nombre');
       this.opciones.push('ap_paterno');
       this.opciones.push('ap_materno');
-      this.opciones.push('direccion');
-      this.direccionesService.getDirecciones().subscribe(
-        (direcciones: Respuesta)=> {
-          this.direcciones = direcciones.direcciones;
-        }
-      )
+      
 
 
     } else if (this.tipo.includes("Clientes")) {
@@ -223,13 +197,11 @@ export class AgregarComponent implements OnInit {
       this.opciones.push('nombre');
       this.opciones.push('ap_paterno');
       this.opciones.push('ap_materno');
-      this.opciones.push('direccion');
+      this.opciones.push('calle');
+      this.opciones.push('ciudad');
+      this.opciones.push('estado');
+      this.opciones.push('cp');
       this.opciones.push('email');
-      this.direccionesService.getDirecciones().subscribe(
-        (direcciones: Respuesta)=> {
-          this.direcciones = direcciones.direcciones;
-        }
-      )
     }
    }
    

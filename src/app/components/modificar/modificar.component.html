@@ -3,7 +3,7 @@
   <div class="col-md-6 in">
     <h1 class="Title">Modificar {{tipo}}</h1>
     
-    <form *ngIf="tipo === 'material'" (ngSubmit)="guardar(forma)" #forma="ngForm">
+    <form class="custom-form" *ngIf="tipo === 'material'" (ngSubmit)="guardar(forma)" #forma="ngForm">
         <div *ngFor="let opcion of opciones" class="form-group">
           <label for="exampleInputEmail1">{{opcion}}</label>
           <input *ngIf="opcion !== 'privilegios'" [(ngModel)]="material[opcion]" name={{opcion}} type="text" class="form-control"  aria-describedby="emailHelp" placeholder={{opcion}}>
@@ -15,7 +15,7 @@
         </div>
       </form>
 
-      <form *ngIf="tipo === 'usuarios'" (ngSubmit)="guardar(forma)" #forma="ngForm">
+      <form class="custom-form" *ngIf="tipo === 'usuarios'" (ngSubmit)="guardar(forma)" #forma="ngForm">
           <div *ngFor="let opcion of opciones" class="form-group">
             <label for="exampleInputEmail1">{{opcion}}</label>
             <input *ngIf="opcion !== 'permission' && opcion !== 'password'" [(ngModel)]="usuario[opcion]" name={{opcion}} type="text" class="form-control"  aria-describedby="emailHelp" placeholder={{opcion}}>
@@ -36,7 +36,7 @@
           </div>
         </form>
 
-        <form *ngIf="tipo === 'direccion'" (ngSubmit)="guardar(forma)" #forma="ngForm">
+        <form class="custom-form" *ngIf="tipo === 'direccion'" (ngSubmit)="guardar(forma)" #forma="ngForm">
             <div *ngFor="let opcion of opciones" class="form-group">
               <label for="exampleInputEmail1">{{opcion}}</label>
               <input *ngIf="opcion !== 'privilegios'" [(ngModel)]="direccion[opcion]" name={{opcion}} type="text" class="form-control"  aria-describedby="emailHelp" placeholder={{opcion}}>
@@ -48,7 +48,7 @@
             </div>
           </form>
 
-          <form *ngIf="tipo === 'empleados'" (ngSubmit)="guardar(forma)" #forma="ngForm">
+          <form class="custom-form" *ngIf="tipo === 'empleados'" (ngSubmit)="guardar(forma)" #forma="ngForm">
 
             <div *ngFor="let opcion of opciones" class="form-group">
 
@@ -67,7 +67,7 @@
             </div>
           </form>
 
-          <form *ngIf="tipo === 'clientes'" (ngSubmit)="guardar(forma)" #forma="ngForm">
+          <form class="custom-form" *ngIf="tipo === 'clientes'" (ngSubmit)="guardar(forma)" #forma="ngForm">
 
               <div *ngFor="let opcion of opciones" class="form-group">
   

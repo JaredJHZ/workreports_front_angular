@@ -18,7 +18,7 @@
     <ul *ngIf="tipo === 'Usuarios'"  class="list-group opciones">
             <div *ngFor="let item of actuales"  [routerLinkActive]="['active']" [routerLink]="['/usuarios',accion,item.id]" class="alert alert-primary selec" role="alert">
                 <h2 class="center">{{item.usuario}}</h2>
-                <h3 class="center">Permiso: {{item.privilegios}}</h3>   
+                <h3 class="center">Permiso: {{item.permission}}</h3>   
             </div>
     </ul>
 
