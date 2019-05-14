@@ -21,6 +21,10 @@ import { ModificarEmpleadoComponent } from './components/empleados/modificar-emp
 import { ModificarClienteComponent } from './components/clientes/modificar-cliente/modificar-cliente.component';
 
 import { ModificarTareasComponent } from './components/tareas/modificar-tareas/modificar-tareas.component';
+import { AltaUsuarioComponent } from './components/usuarios/alta-usuario/alta-usuario.component';
+import { BusquedaUsuariosComponent } from './components/usuarios/busqueda-usuarios/busqueda-usuarios.component';
+import { BajaUsuariosComponent } from './components/usuarios/baja-usuarios/baja-usuarios.component';
+import { ModificarUsuarioComponent } from './components/usuarios/modificar-usuario/modificar-usuario.component';
 
 const routes: Routes = [
   {
@@ -31,6 +35,23 @@ const routes: Routes = [
     component: HomeComponent,
     path:'home',
     canActivate:[GuardGuard]
+  },
+  {
+    component:AltaUsuarioComponent,
+    path:'alta/usuarios',
+    canActivate:[GuardGuard]
+  },
+  {
+    component:BusquedaUsuariosComponent,
+    path:'busqueda/usuarios/:tipo'
+  },
+  {
+    component: BajaUsuariosComponent,
+    path:'usuarios/bajas/:termino/:id'
+  },
+  {
+    component: ModificarUsuarioComponent,
+    path:'usuarios/modificaciones/:termino/:id'
   },
   {
     component:AltaMaterialComponent,

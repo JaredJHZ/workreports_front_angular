@@ -1,11 +1,13 @@
-<h1 class="Title">Busqueda de materiales</h1>
+<h1 class="Title">Busqueda de usuarios</h1>
 
-<h5 style="color:black; text-align: center;">Nombre del material</h5>
+<h5 style="color:black; text-align: center;">Nombre del usuario</h5>
 
 <div class="row justify-content-center">
   <div style="margin:auto;" class="col-md-5">
     <div class="row justify-content-center">
-        <input class="form-control" [(ngModel)]="terminoBuscado" (keyup)="cambiarBusqueda()" style="margin:auto;" type="text" placeholder="Nombre del material">
+        <input [(ngModel)]="terminoBuscado" 
+        (keyup)="cambiarBusqueda()" style="margin:auto;" 
+        type="text" placeholder="Nombre del usuario">
     </div>
   </div>
 </div>

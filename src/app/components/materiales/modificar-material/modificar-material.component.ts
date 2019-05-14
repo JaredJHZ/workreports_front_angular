@@ -60,14 +60,16 @@ export class ModificarMaterialComponent implements OnInit {
   }
  }
 
-ngOnInit() {
-}
-
-showMessage(mensaje:String):void{
+ showMessage(mensaje:String):void{
   this.mensaje = mensaje;
   setTimeout(() => {
     this.mensaje = '';
   }, 3000);
 }
+
+
+ngOnInit() {
+}
+
 
 }

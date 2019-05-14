@@ -35,6 +35,10 @@ import { ModificarMaterialComponent } from './components/materiales/modificar-ma
 import { ModificarEmpleadoComponent } from './components/empleados/modificar-empleado/modificar-empleado.component';
 import { ModificarClienteComponent } from './components/clientes/modificar-cliente/modificar-cliente.component';
 import { ModificarTareasComponent } from './components/tareas/modificar-tareas/modificar-tareas.component';
+import { AltaUsuarioComponent } from './components/usuarios/alta-usuario/alta-usuario.component';
+import { BusquedaUsuariosComponent } from './components/usuarios/busqueda-usuarios/busqueda-usuarios.component';
+import { BajaUsuariosComponent } from './components/usuarios/baja-usuarios/baja-usuarios.component';
+import { ModificarUsuarioComponent } from './components/usuarios/modificar-usuario/modificar-usuario.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +64,11 @@ import { ModificarTareasComponent } from './components/tareas/modificar-tareas/m
     ModificarMaterialComponent,
     ModificarEmpleadoComponent,
     ModificarClienteComponent,
-    ModificarTareasComponent
+    ModificarTareasComponent,
+    AltaUsuarioComponent,
+    BusquedaUsuariosComponent,
+    BajaUsuariosComponent,
+    ModificarUsuarioComponent
   ],
   imports: [
     BrowserModule,

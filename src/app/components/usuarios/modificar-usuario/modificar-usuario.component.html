@@ -1,0 +1,28 @@
+<h1 class="Title">Modificar usuario</h1>
+<div class="row justify-content-cneter">
+    <div class="col-md-3" style="margin:auto;">
+            <form *ngIf="usuario" class="custom-form " (ngSubmit)="alta(forma)" #forma="ngForm">
+
+                    
+                    <div class="form-group">
+                            <label >Nombre del usuario</label>
+                            <input  [(ngModel)]="usuario['usuario']" name="nombre" type="text" 
+                            class="form-control"  placeholder="Nombre del usuario">
+                          </div>
+
+                    <div class="form-group">
+                         <label>Permiso del usuario</label>
+                         <select [(ngModel)]="usuario['privilegios']" class="form-control"  name="permiso" id="permiso">
+                            <option value="USER">USER</option>
+                            <option value="ADMIN">ADMIN</option>
+                         </select>
+                    </div>
+            
+                    <button type="button" (click)="modificar()" class="btn btn-primary colorb">Modificar</button>
+                    <button style="margin-left: 5px" [routerLink]="['/menu']" class="btn btn-danger colord">Cancelar</button>
+            
+                    
+            </form>
+            <app-alerta *ngIf="mensaje" [mensaje]="mensaje"></app-alerta> 
+    </div>
+</div>
