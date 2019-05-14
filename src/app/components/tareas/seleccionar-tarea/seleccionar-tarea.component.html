@@ -8,7 +8,12 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row justify-content-center">
+
+  <div *ngIf="tareas.length <= 0" class="alert alert-danger" role="alert">
+      No hay elementos registrados!
+  </div>
+
   <div class="col-md-12">
       <div class="card-group custom text-color-in-white">
           <div *ngFor="let tarea of tareasActuales" class="card selection cst" [routerLink]="[tarea.id]">
@@ -23,7 +28,7 @@
   </div>
 </div>
 
-<div class="row justify-content-center botonera">
+<div *ngIf="tareas.length > 0" class="row justify-content-center botonera">
     <div class="col-md-12">
             <div class="btn-toolbar" style="justify-content: center; display: flex;" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group mr-2" role="group" aria-label="First group">

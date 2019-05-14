@@ -20,7 +20,7 @@
 
   <div class="col-md-6">
     <div class="row justify-content-center">
-        <form>
+        <form style="padding:30px;">
             <div *ngFor="let opcion of opciones" class="form-group custom-form">
                 <label>{{opcion}}</label>
     
@@ -32,8 +32,6 @@
                    <select disabled [(ngModel)]="tarea[opcion]" class="form-control" *ngIf="opcion === 'estado'"  name="direcccion" id="">
                       <option *ngFor="let estado of estados;" value={{estado}}>{{estado}}</option>
                   </select>
-
-
                 </div>
         </form>
     </div>

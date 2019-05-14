@@ -28,7 +28,7 @@ export class TareasService {
    getAll(){
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.append('authentication',this.loginService.getToken());
-
+    
     return this.http.get(this.url, {
       headers: headers
     });

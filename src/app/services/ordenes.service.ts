@@ -66,5 +66,13 @@ export class OrdenesService {
       }
     );
    }
+
+   eliminarOrden(id) {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('authentication',this.loginService.getToken());
+    return this.http.delete(this.url+id, {
+      headers: headers
+    });
+   }
    
 }

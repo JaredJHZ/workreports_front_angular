@@ -10,29 +10,31 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { MenuComponent } from './components/menu/menu.component';
-import { AgregarComponent } from './components/menu/agregar/agregar.component';
-import { SeleccionarComponent } from './components/seleccionar/seleccionar.component';
-import { ModificarComponent } from './components/modificar/modificar.component';
-import { ConsultarComponent } from './components/menu/consultar/consultar.component';
-import { EliminarComponent } from './components/menu/eliminar/eliminar.component';
-import { TareasComponent } from './components/tareas/tareas.component';
-import { AgregarTareaComponent } from './components/tareas/agregar-tarea/agregar-tarea.component';
-import { ConsultarTareaComponent } from './components/tareas/consultar-tarea/consultar-tarea.component';
-import { SeleccionarTareaComponent } from './components/tareas/seleccionar-tarea/seleccionar-tarea.component';
-import { ModificarTareaComponent } from './componennts/tareas/modificar-tarea/modificar-tarea.component';
-import { EliminarTareaComponent } from './components/tareas/eliminar-tarea/eliminar-tarea.component';
-import { AgregarOrdenComponent } from './components/orden/agregar-orden/agregar-orden.component';
-import { OrdenComponent } from './components/orden/orden/orden.component';
+import { AltasTareasComponent } from './components/tareas/altas-tarea/altas-tarea.component';
+
 
 // datepicker
 
 import {OwlRadioModule} from 'owl-ng'
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
-import { ConsultarOrdenComponent } from './components/orden/consultar-orden/consultar-orden.component';
-import { SeleccionarOrdenComponent } from './components/orden/seleccionar-orden/seleccionar-orden.component';
+import { AltaMaterialComponent } from './components/materiales/alta-material/alta-material.component';
+import { AltasEmpleadosComponent } from './components/empleados/altas-empleados/altas-empleados.component';
+import { AltaClientesComponent } from './components/clientes/alta-clientes/alta-clientes.component';
 import { CarruselComponent } from './components/carrusel/carrusel.component';
+import { AlertaComponent } from './components/alerta/alerta.component';
+import { BusquedaMaterialesComponent } from './components/materiales/busqueda-materiales/busqueda-materiales.component';
+import { BajaMaterialesComponent } from './components/materiales/baja-materiales/baja-materiales.component';
+import { BajaEmpleadosComponent } from './components/empleados/baja-empleados/baja-empleados.component';
+import { BusquedaEmpleadosComponent } from './components/empleados/busqueda-empleados/busqueda-empleados.component';
+import { BusquedaClientesComponent } from './components/clientes/busqueda-clientes/busqueda-clientes.component';
+import { BajaClientesComponent } from './components/clientes/baja-clientes/baja-clientes.component';
+import { BusquedaTareasComponent } from './components/tareas/busqueda-tareas/busqueda-tareas.component';
+import { BajaTareasComponent } from './components/tareas/baja-tareas/baja-tareas.component';
+import { ModificarMaterialComponent } from './components/materiales/modificar-material/modificar-material.component';
+import { ModificarEmpleadoComponent } from './components/empleados/modificar-empleado/modificar-empleado.component';
+import { ModificarClienteComponent } from './components/clientes/modificar-cliente/modificar-cliente.component';
+import { ModificarTareasComponent } from './components/tareas/modificar-tareas/modificar-tareas.component';
 
 @NgModule({
   declarations: [
@@ -41,23 +43,24 @@ import { CarruselComponent } from './components/carrusel/carrusel.component';
     HomeComponent,
     FooterComponent,
     NavbarComponent,
-    MenuComponent,
-    AgregarComponent,
-    SeleccionarComponent,
-    ModificarComponent,
-    ConsultarComponent,
-    EliminarComponent,
-    TareasComponent,
-    AgregarTareaComponent,
-    ConsultarTareaComponent,
-    SeleccionarTareaComponent,
-    ModificarTareaComponent,
-    EliminarTareaComponent,
-    AgregarOrdenComponent,
-    OrdenComponent,
-    ConsultarOrdenComponent,
-    SeleccionarOrdenComponent,
-    CarruselComponent
+    AltaMaterialComponent,
+    AltasEmpleadosComponent,
+    AltaClientesComponent,
+    AltasTareasComponent,
+    CarruselComponent,
+    AlertaComponent,
+    BusquedaMaterialesComponent,
+    BajaMaterialesComponent,
+    BajaEmpleadosComponent,
+    BusquedaEmpleadosComponent,
+    BusquedaClientesComponent,
+    BajaClientesComponent,
+    BusquedaTareasComponent,
+    BajaTareasComponent,
+    ModificarMaterialComponent,
+    ModificarEmpleadoComponent,
+    ModificarClienteComponent,
+    ModificarTareasComponent
   ],
   imports: [
     BrowserModule,

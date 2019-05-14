@@ -1,0 +1,33 @@
+<h1 class="Title">Busqueda clientes</h1>
+
+<div class="row justify-content-center">
+  <div style="margin:auto;" class="col-md-5">
+    <div class="custom-form">
+        <div class="row justify-content-center form-group">
+            <label for="">Nombre del cliente</label>
+            <input class="form-control" [(ngModel)]="nombreCliente" (keyup)="cambiarBusqueda()" style="margin:auto;" type="text" placeholder="Nombre del empleado">
+        </div>
+        <div class="row justify-content-center form-group">
+            <label for="">Apellido paterno del cliente</label>
+            <input class="form-control" [(ngModel)]="apellidoPCliente" (keyup)="cambiarBusqueda()" style="margin:auto;" type="text" placeholder="Apellido paterno">
+        </div>
+        <div class="row justify-content-center form-group">
+            <label for="">Apellido materno del cliente</label>
+            <input class="form-control" [(ngModel)]="apellidoMCliente" (keyup)="cambiarBusqueda()" style="margin:auto;" type="text" placeholder="Apellido materno">
+        </div>
+    </div>
+  </div>
+</div>
+
+<div style="margin:20px;" class="row justify-content-center">
+  <div style="margin:auto;" class="col-md-5">
+    <div class="row justify-content-center">
+        <button (click)="busqueda()" style="margin:5px;" class="btn colord">Buscar</button>
+        <button [routerLink]="['/']" style="margin:5px;" class="btn colorb">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+    <app-alerta *ngIf="mensaje" [mensaje]="mensaje"></app-alerta> 
+</div>

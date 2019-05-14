@@ -1,0 +1,66 @@
+<h1 class="Title">Baja de clientes</h1>
+<div class="row justify-content-center">
+    <form *ngIf="cliente" class="custom-form " #forma="ngForm">
+        <div class="form-group">
+          <label >Clave del cliente</label>
+          
+          <input disabled style="width:10%; margin: auto;" [(ngModel)]="cliente['id']" name="id" type="text" 
+          class="form-control"  placeholder="Clave del cliente">
+
+        </div>
+
+        <div class="input-group mb-3">
+          <label style="margin:auto" >Nombre</label>
+          <input disabled  [(ngModel)]="cliente['nombre']" name="nombre" type="text" 
+            class="form-control"  placeholder="Nombre del cliente">
+
+            <label style="margin:auto" >Apellido paterno</label>
+            <input  [(ngModel)]="cliente['ap_paterno']" name="ap_paterno" type="text" 
+            class="form-control"  placeholder="Apellido paterno">
+
+            <label style="margin:auto" >Apellido materno</label>
+            <input  [(ngModel)]="cliente['ap_materno']" name="ap_materno" type="text" 
+            class="form-control"  placeholder="Apellido materno">
+
+
+        </div>
+        
+
+      <div class="form-group">
+        <label >Calle</label>
+        <input disabled  [(ngModel)]="cliente['calle']" name="calle" type="text" 
+        class="form-control"  placeholder="calle">
+    </div>
+
+    <div class="form-group">
+      <label >Ciudad</label>
+      <input disabled [(ngModel)]="cliente['ciudad']" name="ciudad" type="text" 
+      class="form-control"  placeholder="ciudad">
+    </div>
+
+    <div class="form-group">
+      <label >Estado</label>
+      <input disabled [(ngModel)]="cliente['estado']" name="estado" type="text" 
+      class="form-control"  placeholder="estado">
+    </div>
+
+    <div class="form-group">
+      <label >Codigo postal</label>
+      <input disabled style="width:10%; margin: auto;"  [(ngModel)]="cliente['cp']" name="cp" type="text" 
+      class="form-control"  placeholder="cp">
+    </div>
+
+
+        <button style="margin: 5px" (click)="borrar()" type="submit" class="btn btn-primary colorb">Borrar</button>
+        <button style="margin: 5px" [routerLink]="['/menu']" class="btn btn-danger colord">Cancelar</button>
+
+</form>
+
+<app-alerta *ngIf="mensaje" [mensaje]="mensaje"></app-alerta> 
+
+</div>
+
+<div class="row justify-content-center">
+    <button style="margin: 25px" (click)="anterior()" class="btn btn-danger">Anterior</button>
+    <button style="margin: 25px" (click)="siguiente()" type="submit" class="btn btn-primary">Siguiente</button>
+</div>

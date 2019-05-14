@@ -10,12 +10,16 @@
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
               <a class="nav-item nav-link" routerLinkActive="activated" [routerLink]="['/home']"> Inicio </a>
-              <a class="nav-item nav-link" routerLinkActive="activated" [routerLink]="['/orden']">Ordenes de trabajo</a>
-              <a class="nav-item nav-link" routerLinkActive="activated" [routerLink]="['/tareas']">Tareas</a>
-              <a class="nav-item nav-link" routerLinkActive="activated" [routerLink]="['/menu','clientes']">Clientes</a>
-              <a class="nav-item nav-link" routerLinkActive="activated" [routerLink]="['/menu','empleados']">Empleados</a>
-              <a class="nav-item nav-link" routerLinkActive="activated" [routerLink]="['/menu','materiales']">Materiales</a>
             </div>
+
+            <div class="navbar-nav">
+                <a class="nav-item nav-link"> {{usuario}} </a>
+            </div>
+
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" > {{permiso}} </a>
+            </div>
+
           </div>
           <a class="navbar-brand" (click)="salir()" >Salir</a>
         </nav>

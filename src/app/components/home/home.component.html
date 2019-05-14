@@ -1,20 +1,63 @@
-<app-navbar></app-navbar>
+<app-navbar usuario={{usuario.user}} permiso={{usuario.permission}}></app-navbar>
+
+<div class="row justify-content-center">
+        <div class="col-md-2">
+                <div class="form-group text-color-in-white">
+                        <label style="text-align:center;">Altas</label>
+                        <select [(ngModel)]="altas" (change)="changeAltas()" class="form-control"  name="privilegios" >
+                                <option value="seleccionar">Seleccionar</option>
+                                <option value="materiales">Materiales</option>
+                                <option value="empleados">Empleados</option>
+                                <option value="clientes">Clientes</option>
+                                <option value="tareas">Tareas</option>
+                                <option value="ordenes">Ordenes</option>
+                        </select>
+                </div>
+        </div>
+        <div class="col-md-2">
+                <div class="form-group text-color-in-white">
+                        <label style="text-align:center;">Bajas</label>
+                        <select [(ngModel)]="bajas" (change)="changeBajas()" class="form-control"  name="privilegios" >
+                                        <option value="seleccionar">Seleccionar</option>
+                                        <option value="materiales">Materiales</option>
+                                        <option value="empleados">Empleados</option>
+                                        <option value="clientes">Clientes</option>
+                                        <option value="tareas">Tareas</option>
+                                        <option value="ordenes">Ordenes</option>
+                        </select>
+                </div>
+        </div>
+        <div class="col-md-2">
+                <div class="form-group text-color-in-white">
+                        <label style="text-align:center;">Modificaciones</label>
+                        <select [(ngModel)]="modificaciones" (change)="changeModificaciones()" 
+                        class="form-control"  name="privilegios" >
+                                        <option value="seleccionar">Seleccionar</option>
+                                        <option value="materiales">Materiales</option>
+                                        <option value="empleados">Empleados</option>
+                                        <option value="clientes">Clientes</option>
+                                        <option value="tareas">Tareas</option>
+                                        <option value="ordenes">Ordenes</option>
+                        </select>
+                </div>
+        </div>
+        <div class="col-md-2">
+                <div class="form-group text-color-in-white">
+                        <label style="text-align:center;">Consultas</label>
+                        <select class="form-control"  name="privilegios" >
+                                        <option value="materiales">Materiales</option>
+                                        <option value="empleados">Empleados</option>
+                                        <option value="clientes">Clientes</option>
+                                        <option value="tareas">Tareas</option>
+                                        <option value="ordenes">Ordenes</option>
+                        </select>
+                </div>
+        </div>
+        
+</div>
+
 <div class="row justify-content-center">
     <div class="col-md-6">
                 <app-carrusel></app-carrusel>
-    </div>
-    <div style="margin-bottom:50px;" class="col-md-6">
-            <div class="card centrado" style="width: 18rem;">
-                    <img class="card-img-top fit" src="/assets/personaje.jpeg" alt="Card image cap">
-                    <div class="card-body">
-                      <h5 style="text-align:center;" class="card-title text-color-in-white">Bienvenido {{usuario.usuario}}</h5>
-                      <h5 style="text-align:center;"  class="card-text text-color-in-white">Tipo de usuario: {{usuario.permission}}</h5>
-                      <a class="btn btn-primary opc colorb" [routerLink]="['/orden']" > ordenes </a>
-                      <a class="btn btn-primary opc colorb" [routerLink]="['/tareas']" > tareas </a>                          
-                      <a *ngFor="let opcion of menu" class="btn btn-primary opc colorb" [routerLink]="['/menu',opcion]">
-                              {{opcion}}
-                      </a>
-                    </div>
-            </div>
     </div>
 </div>

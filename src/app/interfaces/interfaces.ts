@@ -23,14 +23,19 @@ export interface Respuesta {
     tarea?: Tarea;
     orden?:Orden;
     ordenes?:Orden[];
+    usuario?:Usuario;
+    error?:any;
+    material?:Material;
 }
 
 
 export interface Material {
     id?: String;
     nombre: String;
-    costo?: number;
-    cantidad?: number;
+    costo?:number;
+    costo_unitario?: number;
+    cantidad_estimada?:number;
+    cantidad_utilizada?:number
 }
 
 export interface Empleado {
@@ -59,9 +64,11 @@ export interface Tarea{
     tarifa_hora: number;
     estimado_horas: number;
     estado: String;
-    fecha_termino?:String;
+    fecha_termino?:any;
     estimado?: any;
     tarifa?: any;
+    horas_reales?:number;
+    real_horas:any;
 }
 
 export interface Orden {
@@ -71,7 +78,10 @@ export interface Orden {
     fecha_requerida?:Date;
     fecha_termino?:Date;
     empleado?:String;
-    direccion?:String;
+    calle?:String;
+    ciudad?:String;
+    estado?:String;
+    cp?:String;
     serie_de_tareas?:any;
     materiales?:MaterialesParaOrden[];
     tareas:String[];
@@ -80,5 +90,6 @@ export interface Orden {
 
 export interface MaterialesParaOrden  {
     id:String;
-    cantidad:number
+    cantidad_estimada:number;
+    cantidad_utilizada:number
 }

@@ -15,6 +15,7 @@ export class SeleccionarOrdenComponent implements OnInit {
   paginaActual = 1;
   paginasTotales = 0;
   tipo: String;
+  clienteBuscado: string;
 
   constructor(private ordenesService: OrdenesService, private activatedRoute: ActivatedRoute) { 
     this.activatedRoute.params
@@ -28,6 +29,7 @@ export class SeleccionarOrdenComponent implements OnInit {
         this.paginasTotales = data.ordenes.length / 2;
         this.paginasTotales = (data.ordenes.length % 2 === 1 ? this.paginasTotales + 1 : this.paginasTotales );
         this.ordenes = data.ordenes;
+        console.log(data);
         this.paginar();
       }
     )
@@ -52,6 +54,12 @@ export class SeleccionarOrdenComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  busqueda():void {
+    this.ordenesActuales = this.ordenes.filter(
+      (orden) => orden.cliente.includes(this.clienteBuscado)
+    )
   }
 
 }

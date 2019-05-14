@@ -1,0 +1,32 @@
+<h1 class="Title">Alta de material</h1>
+
+<div class="row justify-content-cneter">
+    <div class="col-md-3" style="margin:auto;">
+            <form class="custom-form " (ngSubmit)="alta(forma)" #forma="ngForm">
+                    <div class="form-group">
+                      <label >Clave del material</label>
+                      
+                      <input (keyup)="changeID()"  [(ngModel)]="material['id']" name="id" type="text" 
+                      class="form-control"  placeholder="Clave del material">
+                    </div>
+                    
+                    <div class="form-group">
+                            <label >Nombre del material</label>
+                            <input  [(ngModel)]="material['nombre']" name="nombre" type="text" 
+                            class="form-control"  placeholder="Nombre del material">
+                          </div>
+            
+                    <div class="form-group">
+                            <label >Costo unitario del material</label>
+                            <input  [(ngModel)]="material['costo']" name="costo_unitario" type="number" 
+                                class="form-control"  placeholder="Costo unitario">
+                    </div>
+            
+                    <button type="submit" class="btn btn-primary colorb">Agregar</button>
+                    <button style="margin-left: 5px" [routerLink]="['/menu']" class="btn btn-danger colord">Cancelar</button>
+            
+                    
+            </form>
+            <app-alerta *ngIf="mensaje" [mensaje]="mensaje"></app-alerta> 
+    </div>
+</div>

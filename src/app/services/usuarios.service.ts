@@ -42,7 +42,6 @@ export class UsuariosService {
    getUsuario(id:String) {
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.append('authentication',this.loginService.getToken());
-    console.log(id);
     return this.http.get(this.url+id, {
       headers: headers
     });

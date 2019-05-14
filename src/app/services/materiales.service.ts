@@ -50,6 +50,7 @@ export class MaterialesService {
   eliminarMaterial(id:String) {
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.append('authentication',this.loginService.getToken());
+    console.log(this.url+id);
     return this.http.delete(this.url+id, {
       headers: headers
     });

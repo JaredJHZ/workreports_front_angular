@@ -8,7 +8,7 @@
   </div>
 </div>
 
-<div class="row" *ngIf="direcciones">
+<div class="row">
   <div class="col-md-12">
     <form  class="custom-form" (ngSubmit)="guardar(forma)" #forma="ngForm" style="margin-bottom:35px;">
       <h1 class="Title">Propiedades</h1>
@@ -21,11 +21,6 @@
 
              <select [(ngModel)]="orden[opcion]" class="form-control" *ngIf="opcion === 'empleado'"  name="direcccion" id="">
                 <option *ngFor="let empleado of empleados;" value={{empleado.id}}>{{empleado.nombre}}</option>
-            </select>
-
-            <select [(ngModel)]="orden[opcion]" class="form-control" *ngIf="opcion === 'direccion'"  name="direcccion" id="">
-                <option *ngFor="let direccion of direcciones;" value={{direccion.id}}>{{direccion.calle+", "+ direccion.ciudad+", "+
-                    direccion.estado +" CP: "+direccion.cp}}</option>
             </select>
 
             <select [(ngModel)]="orden[opcion]" class="form-control" *ngIf="opcion === 'cliente'"  name="direcccion" id="">
@@ -81,7 +76,8 @@
                 <div class="card-body">
                   <h3 class="card-title">{{material.nombre}}</h3>
                   <p class="card-text">Costo unitario: <strong>$ {{material.costo_unitario}}</strong></p>
-                  <input name="cantidad" type="number" class="form-control" placeholder="cantidad" [(ngModel)]="material['cantidad']">
+                  <input style="margin:5px;" name="cantidad" type="number" class="form-control" placeholder="cantidad estimada" [(ngModel)]="material['cantidad_estimada']">
+                  <input style="margin:5px;" name="cantidad" type="number" class="form-control" placeholder="cantidad real" [(ngModel)]="material['cantidad_utilizada']">
                   <button *ngIf="!materialEstaEnMateriales(material.id)" (click)="selected(material)"  style="margin-top:10px" class="btn btn-primary btn-lg btn-block colorb">
                     Agregar
                   </button>
@@ -98,12 +94,14 @@
             </div>
       </div>
 
-      
+      <app-alerta *ngIf="mensaje" [mensaje]="mensaje"></app-alerta> 
       
       <div style="margin-top:30px;" class="row justify-content-center">
           <button type="submit" class="btn btn-primary colorb">Agregar</button>
           <button style="margin-left: 5px" [routerLink]="['/orden']" class="btn btn-danger colord">Cancelar</button>
       </div>
+
+      
 
   </form>
   </div>

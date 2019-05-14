@@ -3,22 +3,24 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { GuardGuard } from './guards/guard.guard';
-import { MenuComponent } from './components/menu/menu.component';
-import { AgregarComponent } from './components/menu/agregar/agregar.component';
-import { SeleccionarComponent } from './components/seleccionar/seleccionar.component';
-import { ModificarComponent } from './components/modificar/modificar.component';
-import { ConsultarComponent } from './components/menu/consultar/consultar.component';
-import { EliminarComponent } from './components/menu/eliminar/eliminar.component';
-import { TareasComponent } from './components/tareas/tareas.component';
-import { AgregarTareaComponent } from './components/tareas/agregar-tarea/agregar-tarea.component';
-import { SeleccionarTareaComponent } from './components/tareas/seleccionar-tarea/seleccionar-tarea.component';
-import { ConsultarTareaComponent } from './components/tareas/consultar-tarea/consultar-tarea.component';
-import { ModificarTareaComponent } from './componennts/tareas/modificar-tarea/modificar-tarea.component';
-import { EliminarTareaComponent } from './components/tareas/eliminar-tarea/eliminar-tarea.component';
-import { OrdenComponent } from './components/orden/orden/orden.component';
-import { AgregarOrdenComponent } from './components/orden/agregar-orden/agregar-orden.component';
-import { ConsultarOrdenComponent } from './components/orden/consultar-orden/consultar-orden.component';
-import { SeleccionarOrdenComponent } from './components/orden/seleccionar-orden/seleccionar-orden.component';
+
+import { AltaMaterialComponent } from './components/materiales/alta-material/alta-material.component';
+import { AltasEmpleadosComponent } from './components/empleados/altas-empleados/altas-empleados.component';
+import { AltaClientesComponent } from './components/clientes/alta-clientes/alta-clientes.component';
+import { AltasTareasComponent } from './components/tareas/altas-tarea/altas-tarea.component';
+import { BusquedaMaterialesComponent } from './components/materiales/busqueda-materiales/busqueda-materiales.component';
+import { BajaMaterialesComponent } from './components/materiales/baja-materiales/baja-materiales.component';
+import { BajaEmpleadosComponent } from './components/empleados/baja-empleados/baja-empleados.component';
+import { BusquedaEmpleadosComponent } from './components/empleados/busqueda-empleados/busqueda-empleados.component';
+import { BusquedaClientesComponent } from './components/clientes/busqueda-clientes/busqueda-clientes.component';
+import { BajaClientesComponent } from './components/clientes/baja-clientes/baja-clientes.component';
+import { BusquedaTareasComponent } from './components/tareas/busqueda-tareas/busqueda-tareas.component';
+import { BajaTareasComponent } from './components/tareas/baja-tareas/baja-tareas.component';
+import { ModificarMaterialComponent } from './components/materiales/modificar-material/modificar-material.component';
+import { ModificarEmpleadoComponent } from './components/empleados/modificar-empleado/modificar-empleado.component';
+import { ModificarClienteComponent } from './components/clientes/modificar-cliente/modificar-cliente.component';
+
+import { ModificarTareasComponent } from './components/tareas/modificar-tareas/modificar-tareas.component';
 
 const routes: Routes = [
   {
@@ -31,72 +33,70 @@ const routes: Routes = [
     canActivate:[GuardGuard]
   },
   {
-      path:':tipo/modificar/:id',
-      component: ModificarComponent
+    component:AltaMaterialComponent,
+    path:'alta/materiales',
+    canActivate:[GuardGuard]
   },
   {
-    path:':tipo/consultar/:id',
-    component: ConsultarComponent
-  },
-  {
-    path:':tipo/eliminar/:id',
-    component: EliminarComponent
-  },
-  {
-    path:'tareas',
-    component:TareasComponent
-  },
-  {
-    path:'tareas/agregar',
-    component:AgregarTareaComponent
-  },
-  {
-    path:'tareas/seleccionar/:tipo',
-    component: SeleccionarTareaComponent
-  },
-  {
-    path:'tareas/seleccionar/consultar/:id',
-    component:ConsultarTareaComponent
-  },
-  {
-    path: 'tareas/seleccionar/modificar/:id',
-    component: ModificarTareaComponent
-  },
-  {
-    path:'tareas/seleccionar/eliminar/:id',
-    component: EliminarTareaComponent
-  },
-  {
-    path:'orden',
-    component: OrdenComponent
-  },
-  {
-    path:'orden/agregar',
-    component:AgregarOrdenComponent
-  },
-  {
-    path:'orden/seleccionar/:tipo',
-    component: SeleccionarOrdenComponent
-  },
-  {
-    path:'orden/seleccionar/consultar/:id',
-    component: ConsultarOrdenComponent
+    component:BusquedaMaterialesComponent,
+    path:'busqueda/materiales/:tipo'
   }
   ,
   {
-
-    component: MenuComponent,
-    path:'menu/:tipo',
-    canActivate:[GuardGuard],
-    children: [{
-                component: AgregarComponent,
-                path:'agregar/:tipo',
-              },
-              {
-                path:':accion/:tipo',
-                component: SeleccionarComponent
-               }
-            ]
+    component: BajaMaterialesComponent,
+    path:'materiales/bajas/:termino/:id'
+  },
+  {
+    component: ModificarMaterialComponent,
+    path:'materiales/modificaciones/:termino/:id'
+  },
+  {
+    component:AltasEmpleadosComponent,
+    path:'alta/empleados'
+  },
+  {
+    component:BusquedaEmpleadosComponent,
+    path:'busqueda/empleados/:tipo'
+  },
+  {
+    component:BajaEmpleadosComponent,
+    path:'empleados/bajas/:apellidop/:apellidom/:nombre/:id'
+  },
+  {
+    component:ModificarEmpleadoComponent,
+    path:'empleados/modificaciones/:apellidop/:apellidom/:nombre/:id'
+  },
+  {
+    component:AltasTareasComponent,
+    path:'alta/tareas'
+  },
+  {
+    component:AltaClientesComponent,
+    path:'alta/clientes'
+  },
+  {
+    component:BusquedaClientesComponent,
+    path:'busqueda/clientes/:tipo'
+  },
+  {
+    component:BajaClientesComponent,
+    path:'clientes/bajas/:apellidop/:apellidom/:nombre/:id'
+  },
+  {
+    component:ModificarClienteComponent,
+    path:'clientes/modificaciones/:apellidop/:apellidom/:nombre/:id'
+  },
+  {
+    component:BusquedaTareasComponent,
+    path:'busqueda/tareas/:tipo'
+  },
+  {
+    component:ModificarTareasComponent,
+    path:'tareas/modificaciones/:termino/:id'
+  },
+  {
+    component:BajaTareasComponent,
+    path:'tareas/bajas/:termino/:id'
   },
   {
     path:'**',

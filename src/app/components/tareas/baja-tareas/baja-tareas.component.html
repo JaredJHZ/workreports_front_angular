@@ -1,0 +1,66 @@
+<h1 class="Title">Baja de tareas</h1>
+<div class="row" *ngIf="tarea">
+    <div class="col-md-3" style="margin:auto;" >
+          <form class="custom-form">
+              <div class="form-group">
+                  <label>Clave de la tarea</label>
+                    <input disabled
+                    [(ngModel)]="tarea['id']" name="id" type="text" class="form-control"
+                     id="clave de la tarea" (keyup)="changeID()"  placeholder="Clave de la tarea">
+              </div>
+  
+              <div class="form-group">
+                  <label>Nombre de la tarea</label>
+                    <input disabled
+                    [(ngModel)]="tarea['nombre']" name="nombre" type="text" class="form-control"
+                     id="nombre de la tarea"  placeholder="Nombre de la tarea">
+              </div>
+  
+              <div class="form-group">
+                  <label>Tarifa por hora de la tarea</label>
+                    <input disabled
+                    [(ngModel)]="tarea['tarifa']" name="tarifa_hora" type="number" class="form-control"
+                     id="tarifa de la tarea"  placeholder="Tarifa de la tarea">
+              </div>
+  
+              <div class="form-group">
+                  <label>Estimado de horas de la tarea</label>
+                    <input disabled
+                    [(ngModel)]="tarea['estimado']" name="estimado_horas" type="number" class="form-control"
+                     id="estimado_horas"  placeholder="estimado_horas">
+              </div>
+  
+              <div class="form-group">
+                  <label>Estado de la tarea</label>
+                  <select disabled [(ngModel)]="tarea['estado']" class="form-control"  name="estado" id="estado">
+                      <option *ngFor="let estado of estados;" value={{estado}}>{{estado}}</option>
+                  </select>
+              </div>
+  
+              <div *ngIf="tarea['estado'] === 'COMPLETA'" class="form-group">
+                  <label>Horas que se llevo la tarea</label>
+                  <input disabled
+                  [(ngModel)]="tarea['real_horas']" name="real_horas" type="number" class="form-control"
+                   id="real_horas"  placeholder="horas_reales">
+              </div>
+
+              <div *ngIf="tarea['estado'] === 'COMPLETA'" class="form-group">
+                  <label>Fecha de termino</label>
+                  <input disabled
+                  [(ngModel)]="tarea['fecha_termino']" name="fecha_termino" type="text" class="form-control"
+                   id="fecha_termino"  placeholder="fecha_termino">
+              </div>
+  
+
+  
+              <button type="button" (click)="borrar()" class="btn btn-primary colorb">Eliminar</button>
+              <button style="margin-left: 5px" [routerLink]="['/tareas']" class="btn btn-danger colord">Cancelar</button>
+          </form>
+      <app-alerta *ngIf="mensaje" [mensaje]="mensaje"></app-alerta>  
+    </div>
+    
+  </div>
+  <div class="row justify-content-center">
+      <button style="margin: 25px" (click)="anterior()" class="btn btn-danger">Anterior</button>
+      <button style="margin: 25px" (click)="siguiente()" type="submit" class="btn btn-primary">Siguiente</button>
+  </div>

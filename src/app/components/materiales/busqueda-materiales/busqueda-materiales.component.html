@@ -1,0 +1,24 @@
+<h1 class="Title">Busqueda de materiales</h1>
+
+<h5 style="color:black; text-align: center;">Nombre del material</h5>
+
+<div class="row justify-content-center">
+  <div style="margin:auto;" class="col-md-5">
+    <div class="row justify-content-center">
+        <input [(ngModel)]="terminoBuscado" (keyup)="cambiarBusqueda()" style="margin:auto;" type="text" placeholder="Nombre del material">
+    </div>
+  </div>
+</div>
+
+<div style="margin:20px;" class="row justify-content-center">
+  <div style="margin:auto;" class="col-md-5">
+    <div class="row justify-content-center">
+        <button (click)="busqueda()" style="margin:5px;" class="btn colord">Buscar</button>
+        <button [routerLink]="['/']" style="margin:5px;" class="btn colorb">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+    <app-alerta *ngIf="mensaje" [mensaje]="mensaje"></app-alerta> 
+</div>

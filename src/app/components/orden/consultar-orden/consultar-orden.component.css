@@ -11,11 +11,17 @@
 
 .materiales {
     margin-top: 30px;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
     color: white;
 }
 
 .sub {
     text-align: center;
     color: #424242;
+}
+
+.tipo{
+    border-bottom: 2px black solid;
+    margin-bottom: 30px;
+    padding: 10px;
 }

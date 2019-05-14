@@ -19,7 +19,7 @@ export class ConsultarTareaComponent implements OnInit {
     fecha_termino:''
   }
 
-  estados: String [] = ['sin iniciar','en progreso','completa'];
+  estados: String [] = ['SIN INICIAR','EN PROGRESO','COMPLETA'];
 
   id:String;
 
@@ -36,6 +36,13 @@ export class ConsultarTareaComponent implements OnInit {
               .subscribe(
                 (data: Respuesta) => {
                   let tarea = data.tarea;
+                  console.log(tarea);
+                  if (tarea.hasOwnProperty('real_horas')) {
+                    this.tarea.horas_reales = tarea['real_horas'];
+                    this.opciones.push('horas_reales');
+                    console.log(this.tarea);
+                    console.log()
+                  }
                   this.tarea.id = tarea.id;
                   this.tarea.estado = tarea.estado;
                   this.tarea.estimado_horas = tarea.estimado;
