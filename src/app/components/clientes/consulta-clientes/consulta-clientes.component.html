@@ -1,0 +1,43 @@
+<h1 class="Title">Consulta de clientes</h1>
+<div *ngIf="clientes" class="row justify-content-center">
+  <div class="form-group">
+    <label style="color:black; margin:auto;">Nombre del cliente</label>
+    <div style="color:black;" class="input-group mb-3">
+
+      <input name="busqueda" [(ngModel)]="nombreBuscado" (keyup)="refrescarBusqueda()"
+      type="text" class="form-control" placeholder="Nombre del cliente">
+
+      <input name="busqueda" [(ngModel)]="apellidopBuscado" (keyup)="refrescarBusqueda()"
+      type="text" class="form-control" placeholder="Apellido paterno">
+
+      <input name="busqueda" [(ngModel)]="apellidomBuscado" (keyup)="refrescarBusqueda()"
+      type="text" class="form-control" placeholder="Apellido materno">
+    </div>
+  </div>
+</div>
+
+<div style="margin-top:20px;" class="row justify-content-center">
+    <button (click)="buscar()" style="margin:5px;" class="btn colorb">Buscar</button>
+    <button  style="margin:5px;" routerLink="['/']" class="btn colord">Cancelar</button>
+</div>
+
+<div *ngIf="mostrarResultados" class="row justify-content-center">
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Apellido paterno</th>
+            <th scope="col">Apellido materno</th>
+            <th scope="col">Nombre</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cliente of clientesBuscados;">
+            <th scope="row">{{cliente.id}}</th>
+            <td>{{cliente.ap_paterno}}</td>
+            <td>{{cliente.ap_materno}}</td>
+            <td>{{cliente.nombre}}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>

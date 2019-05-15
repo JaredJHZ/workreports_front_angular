@@ -1,0 +1,34 @@
+<h1 class="Title">Consulta de empleados</h1>
+<div class="row justify-content-center">
+  <div style="color:black;" class="form-group">
+    <label for="">Nombre del empleado</label>
+    <input name="busqueda" [(ngModel)]="terminoBuscado" (keyup)="refrescarBusqueda()"
+    type="text" class="form-control" placeholder="Nombre del empleado">
+
+    <div style="margin-top:20px;" class="row justify-content-center">
+        <button (click)="buscar()" style="margin:5px;" class="btn colorb">Buscar</button>
+        <button  style="margin:5px;" routerLink="['/']" class="btn colord">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="mostrarResultados" class="row justify-content-center">
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Apellido paterno</th>
+            <th scope="col">Apellido materno</th>
+            <th scope="col">Nombre</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let empleado of empleadosBuscados;">
+            <th scope="row">{{empleado.id}}</th>
+            <td>{{empleado.ap_paterno}}</td>
+            <td>{{empleado.ap_materno}}</td>
+            <td>{{empleado.nombre}}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>

@@ -47,7 +47,9 @@
         <div class="col-md-2">
                 <div class="form-group text-color-in-white">
                         <label style="text-align:center;">Consultas</label>
-                        <select class="form-control"  name="privilegios" >
+                        <select [(ngModel)]="consultas" (change)="changeConsultas()" class="form-control"  name="privilegios" >
+                                        <option value="seleccionar">Seleccionar</option>
+                                        <option *ngIf="usuario.permission === 'ADMIN'" value="usuarios">Usuarios</option>
                                         <option value="materiales">Materiales</option>
                                         <option value="empleados">Empleados</option>
                                         <option value="clientes">Clientes</option>

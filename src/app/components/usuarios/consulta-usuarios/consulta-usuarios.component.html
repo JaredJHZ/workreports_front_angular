@@ -1,0 +1,32 @@
+<h1 class="Title">Consulta de usuarios</h1>
+<div class="row justify-content-center">
+  <div style="color:black;" class="form-group">
+    <label for="">Nombre del usuario</label>
+    <input name="busqueda" [(ngModel)]="terminoBuscado" (keyup)="refrescarBusqueda()"
+    type="text" class="form-control" placeholder="Nombre del material">
+
+    <div style="margin-top:20px;" class="row justify-content-center">
+        <button (click)="buscar()" style="margin:5px;" class="btn colorb">Buscar</button>
+        <button  style="margin:5px;" routerLink="['/']" class="btn colord">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="mostrarResultados" class="row justify-content-center">
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Permiso</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let usuario of usuariosBuscados;">
+            <th scope="row">{{usuario.id}}</th>
+            <td>{{usuario.usuario}}</td>
+            <td>{{usuario.permission}}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>

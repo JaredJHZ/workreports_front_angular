@@ -1,0 +1,32 @@
+<h1 class="Title">Consulta de materiales</h1>
+<div class="row justify-content-center">
+  <div style="color:black;" class="form-group">
+    <label for="">Nombre del material</label>
+    <input name="busqueda" [(ngModel)]="terminoBuscado" (keyup)="refrescarBusqueda()"
+    type="text" class="form-control" placeholder="Nombre del material">
+
+    <div style="margin-top:20px;" class="row justify-content-center">
+        <button (click)="buscar()" style="margin:5px;" class="btn colorb">Buscar</button>
+        <button  style="margin:5px;" routerLink="['/']" class="btn colord">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="mostrarResultados" class="row justify-content-center">
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Costo unitario</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let material of materialesBuscados;">
+            <th scope="row">{{material.id}}</th>
+            <td>{{material.nombre}}</td>
+            <td>${{material.costo_unitario}}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>

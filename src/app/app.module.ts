@@ -39,6 +39,11 @@ import { AltaUsuarioComponent } from './components/usuarios/alta-usuario/alta-us
 import { BusquedaUsuariosComponent } from './components/usuarios/busqueda-usuarios/busqueda-usuarios.component';
 import { BajaUsuariosComponent } from './components/usuarios/baja-usuarios/baja-usuarios.component';
 import { ModificarUsuarioComponent } from './components/usuarios/modificar-usuario/modificar-usuario.component';
+import { ConsultaMaterialesComponent } from './components/materiales/consulta-materiales/consulta-materiales.component';
+import { ConsultaUsuariosComponent } from './components/usuarios/consulta-usuarios/consulta-usuarios.component';
+import { ConsultaEmpleadosComponent } from './components/empleados/consulta-empleados/consulta-empleados.component';
+import { ConsultaClientesComponent } from './components/clientes/consulta-clientes/consulta-clientes.component';
+import { ConsultaTareasComponent } from './components/tareas/consulta-tareas/consulta-tareas.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +73,12 @@ import { ModificarUsuarioComponent } from './components/usuarios/modificar-usuar
     AltaUsuarioComponent,
     BusquedaUsuariosComponent,
     BajaUsuariosComponent,
-    ModificarUsuarioComponent
+    ModificarUsuarioComponent,
+    ConsultaMaterialesComponent,
+    ConsultaUsuariosComponent,
+    ConsultaEmpleadosComponent,
+    ConsultaClientesComponent,
+    ConsultaTareasComponent
   ],
   imports: [
     BrowserModule,

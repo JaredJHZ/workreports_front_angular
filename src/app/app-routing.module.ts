@@ -25,6 +25,11 @@ import { AltaUsuarioComponent } from './components/usuarios/alta-usuario/alta-us
 import { BusquedaUsuariosComponent } from './components/usuarios/busqueda-usuarios/busqueda-usuarios.component';
 import { BajaUsuariosComponent } from './components/usuarios/baja-usuarios/baja-usuarios.component';
 import { ModificarUsuarioComponent } from './components/usuarios/modificar-usuario/modificar-usuario.component';
+import { ConsultaMaterialesComponent } from './components/materiales/consulta-materiales/consulta-materiales.component';
+import { ConsultaUsuariosComponent } from './components/usuarios/consulta-usuarios/consulta-usuarios.component';
+import { ConsultaEmpleadosComponent } from './components/empleados/consulta-empleados/consulta-empleados.component';
+import { ConsultaClientesComponent } from './components/clientes/consulta-clientes/consulta-clientes.component';
+import { ConsultaTareasComponent } from './components/tareas/consulta-tareas/consulta-tareas.component';
 
 const routes: Routes = [
   {
@@ -54,6 +59,10 @@ const routes: Routes = [
     path:'usuarios/modificaciones/:termino/:id'
   },
   {
+    component:ConsultaUsuariosComponent,
+    path:'consulta/usuarios'
+  },
+  {
     component:AltaMaterialComponent,
     path:'alta/materiales',
     canActivate:[GuardGuard]
@@ -72,6 +81,10 @@ const routes: Routes = [
     path:'materiales/modificaciones/:termino/:id'
   },
   {
+    component:ConsultaMaterialesComponent,
+    path:'consulta/materiales'
+  },
+  {
     component:AltasEmpleadosComponent,
     path:'alta/empleados'
   },
@@ -88,8 +101,8 @@ const routes: Routes = [
     path:'empleados/modificaciones/:apellidop/:apellidom/:nombre/:id'
   },
   {
-    component:AltasTareasComponent,
-    path:'alta/tareas'
+    component:ConsultaEmpleadosComponent,
+    path:'consulta/empleados'
   },
   {
     component:AltaClientesComponent,
@@ -108,6 +121,14 @@ const routes: Routes = [
     path:'clientes/modificaciones/:apellidop/:apellidom/:nombre/:id'
   },
   {
+    component:ConsultaClientesComponent,
+    path:'consulta/clientes'
+  },
+  {
+    component:AltasTareasComponent,
+    path:'alta/tareas'
+  },
+  {
     component:BusquedaTareasComponent,
     path:'busqueda/tareas/:tipo'
   },
@@ -118,6 +139,10 @@ const routes: Routes = [
   {
     component:BajaTareasComponent,
     path:'tareas/bajas/:termino/:id'
+  },
+  {
+    component:ConsultaTareasComponent,
+    path:'consulta/tareas'
   },
   {
     path:'**',

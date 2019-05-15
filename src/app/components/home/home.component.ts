@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   altas:string = 'seleccionar';
   bajas:string = 'seleccionar';
   modificaciones:string ='seleccionar';
-  consultas:string;
+  consultas:string = 'seleccionar';
 
   constructor(private loginService: LoginService, private router:Router) {
     this.usuario = this.loginService.getInfo();
@@ -45,7 +45,9 @@ export class HomeComponent implements OnInit {
   }
 
   changeConsultas():void {
-    console.log(this.consultas);
+    if(this.consultas !== 'seleccionar') {
+      this.router.navigate(['/consulta',this.consultas])
+    }
   }
 
 }
