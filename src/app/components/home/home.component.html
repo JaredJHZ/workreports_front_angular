@@ -3,7 +3,9 @@
 <div  class="row justify-content-center">
         <div class="col-md-2">
                 <div class="form-group text-color-in-white">
-                        <label style="text-align:center;">Altas</label>
+                        <div class="row justify-content-center">
+                                <label style="text-align:center;">Altas</label>
+                        </div>
                         <select [(ngModel)]="altas" (change)="changeAltas()" class="form-control"  name="privilegios" >
                                 <option value="seleccionar">Seleccionar</option>
                                 <option *ngIf="usuario.permission === 'ADMIN'" value="usuarios">Usuarios</option>
@@ -17,7 +19,9 @@
         </div>
         <div *ngIf="usuario.permission === 'ADMIN'" class="col-md-2">
                 <div class="form-group text-color-in-white">
-                        <label style="text-align:center;">Bajas</label>
+                                <div class="row justify-content-center">
+                                                <label style="text-align:center;">Bajas</label>
+                                        </div>
                         <select [(ngModel)]="bajas" (change)="changeBajas()" class="form-control"  name="privilegios" >
                                         <option value="seleccionar">Seleccionar</option>
                                         <option *ngIf="usuario.permission === 'ADMIN'" value="usuarios">Usuarios</option>
@@ -31,7 +35,9 @@
         </div>
         <div class="col-md-2">
                 <div class="form-group text-color-in-white">
-                        <label style="text-align:center;">Modificaciones</label>
+                                <div class="row justify-content-center">
+                                                <label style="text-align:center;">Modificaciones</label>
+                                </div>
                         <select [(ngModel)]="modificaciones" (change)="changeModificaciones()" 
                         class="form-control"  name="privilegios" >
                                         <option value="seleccionar">Seleccionar</option>
@@ -46,7 +52,9 @@
         </div>
         <div class="col-md-2">
                 <div class="form-group text-color-in-white">
-                        <label style="text-align:center;">Consultas</label>
+                                <div class="row justify-content-center">
+                                                <label style="text-align:center;">Consultas</label>
+                                        </div>
                         <select [(ngModel)]="consultas" (change)="changeConsultas()" class="form-control"  name="privilegios" >
                                         <option value="seleccionar">Seleccionar</option>
                                         <option *ngIf="usuario.permission === 'ADMIN'" value="usuarios">Usuarios</option>

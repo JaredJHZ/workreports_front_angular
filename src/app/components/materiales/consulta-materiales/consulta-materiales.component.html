@@ -1,18 +1,23 @@
 <h1 class="Title">Consulta de materiales</h1>
 <div class="row justify-content-center">
-  <div style="color:black;" class="form-group">
-    <label for="">Nombre del material</label>
-    <input name="busqueda" [(ngModel)]="terminoBuscado" (keyup)="refrescarBusqueda()"
-    type="text" class="form-control" placeholder="Nombre del material">
 
-    <div style="margin-top:20px;" class="row justify-content-center">
-        <button (click)="buscar()" style="margin:5px;" class="btn colorb">Buscar</button>
-        <button  style="margin:5px;" routerLink="['/']" class="btn colord">Cancelar</button>
-    </div>
+  <div class="row">
+      <div style="color:black;" class="form-group">
+          <label for="">Nombre del material</label>
+          <div class="row justify-content-center">
+              <input name="busqueda" [(ngModel)]="terminoBuscado" (keyup)="refrescarBusqueda()"
+              type="text" class="form-control" placeholder="Nombre del material">
+          </div>
+      
+          <div style="margin-top:20px;" class="row justify-content-center">
+              <button  style="margin:5px;" routerLink="['/']" class="btn colord">Cancelar</button>
+              <button (click)="buscar()" style="margin:5px;" class="btn colorb">Buscar</button>
+          </div>
+        </div>
   </div>
 </div>
 
-<div *ngIf="mostrarResultados" class="row justify-content-center">
+<div *ngIf="mostrarResultados" class="row justify-content-center" style="padding:30px;">
     <table class="table">
         <thead class="thead-dark">
           <tr>

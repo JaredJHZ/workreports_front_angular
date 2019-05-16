@@ -5,7 +5,9 @@
 <div class="row justify-content-center">
   <div style="margin:auto;" class="col-md-5">
     <div class="row justify-content-center">
-        <input [(ngModel)]="terminoBuscado" (keyup)="cambiarBusqueda()" style="margin:auto;" type="text" placeholder="Nombre de la tarea">
+        <input class="form-control input-small-text" [(ngModel)]="terminoBuscado" (keyup)="cambiarBusqueda()"
+         style="margin:auto;" type="text" placeholder="Nombre"
+         >
     </div>
   </div>
 </div>
@@ -13,8 +15,8 @@
 <div style="margin:20px;" class="row justify-content-center">
   <div style="margin:auto;" class="col-md-5">
     <div class="row justify-content-center">
-        <button (click)="busqueda()" style="margin:5px;" class="btn colord">Buscar</button>
         <button [routerLink]="['/']" style="margin:5px;" class="btn colorb">Cancelar</button>
+        <button (click)="busqueda()" style="margin:5px;" class="btn colord">Buscar</button>
     </div>
   </div>
 </div>

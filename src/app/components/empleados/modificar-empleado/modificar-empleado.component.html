@@ -5,25 +5,38 @@
           
           <div class="form-group">
                   <label >Nombre del empleado</label>
-                  <input  [(ngModel)]="empleado['nombre']" name="nombre" type="text" 
-                  class="form-control"  placeholder="Nombre del emplado">
+                  <div class="row justify-content-center">
+                      <input  [(ngModel)]="empleado['nombre']" name="nombre" type="text" 
+                      class="form-control input-small-text"  placeholder="Nombre">
+                  </div>
           </div>
   
           <div class="form-group">
                   <label >Apellido paterno</label>
-                  <input  [(ngModel)]="empleado['ap_paterno']" name="ap_paterno" type="text" 
-                      class="form-control"  placeholder="Apellido paterno">
+                  <div class="row justify-content-center">
+                      <input  [(ngModel)]="empleado['ap_paterno']" name="ap_paterno" type="text" 
+                      class="form-control input-small-text"  placeholder="Apellido paterno">
+                  </div>
           </div>
 
           <div class="form-group">
               <label >Apellido materno</label>
-              <input  [(ngModel)]="empleado['ap_materno']" name="ap_materno" type="text" 
-                  class="form-control"  placeholder="Apellido materno">
+              <div class="row justify-content-center">
+                  <input  [(ngModel)]="empleado['ap_materno']" name="ap_materno" type="text" 
+                  class="form-control input-small-text"  placeholder="Apellido materno">
+              </div>
       </div>
   
-          <button type="button" (click)="modificar()" class="btn btn-primary colorb">Modificar</button>
-          <button style="margin-left: 5px" [routerLink]="['/menu']" class="btn btn-danger colord">Cancelar</button> 
+      <div class="row">
+        <div class="col-md-6">
+            <button style="margin-left: 5px" [routerLink]="['/menu']" class="btn btn-danger colord">Cancelar</button> 
+        </div>
+        <div class="col-md-6">
+            <button type="button" (click)="modificar()" class="btn btn-primary colorb">Modificar</button>
+        </div>
+      </div>
   </form>
+
     <app-alerta *ngIf="mensaje" [mensaje]="mensaje"></app-alerta> 
   </div>
 </div>

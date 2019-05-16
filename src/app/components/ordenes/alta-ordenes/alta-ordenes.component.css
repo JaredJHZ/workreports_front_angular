@@ -1,14 +1,13 @@
 .boton-agregar {
     margin-top: 20px;
-    background-color: #87003B !important;
+    background-color: #374684 !important;
     color: white;
 }
 
 .boton-agregar:hover {
-    background-color: #FA868A !important;
+    background-color: #25315D !important;
 }
 
 .espacio {
     margin-top: 30px;
-    border-bottom:1px solid #FDBBBD;
 }

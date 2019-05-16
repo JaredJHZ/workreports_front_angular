@@ -87,17 +87,17 @@ a{
 }
 
 .colord {
-    background-color: #EF6C6C !important;
-    color: white;
+    background-color: #F7EAA0 !important;
+    color: black;
 
 }
 
 .colord:hover {
-    background-color: #F55760 !important;
+    background-color: #EF6C6C !important;
     color: white;
 }
 .colord:active{
-    border-color: #F7EAA0;
+    border-color: #F55760;
 }
 
 

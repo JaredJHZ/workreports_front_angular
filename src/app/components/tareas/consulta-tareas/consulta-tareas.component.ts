@@ -17,7 +17,6 @@ export class ConsultaTareasComponent implements OnInit {
   constructor(private tareasService:TareasService) {
       this.tareasService.getAll().subscribe(
         (data:Respuesta) => {
-          console.log(data.tareas);
           this.tareas = data.tareas;
         }
       )

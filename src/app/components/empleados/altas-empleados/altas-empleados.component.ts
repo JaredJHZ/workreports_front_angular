@@ -43,6 +43,9 @@ export class AltasEmpleadosComponent implements OnInit {
   }
 
   changeID():void{
+    if(this.empleado.id.charAt(this.empleado.id.length - 1) === '0' && this.empleado.id.length <=5) {
+      return;
+    }
     if(!Number(this.empleado.id.charAt(this.empleado.id.length-1))){
       this.empleado.id = this.empleado.id.slice(0,this.empleado.id.length-1);
     }

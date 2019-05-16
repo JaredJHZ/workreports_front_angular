@@ -3,18 +3,38 @@
 <div class="row justify-content-center">
   <div style="margin:auto;" class="col-md-5">
     <div class="custom-form">
-        <div class="row justify-content-center form-group">
-            <label for="">Nombre del empleado</label>
-            <input class="form-control" [(ngModel)]="nombreEmpleado" (keyup)="cambiarBusqueda()" style="margin:auto;" type="text" placeholder="Nombre del empleado">
-        </div>
-        <div class="row justify-content-center form-group">
-            <label for="">Apellido paterno del empleado</label>
-            <input class="form-control" [(ngModel)]="apellidoPEmpleado" (keyup)="cambiarBusqueda()" style="margin:auto;" type="text" placeholder="Apellido paterno">
-        </div>
-        <div class="row justify-content-center form-group">
-            <label for="">Apellido materno del empleado</label>
-            <input class="form-control" [(ngModel)]="apellidoMEmpleado" (keyup)="cambiarBusqueda()" style="margin:auto;" type="text" placeholder="Apellido materno">
-        </div>
+      <div class="row justify-content-center">
+          <div class="form-group">
+              <label for="">Nombre del empleado</label>
+              <div class="row">
+                  <input class="form-control input-small-text" [(ngModel)]="nombreEmpleado" 
+                  (keyup)="cambiarBusqueda()" style="margin:auto;" type="text" 
+                  placeholder="Nombre">
+              </div>
+          </div>
+      </div>
+
+      <div class="row justify-content-center">
+          <div class="form-group">
+              <label for="">Apellido paterno del empleado</label>
+              <div class="row justify-content-center">
+                  <input class="form-control input-small-text" [(ngModel)]="apellidoPEmpleado" 
+                  (keyup)="cambiarBusqueda()" style="margin:auto;" type="text" 
+                  placeholder="Apellido paterno">
+              </div>
+             
+          </div>
+      </div>
+      <div class="row justify-content-center">
+          <div class="form-group">
+              <label for="">Apellido materno del empleado</label>
+              <div class="row">
+                  <input class="form-control input-small-text" [(ngModel)]="apellidoMEmpleado" 
+                  (keyup)="cambiarBusqueda()" style="margin:auto;" type="text" 
+                  placeholder="Apellido materno">
+              </div>
+          </div>
+      </div>
     </div>
   </div>
 </div>
@@ -22,8 +42,8 @@
 <div style="margin:20px;" class="row justify-content-center">
   <div style="margin:auto;" class="col-md-5">
     <div class="row justify-content-center">
-        <button (click)="busqueda()" style="margin:5px;" class="btn colord">Buscar</button>
         <button [routerLink]="['/']" style="margin:5px;" class="btn colorb">Cancelar</button>
+        <button (click)="busqueda()" style="margin:5px;" class="btn colord">Buscar</button>
     </div>
   </div>
 </div>
