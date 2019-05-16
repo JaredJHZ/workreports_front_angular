@@ -1,34 +1,48 @@
 <h1 class="Title">Alta de empleado</h1>
-<div class="row">
+<div class="row h-50">
   <div class="col-md-3" style="margin:auto;">
       <form class="custom-form " (ngSubmit)="alta(forma)" #forma="ngForm">
           <div class="form-group">
             <label >Clave del empleado</label>
-            
-            <input (keyup)="changeID()"  [(ngModel)]="empleado['id']" name="id" type="text" 
-            class="form-control"  placeholder="Clave del empleado">
+            <div class="row justify-content-center">
+                <input (keyup)="changeID()"  [(ngModel)]="empleado['id']" name="id" type="text" 
+                class="form-control input-id"  placeholder="Clave">
+            </div>
           </div>
           
           <div class="form-group">
                   <label >Nombre del empleado</label>
-                  <input  [(ngModel)]="empleado['nombre']" name="nombre" type="text" 
-                  class="form-control"  placeholder="Nombre del emplado">
+                  <div class="row justify-content-center">
+                      <input  [(ngModel)]="empleado['nombre']" name="nombre" type="text" 
+                      class="form-control input-small-text"  placeholder="Nombre">
+                  </div>
           </div>
   
           <div class="form-group">
                   <label >Apellido paterno</label>
-                  <input  [(ngModel)]="empleado['ap_paterno']" name="costo_unitario" type="text" 
-                      class="form-control"  placeholder="Apellido paterno">
+                  <div class="row justify-content-center">
+                      <input  [(ngModel)]="empleado['ap_paterno']" name="costo_unitario" type="text" 
+                      class="form-control input-small-text"  placeholder="Apellido Paterno">
+                  </div>
           </div>
 
           <div class="form-group">
               <label >Apellido materno</label>
-              <input  [(ngModel)]="empleado['ap_materno']" name="costo_unitario" type="text" 
-                  class="form-control"  placeholder="Apellido materno">
+              <div class="row justify-content-center">
+                  <input  [(ngModel)]="empleado['ap_materno']" name="costo_unitario" type="text" 
+                  class="form-control input-small-text"  placeholder="Apellido Materno">
+              </div>
       </div>
-  
-          <button type="submit" class="btn btn-primary colorb">Agregar</button>
-          <button style="margin-left: 5px" [routerLink]="['/menu']" class="btn btn-danger colord">Cancelar</button> 
+
+      <div class="row">
+        <div class="col-md-6">
+            <button style="margin-left: 5px" [routerLink]="['/menu']" class="btn btn-danger colord">Cancelar</button>
+        </div>
+        <div class="col-md-6">
+            <button type="submit" class="btn btn-primary colorb">Agregar</button> 
+        </div>
+      </div>
+
   </form>
     <app-alerta *ngIf="mensaje" [mensaje]="mensaje"></app-alerta> 
   </div>

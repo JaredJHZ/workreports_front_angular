@@ -1,0 +1,199 @@
+<h1 class="Title">Alta de orden</h1>
+<form class="custom-form" action="">
+<div *ngIf="orden" class="col-md-12">
+    <div class="row">
+     <div class="col-md-6">
+            <h5>Informacion de la orden</h5>
+            <div class="row justify-content-center">
+                    <div class="form-group">
+                            <label >Clave de la orden</label>
+                            <div class="row justify-content-center">
+                                <input (keyup)="changeID()"  [(ngModel)]="orden['id']" name="id" type="text" 
+                                class="form-control input-id"  placeholder="Clave">
+                            </div>    
+                    </div>
+            </div>
+            <div class="row justify-content-center">
+                    <div class="form-group">
+                        <label >Clave del cliente</label>    
+                        <div class="row justify-content-center">
+                            <input (keyup)="changeCliente()"  [(ngModel)]="orden['cliente']" name="id_cliente" type="text" 
+                            class="form-control input-id"  placeholder="Cliente">
+                        </div>    
+                    </div>
+            </div>
+
+            <div class="row justify-content-center">
+                    <div class="form-group">
+                            <label >Clave del empleado supervisor</label>    
+                            <div class="row justify-content-center">
+                                <input (keyup)="changeEmpleado()"  [(ngModel)]="orden['empleado']" name="id_empleado" type="text" 
+                                class="form-control input-id"  placeholder="Empleado">
+                            </div> 
+                    </div>
+            </div>
+    </div>
+
+    <div class="col-md-6">
+        <h5>Dirección de la orden</h5>
+        <div class="row justify-content-center">
+                <div class="form-group">
+                        <label>Calle</label>
+                        <div class="row justify-content-center">
+                            <input   [(ngModel)]="orden['calle']" name="calle" type="text" 
+                            class="form-control input-small-text"  placeholder="Calle">
+                        </div> 
+                </div>
+        </div>
+
+        <div class="row justify-content-center">
+                <div class="form-group">
+                        <label>Ciudad</label>
+                        <div class="row justify-content-center">
+                            <input   [(ngModel)]="orden['ciudad']" name="ciudad" type="text" 
+                            class="form-control input-small-text"  placeholder="Ciudad">
+                        </div> 
+                </div>
+        </div>
+
+        <div class="row justify-content-center">
+                <div class="form-group">
+                        <label>Estado</label>
+                        <div class="row justify-content-center">
+                            <input   [(ngModel)]="orden['estado']" name="estado" type="text" 
+                            class="form-control input-small-text"  placeholder="Estado">
+                        </div> 
+                </div>
+        </div>
+
+        <div class="row justify-content-center">
+                <div class="form-group">
+                        <label>Codigo postal</label>
+                        <div class="row justify-content-center">
+                            <input (keyup)="changeCP()"  [(ngModel)]="orden['cp']" name="cp" type="text" 
+                            class="form-control input-id"  placeholder="CP">
+                        </div> 
+                </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h5>Fecha de la orden</h5>
+        <div class="row">
+                <div class="col-md-6">
+                        <label>Fecha requerida</label>
+                        <div class="row justify-content-center">
+                            <input class="form-control input-small-text" name="fecha_requerda" placeholder="Fecha requerida"
+                            [(ngModel)]="orden['fecha_requerida']"
+                            [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1">
+                            <owl-date-time [pickerMode]="'dialog'" #dt1></owl-date-time>
+                        </div>
+                </div>
+                <div class="col-md-6">
+                        <label>Fecha de termino</label>
+                        <div class="row justify-content-center">
+                            <input class="form-control input-small-text" name="fecha_termino" placeholder="Fecha termino"
+                            [(ngModel)]="orden['fecha_termino']"
+                            [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2">
+                            <owl-date-time [pickerMode]="'dialog'" #dt2></owl-date-time>
+                        </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row justify-content-center">
+        <div class="col-md-12">
+          <h5 class="Title">Materiales de la orden de trabajo</h5>
+        </div>
+      </div>
+
+      <div *ngFor="let material of materiales; let i = index;" class="row align-items-center">
+          <div class="col-md-2">
+            <h5>Material {{i+1}}</h5>
+          </div>
+          <div class="col-md-2">
+              <label>Clave del material</label>
+              <div class="row justify-content-center">
+                  <input (keyup)="changeMaterialID(i)" style="margin:3px;"  [(ngModel)]="material['id']" name={{i}} type="text" 
+                  class="form-control input-id"  placeholder="clave">
+              </div>
+          </div>
+          <div class="col-md-2">
+              <label>Cantidad estimada</label>
+              <div class="row justify-content-center">
+                  <input style="margin:3px;" name="hola2"  [(ngModel)]="material['cantidad_estimada']" type="number" class="form-control input-id" placeholder="cantidad_estimada">
+              </div>
+          </div>
+          <div class="col-md-2">
+              <label>Cantidad real</label>
+              <div class="row justify-content-center">
+                  <input style="margin:3px;" name="hola3"  [(ngModel)]="material['cantidad_utilizada']" type="number" class="form-control input-id" placeholder="cantidad_utilizada">
+              </div>
+          </div>
+          <div class="col-md-2">
+              <div style="margin:auto;" class="row justify-content-center">
+                  <button type="button" class="btn btn-danger" (click)="borrarMaterial(i)">X</button>
+              </div>
+          </div>
+      </div>
+
+
+      <div class="row justify-content-center espacio">
+          <button style="margin:10px;" type="button" (click)="agregarMaterial()" class="btn btn-primary boton-agregar">Agregar un nuevo material</button>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-md-12">
+            <h5 class="Title">Tareas de la orden de trabajo</h5>
+        </div>
+      </div>
+
+      <div *ngFor="let tarea of tareas; let i = index;" class="row align-items-center">
+        <div class="col-md-2">
+          <h5>Tarea {{i+1}}</h5>
+        </div>
+        <div class="col-md-2">
+          <label>Clave de la tarea</label>
+          <div class="row justify-content-center">
+                <input (keyup)="changeTarea(i)" style="margin:3px;"  [(ngModel)]="tarea['id']" name={{i}} type="text" 
+                class="form-control input-id"  placeholder="clave">
+          </div>
+            
+        </div>
+        <div class="col-md-2 offset-md-4">
+            <div style="margin:auto;" class="row justify-content-center">
+                <button type="button" class="btn btn-danger" (click)="borrarTarea(i)">X</button>
+            </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center espacio">
+          <button style="margin:10px;" type="button" (click)="agregarTarea()" class="btn btn-primary boton-agregar">Agregar una nueva tarea</button>
+      </div>
+    
+</div>
+</form>
+
+<div class="row justify-content-center">
+        <app-alerta *ngIf="mensaje" [mensaje]="mensaje"></app-alerta> 
+</div>
+
+
+<div style="margin-bottom: 30px;" class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="row justify-content-center">
+              <button style="margin:10px;" type="button" routerLink="['/']" class="btn colord">Cancelar</button>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row justify-content-center">
+              <button style="margin:10px;" type="button" (click)="agregarOrden()" class="btn colorb">Agregar la orden</button>
+          </div>
+        </div>
+</div>
+

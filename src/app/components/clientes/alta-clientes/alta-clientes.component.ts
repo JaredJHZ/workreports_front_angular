@@ -47,6 +47,9 @@ export class AltaClientesComponent implements OnInit {
   }
 
   changeID():void{
+    if (this.cliente.id.charAt(this.cliente.id.length-1).includes("0") && this.cliente.id.length <= 5) {
+      return;
+    }
     if(!Number(this.cliente.id.charAt(this.cliente.id.length-1)) || this.cliente.id.length > 5){
       this.cliente.id = this.cliente.id.slice(0,this.cliente.id.length-1);
     }

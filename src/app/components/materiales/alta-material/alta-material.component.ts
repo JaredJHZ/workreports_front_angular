@@ -27,6 +27,9 @@ export class AltaMaterialComponent implements OnInit {
   }
 
   changeID():void{
+    if (this.material.id.charAt(this.material.id.length-1).includes("0") && this.material.id.length <=5) {
+      return;
+    }
     if(!Number(this.material.id.charAt(this.material.id.length-1)) || this.material.id.length > 5){
       this.material.id = this.material.id.slice(0,this.material.id.length-1);
     }

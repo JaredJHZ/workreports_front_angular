@@ -34,6 +34,9 @@ export class AltasTareasComponent implements OnInit {
   }
 
   changeID():void{
+    if(this.tarea.id.charAt(this.tarea.id.length-1).includes("0") && this.tarea.id.length <= 5) {
+      return
+    }
     if(!Number(this.tarea.id.charAt(this.tarea.id.length-1)) || this.tarea.id.length > 5){
       this.tarea.id = this.tarea.id.slice(0,this.tarea.id.length-1);
     }

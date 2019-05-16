@@ -3,7 +3,7 @@
 
 html,body{
     height: 100%;
-    background-color: #F9F9F9;
+    background-color: #A8D2E7;
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     overflow-x: hidden;
@@ -25,9 +25,16 @@ a{
 
 .custom-form{
     padding: 10px;
-    color: #202020;
+    background-color: #EF6C6C;
+    color: #E4E2F5;
     text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
 }
+
+.custom-form:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
 
 .titulo-form {
     margin: 15px;
@@ -49,8 +56,8 @@ a{
     text-align: center;
     font-family: 'Roboto', sans-serif;
     font-size: 34px;
-    border-bottom: 2px solid #E3E3E3;
-    color: #202020;
+    border-bottom: 2px solid #25315D;
+    color: white;
     padding: 5px;
     margin-bottom: 10px;
 }
@@ -64,14 +71,14 @@ a{
 }
 
 .colorb {
-    background-color: #E3E3E3 !important;
-    color: #202020;
+    background-color: #374684 !important;
+    color:#E4E2F5;
     border-color: black;
     
 }
 
 .colorb:hover {
-    background-color: #202020 !important;
+    background-color: #24305E !important;
     color: white;
 }
 
@@ -80,28 +87,19 @@ a{
 }
 
 .colord {
-    background-color: #202020 !important;
+    background-color: #EF6C6C !important;
     color: white;
 
 }
 
 .colord:hover {
-    background-color: #E3E3E3 !important;
-    color: #202020;
+    background-color: #F55760 !important;
+    color: white;
 }
 .colord:active{
-    border-color: #E3E3E3;
+    border-color: #F7EAA0;
 }
 
-.list-group-item.active {
-    background-color: #202020 !important;
-    border: #202020;
-    outline: black;
-}
-
-.list-group-item:active {
-    outline: black;
-}
 
 .text-color-in-white {
     color: #1F1F1F;
@@ -120,6 +118,19 @@ a{
 .cst:active {
     border-color: #202020;
 }
+
+.input-id{
+    width: 100px;
+}
+
+.input-small-text{
+    width: 135px;
+}
+
+.input-long-text{
+    width: 225px;
+}
+
 @media only screen and (min-device-width : 375px) and (max-device-width : 667px){
     .Hide {
         display: flex;

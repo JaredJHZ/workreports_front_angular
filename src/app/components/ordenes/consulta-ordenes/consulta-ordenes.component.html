@@ -1,0 +1,36 @@
+<h1 class="Title">Consulta de ordenes dde trabajo</h1>
+<div class="row justify-content-center">
+  <div style="color:black;" class="form-group">
+    <label for="">Clave de la orden</label>
+    <input (keyup)="changeID()" name="busqueda" [(ngModel)]="terminoBuscado" (keyup)="refrescarBusqueda()"
+    type="text" class="form-control input-id" placeholder="Clave">
+
+    <div style="margin-top:20px;" class="row justify-content-center">
+        <button  style="margin:5px;" routerLink="['/']" class="btn colord">Cancelar</button>
+        <button (click)="buscar()" style="margin:5px;" class="btn colorb">Buscar</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="mostrarResultados" class="row justify-content-center">
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Cliente</th>
+            <th scope="col">Fecha de creacion</th>
+            <th scope="col">Direccion</th>
+            <th scope="col">Reporte</th>
+          </tr>
+        </thead>
+        <tbody style="color:white;">
+          <tr *ngFor="let orden of ordenesBuscadas;">
+            <th scope="row">{{orden.id}}</th>
+            <td>{{orden.cliente}}</td>
+            <td>{{orden.fecha_creacion}}</td>
+            <td>{{orden.calle + ", "+orden.ciudad+", "+orden.estado}}</td>
+            <td><button (click)="reporte(orden.id)" class="btn colorb">Reporte</button></td>
+          </tr>
+        </tbody>
+      </table>
+</div>

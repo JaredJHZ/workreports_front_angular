@@ -30,6 +30,13 @@ import { ConsultaUsuariosComponent } from './components/usuarios/consulta-usuari
 import { ConsultaEmpleadosComponent } from './components/empleados/consulta-empleados/consulta-empleados.component';
 import { ConsultaClientesComponent } from './components/clientes/consulta-clientes/consulta-clientes.component';
 import { ConsultaTareasComponent } from './components/tareas/consulta-tareas/consulta-tareas.component';
+import { AltaOrdenesComponent } from './components/ordenes/alta-ordenes/alta-ordenes.component';
+import { EliminarOrdenComponent } from './components/orden/eliminar-orden/eliminar-orden.component';
+import { SeleccionarOrdenComponent } from './components/orden/seleccionar-orden/seleccionar-orden.component';
+import { BusquedaOrdenesComponent } from './components/ordenes/busqueda-ordenes/busqueda-ordenes.component';
+import { BajaOrdenComponent } from './components/ordenes/baja-orden/baja-orden.component';
+import { ConsultaOrdenesComponent } from './components/ordenes/consulta-ordenes/consulta-ordenes.component';
+import { ReporteComponent } from './components/ordenes/reporte/reporte.component';
 
 const routes: Routes = [
   {
@@ -143,6 +150,26 @@ const routes: Routes = [
   {
     component:ConsultaTareasComponent,
     path:'consulta/tareas'
+  },
+  {
+    component:AltaOrdenesComponent,
+    path:"alta/ordenes"
+  },
+  {
+    component:BusquedaOrdenesComponent,
+    path:'busqueda/ordenes/:tipo'
+  },
+  {
+    component:BajaOrdenComponent,
+    path:'ordenes/bajas/:termino/:id'
+  },
+  {
+    component:ConsultaOrdenesComponent,
+    path:'consulta/ordenes'
+  },
+  {
+    component:ReporteComponent,
+    path:'reporte/orden/:id'
   },
   {
     path:'**',

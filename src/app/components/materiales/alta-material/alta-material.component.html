@@ -1,30 +1,40 @@
 <h1 class="Title">Alta de material</h1>
 
-<div class="row justify-content-cneter">
+<div class="row justify-content-center h-50">
     <div class="col-md-3" style="margin:auto;">
             <form class="custom-form " (ngSubmit)="alta(forma)" #forma="ngForm">
                     <div class="form-group">
                       <label >Clave del material</label>
-                      
-                      <input (keyup)="changeID()"  [(ngModel)]="material['id']" name="id" type="text" 
-                      class="form-control"  placeholder="Clave del material">
+                      <div class="row justify-content-center">
+                                <input (keyup)="changeID()"  [(ngModel)]="material['id']" name="id" type="text" 
+                                class="form-control input-id"  placeholder="Clave">
+                      </div>
                     </div>
                     
                     <div class="form-group">
                             <label >Nombre del material</label>
-                            <input  [(ngModel)]="material['nombre']" name="nombre" type="text" 
-                            class="form-control"  placeholder="Nombre del material">
+                            <div class="row justify-content-center">
+                                <input  [(ngModel)]="material['nombre']" name="nombre" type="text" 
+                                class="form-control input-small-text"  placeholder="Nombre">
+                            </div>
                           </div>
-            
                     <div class="form-group">
                             <label >Costo unitario del material</label>
-                            <input  [(ngModel)]="material['costo']" name="costo_unitario" type="number" 
-                                class="form-control"  placeholder="Costo unitario">
+                            <div class="row justify-content-center">
+                                <input  [(ngModel)]="material['costo']" name="costo_unitario" type="number" 
+                                class="form-control input-small-text"  placeholder="Costo unitario">
+                            </div>
                     </div>
-            
-                    <button type="submit" class="btn btn-primary colorb">Agregar</button>
-                    <button style="margin-left: 5px" [routerLink]="['/menu']" class="btn btn-danger colord">Cancelar</button>
-            
+
+                    <div class="row">
+                            <div class="col-md-6">
+                                <button [routerLink]="['/menu']" class="btn btn-danger colord">Cancelar</button>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary colorb">Agregar</button>
+                            </div>
+                    </div>
+                
                     
             </form>
             <app-alerta *ngIf="mensaje" [mensaje]="mensaje"></app-alerta> 

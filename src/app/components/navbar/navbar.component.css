@@ -1,5 +1,10 @@
+.mycustom {
+    background-color: #25315D !important;
+    color: white !important;
+}
+
 .mycustom:hover {
-    background-color: black !important;
+    background-color: #374684 !important;
 }
 
 .mycustom:hover a{
@@ -8,13 +13,10 @@
 
 
 .mycustom a{
-    color:black ;
+    color:white ;
 }
 
 .mycustom a:hover {
     color: white !important;
 }
 
-.bord {
-    border-bottom: 1px solid #D7D7D7;
-}

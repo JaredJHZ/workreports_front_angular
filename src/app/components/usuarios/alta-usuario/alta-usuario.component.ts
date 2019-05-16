@@ -41,10 +41,15 @@ export class AltaUsuarioComponent implements OnInit {
               this.usuario.id = '';
             }
           )
+    } else{
+      this.showMessage('Campos vacios: '+camposVacios.join(', '));
     }
   }
 
   changeID():void{
+    if (this.usuario.id.charAt(this.usuario.id.length-1).includes("0") && this.usuario.id.length <= 5){
+      return;
+    }
     if(!Number(this.usuario.id.charAt(this.usuario.id.length-1)) || this.usuario.id.length > 5){
       this.usuario.id = this.usuario.id.slice(0,this.usuario.id.length-1);
     }
