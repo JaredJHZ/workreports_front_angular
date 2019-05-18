@@ -1,16 +1,21 @@
 <h1 class="Title">Busqueda de tareas</h1>
 
-<h5 style="color:black; text-align: center;">Nombre de la tarea</h5>
-
-<div class="row justify-content-center">
-  <div style="margin:auto;" class="col-md-5">
-    <div class="row justify-content-center">
-        <input class="form-control input-small-text" [(ngModel)]="terminoBuscado" (keyup)="cambiarBusqueda()"
-         style="margin:auto;" type="text" placeholder="Nombre"
-         >
-    </div>
+<div style="margin-top: 250px;" class="row">
+  <div class="col-md-12">
+      <h5 style="color:black; text-align: center;">Nombre de la tarea</h5>
+      <div class="row justify-content-center">
+          <div style="margin:auto;" class="col-md-5">
+            <div class="row justify-content-center">
+                <input class="form-control input-small-text" [(ngModel)]="terminoBuscado" (keyup)="cambiarBusqueda()"
+                 style="margin:auto;" type="text" placeholder="Nombre"
+                 >
+            </div>
+          </div>
+        </div>
   </div>
 </div>
+
+
 
 <div style="margin:20px;" class="row justify-content-center">
   <div style="margin:auto;" class="col-md-5">

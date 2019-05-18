@@ -42,7 +42,7 @@ export class BusquedaUsuariosComponent implements OnInit {
 
   busqueda():void {
     if ( this.usuarios === undefined || this.usuarios.length <= 0) {
-      this.showMessage("No existen materiales con ese termino de busqueda");
+      this.showMessage("No existen usuarios con ese termino de busqueda");
     } else {
       this.router.navigate(['usuarios',this.tipo,this.terminoBuscado,this.usuarios[0].id]);
     }

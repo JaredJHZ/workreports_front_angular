@@ -51,10 +51,14 @@ export class BusquedaEmpleadosComponent implements OnInit {
 
   }
 
-  busqueda():void {
+  busqueda(el):void {
   
     if (this.empleados === undefined || this.empleados.length <= 0) {
       this.showMessage("No existen empleados con ese termino de busqueda");
+      this.nombreEmpleado = '';
+      this.apellidoPEmpleado = '';
+      this.apellidoMEmpleado = '';
+      el.focus();
     } else {
       this.router.navigate(['empleados',this.tipo,this.apellidoPEmpleado,this.apellidoMEmpleado, this.nombreEmpleado, this.empleados[0].id]);
     }

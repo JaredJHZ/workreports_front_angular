@@ -16,6 +16,8 @@ export class BajaClientesComponent implements OnInit {
   apPaterno:String;
   apMaterno:String;
   listaDeClientes:Cliente[];
+  boton1:String = 'Anterior';
+  boton2:String = 'Siguiente';
 
   constructor(private clienteService:ClientesService, 
     private activatedRoute:ActivatedRoute,
@@ -31,8 +33,11 @@ export class BajaClientesComponent implements OnInit {
                   this.cliente = data.cliente
                   this.clienteService.getClientes()
                       .subscribe(
-                        (data:Respuesta) =>  this.listaDeClientes = data.clientes.filter(
+                        (data:Respuesta) =>  { this.listaDeClientes = data.clientes.filter(
                           (cliente: Cliente) => {
+                            if (this.cliente.id === cliente.id) {
+                              return false;
+                            }
                             if (this.nombre.toUpperCase() === cliente.nombre.toUpperCase() ) {
                               if (this.apPaterno.toUpperCase()  === cliente.ap_paterno.toUpperCase() ){
                                 if (this.apMaterno.toUpperCase()  === cliente.ap_materno.toUpperCase() ) {
@@ -42,7 +47,12 @@ export class BajaClientesComponent implements OnInit {
                             }
                             return false;
                           }  
-                      )
+                        )
+                        if (this.listaDeClientes.length <= 0) {
+                          this.boton1 = 'Cancelar';
+                          this.boton2 = 'Eliminar';
+                        }
+                      }
                   )
                 }
               )
@@ -51,6 +61,22 @@ export class BajaClientesComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  b1Handler():void {
+    if(this.boton1.includes('Cancelar')) {
+      this.router.navigate(['/']);
+    } else {
+      this.anterior();
+    }
+  }
+
+  b2Handler():void {
+    if(this.boton2.includes('Eliminar')) {
+      this.borrar();
+    } else {
+      this.siguiente();
+    }
   }
 
   borrar():void {

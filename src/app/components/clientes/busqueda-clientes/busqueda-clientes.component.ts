@@ -49,10 +49,14 @@ export class BusquedaClientesComponent implements OnInit {
 
   }
 
-  busqueda():void {
+  busqueda(el):void {
   
     if (this.clientes === undefined || this.clientes.length <= 0) {
       this.showMessage("No existen clientes con ese termino de busqueda");
+      this.nombreCliente = '';
+      this.apellidoMCliente = '';
+      this.apellidoPCliente = '';
+      el.focus();
     } else {
       this.router.navigate(['clientes',this.tipo,this.apellidoPCliente,this.apellidoMCliente, this.nombreCliente, this.clientes[0].id]);
     }

@@ -16,6 +16,8 @@ export class BajaEmpleadosComponent implements OnInit {
   apMaterno:string;
   mensaje:String;
   listaDeEmpleados:Empleado[];
+  boton1:String = 'Anterior';
+  boton2:String = 'Siguiente';
 
   constructor(private empleadoService:EmpleadosService, private activatedRoute:ActivatedRoute, private router:Router) { 
     this.activatedRoute.params.subscribe(
@@ -29,8 +31,12 @@ export class BajaEmpleadosComponent implements OnInit {
                 this.empleado = data.empleado;
                 this.empleadoService.getEmpleados()
                     .subscribe(
-                      (respuesta:Respuesta) => this.listaDeEmpleados = respuesta.empleados.filter(
+                      (respuesta:Respuesta) => {
+                        this.listaDeEmpleados = respuesta.empleados.filter(
                         (empleado: Empleado) => {
+                          if (this.empleado.id === empleado.id) {
+                            return false;
+                          }
                           if (this.nombre.toUpperCase() === empleado.nombre.toUpperCase() ) {
                             if (this.apPaterno.toUpperCase()  === empleado.ap_paterno.toUpperCase() ){
                               if (this.apMaterno.toUpperCase()  === empleado.ap_materno.toUpperCase() ) {
@@ -38,11 +44,18 @@ export class BajaEmpleadosComponent implements OnInit {
                               }
                             }
                           }
-                
+          
                           return false;
                         }
                       )
+                      console.log(this.listaDeEmpleados);
+                      if (this.listaDeEmpleados.length <= 0) {
+                        this.boton1 = 'Cancelar';
+                        this.boton2 = 'Eliminar';
+                        }
+                      }
                     )
+
               }
             )
       }
@@ -50,6 +63,22 @@ export class BajaEmpleadosComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  b1Handler():void {
+    if (this.boton1.includes('Cancelar')) {
+      this.router.navigate(['/']);
+    } else {
+      this.anterior();
+    }
+  }
+
+  b2Handler():void {
+    if(this.boton2.includes('Eliminar')) {
+      this.borrar();
+    } else {
+      this.siguiente();
+    }
   }
 
   borrar():void {

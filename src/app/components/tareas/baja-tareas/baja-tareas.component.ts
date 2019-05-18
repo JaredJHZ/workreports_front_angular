@@ -14,6 +14,8 @@ export class BajaTareasComponent implements OnInit {
   tarea:Tarea;
   listaDeTareas:Tarea[];
   mensaje:String;
+  boton1:String = 'Anterior';
+  boton2:String = 'Siguiente';
 
   estados: String [] = ['SIN INICIAR','EN PROGRESO','COMPLETA'];
 
@@ -32,12 +34,34 @@ export class BajaTareasComponent implements OnInit {
                             this.listaDeTareas = tareas.filter(
                               (tarea) => tarea.id !== this.tarea.id && tarea.nombre.toUpperCase().includes(this.terminoBuscado.toUpperCase())
                             )
+                            if (this.listaDeTareas.length <= 0) {
+                              this.boton1 = 'Cancelar';
+                              this.boton2 = 'Eliminar';
+                            } 
+
+                            console.log(this.listaDeTareas);
                           }
                         )
                 }
               )
       }
     )
+  }
+
+  boton1Handler():void {
+    if (this.boton1.includes('Cancelar')) {
+      this.router.navigate(['/']);
+    } else {
+      this.anterior();
+    }
+  }
+
+  boton2Handler():void {
+    if (this.boton2.includes('Eliminar')) {
+      this.borrar();
+    } else {
+      this.siguiente();
+    }
   }
 
   ngOnInit() {

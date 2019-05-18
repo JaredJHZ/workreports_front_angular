@@ -14,6 +14,8 @@ export class BajaMaterialesComponent implements OnInit {
   listaDeMateriales:Material[];
   terminoBuscado:string;
   mensaje:String;
+  boton1 = 'Anterior';
+  boton2 = 'Siguiente';
 
   constructor(private materialesService:MaterialesService, 
     private activatedRoute:ActivatedRoute,
@@ -32,12 +34,38 @@ export class BajaMaterialesComponent implements OnInit {
                           this.listaDeMateriales = materiales.filter(
                               (material) => material.id !== this.material.id && material.nombre.toUpperCase().includes(this.terminoBuscado.toUpperCase())
                           )
+                          if (this.listaDeMateriales.length <= 0) {
+                            this.boton1 = 'Cancelar';
+                            this.boton2 = 'Eliminar';
+                          }
                         }
                       )
                     }
                   )
             }
           )
+   }
+
+   seleccionar():void {
+    this.boton1 = "Cancelar";
+    this.boton2 = "Eliminar";
+    this.listaDeMateriales = [];
+  }
+
+   b1handler() {
+     if (this.boton1.includes('Cancelar')) {
+       this.router.navigate(['/']);
+     } else {
+       this.anterior();
+     }
+   }
+
+   b2handler() {
+     if (this.boton2.includes('Eliminar')) {
+       this.borrar();
+     } else {
+       this.siguiente();
+     }
    }
 
    borrar():void {

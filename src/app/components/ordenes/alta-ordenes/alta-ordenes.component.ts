@@ -49,7 +49,8 @@ export class AltaOrdenesComponent implements OnInit {
                               (data:Respuesta) => this.clavesOrdenes = data.ordenes
                                                                 .map(
                                                                   (orden:Orden) => orden.id
-                                                                )
+                                                                ),
+                              (error) => this.clavesEmpleados = []
                             )
       
       this.materialesService.getTodosMateriales()
@@ -94,6 +95,9 @@ export class AltaOrdenesComponent implements OnInit {
 
   changeID(el):void{
     if (this.orden.id.length >= 5 ){
+      if (this.clavesOrdenes === undefined) {
+        el.focus();
+      }
       if (this.clavesOrdenes.includes(this.orden.id)){
         this.showMessage('Clave de orden en uso!');
         this.orden.id = '';

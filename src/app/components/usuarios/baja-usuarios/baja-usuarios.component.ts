@@ -14,6 +14,8 @@ export class BajaUsuariosComponent implements OnInit {
   listaDeUsuarios:Usuario[];
   terminoBuscado:string;
   mensaje:String;
+  boton1:String = 'Anterior';
+  boton2:String = 'Siguiente';
 
   constructor(private usuariosService:UsuariosService, 
     private activatedRoute:ActivatedRoute,
@@ -32,6 +34,10 @@ export class BajaUsuariosComponent implements OnInit {
                           this.listaDeUsuarios = usuarios.filter(
                               (usuario) => usuario.id !== this.usuario.id && usuario.usuario.toUpperCase().includes(this.terminoBuscado.toUpperCase())
                           )
+                          if (this.listaDeUsuarios.length <= 0) {
+                            this.boton1 = 'Cancelar';
+                            this.boton2 = 'Eliminar';
+                          }
                         }
                       )
                     }
@@ -48,6 +54,28 @@ export class BajaUsuariosComponent implements OnInit {
       (data) => this.router.navigate(['busqueda/usuarios/bajas']),
       (data:Respuesta) => this.showMessage(data.error.mensaje)
     )
+  }
+
+  seleccionar():void {
+    this.boton1 = "Cancelar";
+    this.boton2 = "Eliminar";
+    this.listaDeUsuarios = [];
+  }
+
+  b1handler():void {
+    if (this.boton1.includes("Cancelar")) {
+      this.router.navigate(['/']);
+    } else {
+      this.anterior();
+    }
+  }
+
+  b2handler():void {
+    if(this.boton2.includes("Eliminar")) {
+      this.borrar();
+    } else {
+      this.siguiente();
+    }
   }
   
   siguiente():void {

@@ -1,47 +1,56 @@
 <h1 class="Title">Baja de material</h1>
-<div class="row justify-content-center">
-    <form *ngIf="material" class="custom-form " #forma="ngForm">
-      <div class="row justify-content-center">
-          <div class="form-group">
-              <label >Clave del material</label>
-              
-              <div class="row justify-content-center">
-                  <input disabled [(ngModel)]="material['id']" name="id" type="text" 
-                  class="form-control input-id"  placeholder="Clave del material">
-              </div>
-            </div>
-      </div>
-        
-      <div class="row justify-content-center">
-          <div class="form-group">
-              <label >Nombre del material</label>
-              <div class="row justify-content-center">
-                  <input disabled  [(ngModel)]="material['nombre']" name="nombre" type="text" 
-                  class="form-control input-small-text"  placeholder="Nombre del material">
-              </div>
+<div class="row justify-content-center h-100">
+    <div class="col-md-12">
+    <form *ngIf="material" class="custom-form fullh" #forma="ngForm">
+      <div style="margin-top:70px;" class="row justify-content-center">
+          <div class="col-md-12">
+                <div class="form-group">
+                        <label >Clave del material</label>
+                        
+                        <div class="row justify-content-center">
+                            <input disabled [(ngModel)]="material['id']" name="id" type="text" 
+                            class="form-control input-id"  placeholder="Clave del material">
+                        </div>
+                      </div>     
           </div>
       </div>
+  
+      <div class="row justify-content-center" style="margin-top:200px;">
+          <div class="col-md-6">
+                <div class="form-group">
+                        <label >Nombre del material</label>
+                        <div class="row justify-content-center">
+                            <input disabled  [(ngModel)]="material['nombre']" name="nombre" type="text" 
+                            class="form-control input-small-text"  placeholder="Nombre del material">
+                        </div>
+                    </div>
+          </div>
 
-      <div class="row justify-content-center">
-          <div class="form-group">
-              <label >Costo unitario del material</label>
-              <div class="row justify-content-center">
-                  <input disabled [(ngModel)]="material['costo_unitario']" name="costo_unitario" type="number" 
-                  class="form-control input-id"  placeholder="Costo unitario">
-              </div>
+          <div class="col-md-6">
+                <div class="row justify-content-center">
+                        <div class="form-group">
+                            <label >Costo unitario del material</label>
+                            <div class="row justify-content-center">
+                                <input disabled [(ngModel)]="material['costo_unitario']" name="costo_unitario" type="number" 
+                                class="form-control input-id"  placeholder="Costo unitario">
+                            </div>
+                    </div>
+                </div>
+          </div>
+
       </div>
+
+      <div  *ngIf="!listaDeMateriales || listaDeMateriales.length > 0" class="row justify-content-center">
+            <button class="btn btn-primary" (click)="seleccionar()">Seleccionar</button>
       </div>
 
-        <button style="margin: 5px" [routerLink]="['/menu']" class="btn btn-danger colord">Cancelar</button>
-        <button style="margin: 5px" (click)="borrar()" type="submit" class="btn btn-primary colorb">Borrar</button>
-
+      <div style="margin-top: 80px;" class="row justify-content-center">
+            <button style="margin: 5px" (click)="b1handler()" class="btn btn-danger colord">{{boton1}}</button>
+            <button style="margin: 5px" (click)="b2handler()" type="submit" class="btn btn-primary colorb">{{boton2}}</button>    
+      </div>
 </form>
+</div>
 
 <app-alerta *ngIf="mensaje" [mensaje]="mensaje"></app-alerta> 
 
-</div>
-
-<div class="row justify-content-center">
-    <button style="margin: 25px" (click)="anterior()" class="btn btn-danger">Anterior</button>
-    <button style="margin: 25px" (click)="siguiente()" type="submit" class="btn btn-primary">Siguiente</button>
 </div>

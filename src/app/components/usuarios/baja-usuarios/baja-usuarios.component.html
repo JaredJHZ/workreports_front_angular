@@ -1,47 +1,55 @@
 <h1 class="Title">Baja de usuario</h1>
-<div class="row justify-content-center">
-    <form *ngIf="usuario" class="custom-form" >
+<div class="row h-100 justify-content-center">
+        <div class="col-md-12">
+    <form *ngIf="usuario" class="custom-form fullh" >
         <div class="row justify-content-center">
-                <div class="form-group">
-                        <label >Clave del usuario</label>
-                        <div class="row justify-content-center">
-                              <input disabled [(ngModel)]="usuario['id']" name="id" type="text" 
-                              class="form-control input-id"  placeholder="Clave del usuario">
-                        </div>
+                <div class="col-md-12">
+                                <div class="form-group">
+                                        <label >Clave del usuario</label>
+                                        <div class="row justify-content-center">
+                                              <input disabled [(ngModel)]="usuario['id']" name="id" type="text" 
+                                              class="form-control input-id"  placeholder="Clave del usuario">
+                                        </div>
+                                </div>
                 </div>
         </div>
         
         <div class="row justify-content-center">
-                <div class="form-group">
-                        <label >Nombre del usuario</label>
-                        <div class="row justify-content-center">
-                                <input disabled  [(ngModel)]="usuario['usuario']" name="nombre" type="text" 
-                                class="form-control input-small-text"  placeholder="Nombre del usuario">
+                <div class="col-md-6">
+                        <div class="form-group">
+                                <label >Nombre del usuario</label>
+                                <div class="row justify-content-center">
+                                        <input disabled  [(ngModel)]="usuario['usuario']" name="nombre" type="text" 
+                                        class="form-control input-small-text"  placeholder="Nombre del usuario">
+                                </div>
                         </div>
-                  </div>
-        </div>
-
-        <div class="row justify-content-center">
-                <div class="form-group">
-                        <label >Privilegios</label>
-                        <div class="row justify-content-center">
-                              <input disabled [(ngModel)]="usuario['permission']" name="Privilegios" type="text" 
-                              class="form-control input-small-text"  placeholder="Privilegios">
-                        </div>
+                </div>
+                <div class="col-md-6">
+                                <div class="row justify-content-center">
+                                        <div class="form-group">
+                                        <label >Privilegios</label>
+                                                <div class="row justify-content-center">
+                                                      <input disabled [(ngModel)]="usuario['permission']" name="Privilegios" type="text" 
+                                                      class="form-control input-small-text"  placeholder="Privilegios">
+                                                </div>
+                                        </div>
+                                </div>
                 </div>
         </div>
 
+        <div *ngIf="!listaDeUsuarios || listaDeUsuarios.length > 0" class="row justify-content-center">
+                <button style="margin: 5px" (click)="seleccionar()" class="btn btn-primary">Seleccionar</button>
+        </div>
 
-        <button style="margin: 5px" [routerLink]="['/']" class="btn btn-danger colord">Cancelar</button>
-        <button style="margin: 5px" (click)="borrar()" type="button" class="btn btn-primary colorb">Borrar</button>
+        <div style="margin-top: 330px;" class="row justify-content-center">
+                <button style="margin: 5px" (click)="b1handler()" class="btn btn-danger colord">{{boton1}}</button>
+                <button style="margin: 5px" (click)="b2handler()" type="button" class="btn btn-primary colorb">{{boton2}}</button>
+        </div>
+
 
 </form>
+</div>
 
 <app-alerta *ngIf="mensaje" [mensaje]="mensaje"></app-alerta> 
 
-</div>
-
-<div class="row justify-content-center">
-    <button style="margin: 25px" (click)="anterior()" class="btn btn-danger">Anterior</button>
-    <button style="margin: 25px" (click)="siguiente()" type="submit" class="btn btn-primary">Siguiente</button>
 </div>
