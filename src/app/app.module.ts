@@ -44,7 +44,6 @@ import { ConsultaUsuariosComponent } from './components/usuarios/consulta-usuari
 import { ConsultaEmpleadosComponent } from './components/empleados/consulta-empleados/consulta-empleados.component';
 import { ConsultaClientesComponent } from './components/clientes/consulta-clientes/consulta-clientes.component';
 import { ConsultaTareasComponent } from './components/tareas/consulta-tareas/consulta-tareas.component';
-import { AltaTareasComponent } from './components/tareas/alta-tareas/alta-tareas.component';
 import { AltaOrdenesComponent } from './components/ordenes/alta-ordenes/alta-ordenes.component';
 import { BusquedaOrdenesComponent } from './components/ordenes/busqueda-ordenes/busqueda-ordenes.component';
 import { BajaOrdenComponent } from './components/ordenes/baja-orden/baja-orden.component';
@@ -85,7 +84,7 @@ import { ReporteComponent } from './components/ordenes/reporte/reporte.component
     ConsultaEmpleadosComponent,
     ConsultaClientesComponent,
     ConsultaTareasComponent,
-    AltaTareasComponent,
+    AltasTareasComponent,
     AltaOrdenesComponent,
     BusquedaOrdenesComponent,
     BajaOrdenComponent,

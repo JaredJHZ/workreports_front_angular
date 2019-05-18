@@ -6,93 +6,113 @@
 </div>
 
 
-<div class="row">
+<div class="row h100 fullh">
 
-  <div class="col-md-3" style="margin:auto;" >
-        <form class="custom-form" (ngSubmit)="alta(forma)" #forma="ngForm">
-            <div class="form-group">
-                <label>Clave de la tarea</label>
-                <div class="row justify-content-center">
-                    <input
-                    [(ngModel)]="tarea['id']" name="id" type="text" class="form-control input-id"
-                     id="clave de la tarea" (keyup)="changeID()"  placeholder="Clave">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>Nombre de la tarea</label>
-                <div class="row justify-content-center">
-                    <input
-                    [(ngModel)]="tarea['nombre']" name="nombre" type="text" 
-                      class="form-control input-small-text"
-                     id="nombre de la tarea"  placeholder="Nombre"
-                     >
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>Tarifa por hora de la tarea</label>
-                <div class="row justify-content-center">
-                    <input
-                    [(ngModel)]="tarea['tarifa_hora']" name="tarifa_hora" type="number" 
-                     class="form-control input-id"
-                     id="tarifa de la tarea"  placeholder="Tarifa"
-                     >
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>Estimado de horas de la tarea</label>
-                <div class="row justify-content-center">
-                    <input
-                    [(ngModel)]="tarea['estimado_horas']" name="estimado_horas" 
-                     type="number" class="form-control input-id"
-                     id="estimado_horas"  placeholder="horas">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>Estado de la tarea</label>
-                <div class="row justify-content-center">
-                    <select [(ngModel)]="tarea['estado']" class="form-control input-id"  name="estado" id="estado">
-                        <option *ngFor="let estado of estados;" value={{estado}}>{{estado}}</option>
-                    </select>
-                </div>
-            </div>
-
-            <div *ngIf="tarea['estado'] === 'COMPLETA'" class="form-group">
-                <label>Horas que se llevo la tarea</label>
-                <div class="row justify-content-center">
-                    <input
-                    [(ngModel)]="horas_reales" name="horas_relaes"
-                     type="number" class="form-control input-id"
-                     id="estimado_horas"  placeholder="horas_reales"
-                     >
-                </div>
-            </div>
-
-            <div *ngIf="tarea['estado'] === 'COMPLETA'" class="form-group">
-                <label>Fecha de termino</label>
-                <div class="row justify-content-center">
-                    <input class="form-control input-small-text" name="fecha_termino" placeholder="Fecha de termino"
-                    [(ngModel)]="fecha_termino"
-                    [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1">
-                    <owl-date-time [pickerMode]="'dialog'" #dt1></owl-date-time>
-                </div>
-              </div>
-            
-            <div class="row">
-              <div class="col-md-6">
-                  <button style="margin-left: 5px" [routerLink]="['/tareas']" class="btn btn-danger colord">Cancelar</button>
-              </div>
-              <div class="col-md-6">
-                  <button type="submit" class="btn btn-primary colorb">Agregar</button>
-              </div>
+<div class="col-md-12" >
+<form (keydown.enter)="$event.preventDefault()" class="custom-form fullh" (ngSubmit)="alta(forma)" #forma="ngForm">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <app-alerta *ngIf="mensaje" [mensaje]="mensaje"></app-alerta> 
             </div> 
-        </form>
-  </div>
-</div>
+        </div>
+            <div style="margin-top:100px;" class="row">
+                    <div class="col-md-12">
+                            <div class="form-group">
+                                    <label>Clave de la tarea</label>
+                                    <div class="row justify-content-center">
+                                        <input #clave
+                                        [(ngModel)]="tarea['id']" name="id" type="text" class="form-control input-id"
+                                         id="clave de la tarea" (keyup)="changeID(name)" >
+                                    </div>
+                            </div>
+                    </div>
 
-<div style="margin-top:30px;" class="row justify-content-center">
-    <app-alerta *ngIf="mensaje" [mensaje]="mensaje"></app-alerta>  
-</div>
+            </div>
+
+            <div style="margin-top: 50px;" class="row">
+                    <div class="col-md-3">
+                        <div class="row justify-content-center">
+                                <div class="form-group">
+                                        <label>Nombre de la tarea</label>
+                                        <div class="row justify-content-center" style="padding: 5px;">
+                                            <input #name (keyup.enter)="tarifa.focus()"
+                                            [(ngModel)]="tarea['nombre']" name="name" type="text" 
+                                             class="form-control small-text-id"
+                                             id="nombre de la tarea"  
+                                             >
+                                        </div>
+                                    </div>
+                        </div>
+                    </div>
+                <div class="col-md-3">
+                        <div class="form-group">
+                                <label>Tarifa por hora de la tarea</label>
+                                <div class="row justify-content-center">
+                                    <input #tarifa (keyup.enter)="estimado.focus()"
+                                    [(ngModel)]="tarea['tarifa_hora']" name="tarifa_hora" type="number" 
+                                     class="form-control input-id"
+                                     id="tarifa de la tarea"  
+                                     >
+                                </div>
+                            </div>
+                </div>
+                <div class="col-md-3">
+                        <div class="form-group">
+                                <label>Estimado de horas de la tarea</label>
+                                <div class="row justify-content-center">
+                                    <input #estimado (keyup.enter)="estado.focus()"
+                                    [(ngModel)]="tarea['estimado_horas']" name="estimado_horas" 
+                                     type="number" class="form-control input-id"
+                                     id="estimado_horas"  >
+                                </div>
+                            </div>
+                </div>
+                <div class="col-md-3">
+                        <div class="form-group">
+                                <label>Estado de la tarea</label>
+                                <div class="row justify-content-center">
+                                    <select #estado (keyup.enter)="horas.focus()" [(ngModel)]="tarea['estado']" class="form-control input-id"  name="estado" id="estado">
+                                        <option *ngFor="let estado of estados;" value={{estado}}>{{estado}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                </div>
+            </div>
+            <div style="margin-top:50px;" class="row">
+                <div class="col-md-6">
+                        <div *ngIf="tarea['estado'] === 'COMPLETA'" class="form-group">
+                                <label>Horas que se llevo la tarea</label>
+                                <div class="row justify-content-center">
+                                    <input #horas (keyup.enter)="fecha.focus()"
+                                    [(ngModel)]="horas_reales" name="horas_relaes"
+                                     type="number" class="form-control input-id"
+                                     id="estimado_horas" 
+                                     >
+                                </div>
+                            </div>
+                </div>
+                <div class="col-md-6">
+                        <div *ngIf="tarea['estado'] === 'COMPLETA'" class="form-group">
+                                <label>Fecha de termino</label>
+                                <div class="row justify-content-center">
+                                    <input #fecha (keyup.enter)="agregar.focus()" class="form-control input-small-text" name="fecha_termino"
+                                    [(ngModel)]="fecha_termino"
+                                    [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1">
+                                    <owl-date-time [pickerMode]="'dialog'" #dt1></owl-date-time>
+                                </div>
+                        </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top:90px;">
+                    <div class="col-md-6">
+                        <button style="margin-left: 550px;" [routerLink]="['/tareas']" class="btn btn-danger colord">Cancelar</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button style="margin-right: 550px;" type="submit" (keyup.enter)="alta(forma,clave)" class="btn btn-primary colorb">Agregar</button>
+                    </div>
+            </div> 
+        </form>     
+        </div>
+    </div>
+
+

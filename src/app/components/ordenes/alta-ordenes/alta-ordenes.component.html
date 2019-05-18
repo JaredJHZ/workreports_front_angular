@@ -1,15 +1,20 @@
 <h1 class="Title">Alta de orden</h1>
-<form class="custom-form" action="">
+<form (keydown.enter)="$event.preventDefault()" class="custom-form" action="">
 <div *ngIf="orden" class="col-md-12">
     <div class="row">
      <div class="col-md-6">
             <h5>Informacion de la orden</h5>
             <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <app-alerta *ngIf="mensaje" [mensaje]="mensaje"></app-alerta>
+                </div> 
+            </div>
+            <div class="row justify-content-center">
                     <div class="form-group">
                             <label >Clave de la orden</label>
-                            <div class="row justify-content-center">
-                                <input (keyup)="changeID()"  [(ngModel)]="orden['id']" name="id" type="text" 
-                                class="form-control input-id"  placeholder="Clave">
+                            <div #clave class="row justify-content-center">
+                                <input (keyup)="changeID(cliente)"  [(ngModel)]="orden['id']" name="id" type="text" 
+                                class="form-control input-id">
                             </div>    
                     </div>
             </div>
@@ -17,8 +22,9 @@
                     <div class="form-group">
                         <label >Clave del cliente</label>    
                         <div class="row justify-content-center">
-                            <input (keyup)="changeCliente()"  [(ngModel)]="orden['cliente']" name="id_cliente" type="text" 
-                            class="form-control input-id"  placeholder="Cliente">
+                            <input #cliente (keyup)="changeCliente(empleado)" 
+                             [(ngModel)]="orden['cliente']" name="id_cliente" type="text" 
+                            class="form-control input-id">
                         </div>    
                     </div>
             </div>
@@ -26,9 +32,10 @@
             <div class="row justify-content-center">
                     <div class="form-group">
                             <label >Clave del empleado supervisor</label>    
-                            <div class="row justify-content-center">
-                                <input (keyup)="changeEmpleado()"  [(ngModel)]="orden['empleado']" name="id_empleado" type="text" 
-                                class="form-control input-id"  placeholder="Empleado">
+                            <div  class="row justify-content-center">
+                                <input #empleado (keyup)="changeEmpleado(calle)" 
+                                 [(ngModel)]="orden['empleado']" name="id_empleado" type="text" 
+                                class="form-control input-id">
                             </div> 
                     </div>
             </div>
@@ -40,8 +47,9 @@
                 <div class="form-group">
                         <label>Calle</label>
                         <div class="row justify-content-center">
-                            <input   [(ngModel)]="orden['calle']" name="calle" type="text" 
-                            class="form-control input-small-text"  placeholder="Calle">
+                            <input (keyup.enter)="ciudad.focus()" #calle  
+                            [(ngModel)]="orden['calle']" name="calle" type="text" 
+                            class="form-control input-small-text">
                         </div> 
                 </div>
         </div>
@@ -50,8 +58,9 @@
                 <div class="form-group">
                         <label>Ciudad</label>
                         <div class="row justify-content-center">
-                            <input   [(ngModel)]="orden['ciudad']" name="ciudad" type="text" 
-                            class="form-control input-small-text"  placeholder="Ciudad">
+                            <input #ciudad (keyup.enter)="estado.focus()" 
+                            [(ngModel)]="orden['ciudad']" name="ciudad" type="text" 
+                            class="form-control input-small-text"  >
                         </div> 
                 </div>
         </div>
@@ -60,8 +69,9 @@
                 <div class="form-group">
                         <label>Estado</label>
                         <div class="row justify-content-center">
-                            <input   [(ngModel)]="orden['estado']" name="estado" type="text" 
-                            class="form-control input-small-text"  placeholder="Estado">
+                            <input (keyup.enter)="cp.focus()"  
+                            #estado [(ngModel)]="orden['estado']" name="estado" type="text" 
+                            class="form-control input-small-text">
                         </div> 
                 </div>
         </div>
@@ -70,8 +80,9 @@
                 <div class="form-group">
                         <label>Codigo postal</label>
                         <div class="row justify-content-center">
-                            <input (keyup)="changeCP()"  [(ngModel)]="orden['cp']" name="cp" type="text" 
-                            class="form-control input-id"  placeholder="CP">
+                            <input #cp (keyup)="changeCP()"  
+                            [(ngModel)]="orden['cp']" name="cp" type="text" 
+                            class="form-control input-id" >
                         </div> 
                 </div>
         </div>
@@ -86,7 +97,7 @@
                 <div class="col-md-6">
                         <label>Fecha requerida</label>
                         <div class="row justify-content-center">
-                            <input class="form-control input-small-text" name="fecha_requerda" placeholder="Fecha requerida"
+                            <input class="form-control input-small-text" name="fecha_requerda"
                             [(ngModel)]="orden['fecha_requerida']"
                             [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1">
                             <owl-date-time [pickerMode]="'dialog'" #dt1></owl-date-time>
@@ -95,7 +106,7 @@
                 <div class="col-md-6">
                         <label>Fecha de termino</label>
                         <div class="row justify-content-center">
-                            <input class="form-control input-small-text" name="fecha_termino" placeholder="Fecha termino"
+                            <input class="form-control input-small-text" name="fecha_termino" 
                             [(ngModel)]="orden['fecha_termino']"
                             [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2">
                             <owl-date-time [pickerMode]="'dialog'" #dt2></owl-date-time>
@@ -119,20 +130,25 @@
           <div class="col-md-2">
               <label>Clave del material</label>
               <div class="row justify-content-center">
-                  <input (keyup)="changeMaterialID(i)" style="margin:3px;"  [(ngModel)]="material['id']" name={{i}} type="text" 
-                  class="form-control input-id"  placeholder="clave">
+                  <input (keyup)="changeMaterialID(i)" style="margin:3px;" 
+                   [(ngModel)]="material['id']" name={{i}} type="text" 
+                  class="form-control input-id" >
               </div>
           </div>
           <div class="col-md-2">
               <label>Cantidad estimada</label>
               <div class="row justify-content-center">
-                  <input style="margin:3px;" name="hola2"  [(ngModel)]="material['cantidad_estimada']" type="number" class="form-control input-id" placeholder="cantidad_estimada">
+                  <input style="margin:3px;" name="{{i}}+c"  
+                  [(ngModel)]="material['cantidad_estimada']" type="number" 
+                  class="form-control input-id" >
               </div>
           </div>
           <div class="col-md-2">
               <label>Cantidad real</label>
               <div class="row justify-content-center">
-                  <input style="margin:3px;" name="hola3"  [(ngModel)]="material['cantidad_utilizada']" type="number" class="form-control input-id" placeholder="cantidad_utilizada">
+                  <input style="margin:3px;" name="{{i}}+r"  
+                  [(ngModel)]="material['cantidad_utilizada']" type="number" 
+                  class="form-control input-id">
               </div>
           </div>
           <div class="col-md-2">
@@ -160,8 +176,9 @@
         <div class="col-md-2">
           <label>Clave de la tarea</label>
           <div class="row justify-content-center">
-                <input (keyup)="changeTarea(i)" style="margin:3px;"  [(ngModel)]="tarea['id']" name={{i}} type="text" 
-                class="form-control input-id"  placeholder="clave">
+                <input (keyup)="changeTarea(i)" 
+                style="margin:3px;"  [(ngModel)]="tarea['id']" name={{i}} type="text" 
+                class="form-control input-id"  >
           </div>
             
         </div>
@@ -173,27 +190,22 @@
       </div>
 
       <div class="row justify-content-center espacio">
-          <button style="margin:10px;" type="button" (click)="agregarTarea()" class="btn btn-primary boton-agregar">Agregar una nueva tarea</button>
+          <button style="margin:10px;" type="button" (click)="agregarTarea()"
+           class="btn btn-primary boton-agregar">Agregar una nueva tarea</button>
       </div>
     
 </div>
+<div style="margin-bottom: 50px; border-top: 3px solid white; padding: 30px;" class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="row justify-content-center">
+              <button style="margin-left:550px;" type="button" routerLink="['/']" class="btn colord">Cancelar</button>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row justify-content-center">
+              <button style="margin-right:500px;" type="button" (click)="agregarOrden()" class="btn colorb">Agregar orden</button>
+          </div>
+        </div>
+</div>
+
 </form>
-
-<div class="row justify-content-center">
-        <app-alerta *ngIf="mensaje" [mensaje]="mensaje"></app-alerta> 
-</div>
-
-
-<div style="margin-bottom: 30px;" class="row justify-content-center">
-        <div class="col-md-6">
-          <div class="row justify-content-center">
-              <button style="margin:10px;" type="button" routerLink="['/']" class="btn colord">Cancelar</button>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="row justify-content-center">
-              <button style="margin:10px;" type="button" (click)="agregarOrden()" class="btn colorb">Agregar la orden</button>
-          </div>
-        </div>
-</div>
-

@@ -11,6 +11,8 @@ import { EmpleadosService } from 'src/app/services/empleados.service';
 })
 export class AltasEmpleadosComponent implements OnInit {
 
+  clavesDeEmpleados:String[];
+
   empleado:Empleado = {
     id:'',
     nombre:'',
@@ -20,18 +22,31 @@ export class AltasEmpleadosComponent implements OnInit {
 
   mensaje:String;
 
-  constructor(private empleadosService:EmpleadosService) { }
+  constructor(private empleadosService:EmpleadosService) { 
+    this.empleadosService.getEmpleados()
+        .subscribe(
+          (data:Respuesta) => {
+              this.clavesDeEmpleados = data.empleados
+                                            .map(
+                                              (empleado:Empleado) => empleado.id
+                                            )
+          }
+        )
+  }
 
   ngOnInit() {
   }
 
-  alta(forma:NgForm){
+  alta(forma:NgForm, el){
     this.empleado.id = arreglarId(this.empleado.id);
     let camposVacios = comprobarDatosQueNoEstenVacios(this.empleado);
     if(camposVacios.length <=0) {
         this.empleadosService.agregarEmpleado(this.empleado)
             .subscribe(
-              (data) => this.limpiarDatos(),
+              (data) => {
+                this.limpiarDatos();
+                el.focus();
+              },
               (data:Respuesta) => {
                 this.showMessage(data.error.mensaje);
                 this.empleado.id = '';
@@ -42,7 +57,15 @@ export class AltasEmpleadosComponent implements OnInit {
     }
   }
 
-  changeID():void{
+  changeID(e,el):void{
+    if(this.empleado.id.length >= 5) {
+      if (this.clavesDeEmpleados.includes(this.empleado.id)){
+        this.showMessage('Clave de empleado en uso!');
+        this.empleado.id = '';
+        return;
+      }
+      el.focus();
+    }
     if(this.empleado.id.charAt(this.empleado.id.length - 1) === '0' && this.empleado.id.length <=5) {
       return;
     }

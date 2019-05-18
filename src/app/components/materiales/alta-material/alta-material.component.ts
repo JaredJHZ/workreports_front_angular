@@ -19,14 +19,32 @@ export class AltaMaterialComponent implements OnInit {
 
   mensaje:String;
 
+  clavesMateriales:String[];
+
   opciones:string[] = ['Clave','Nombre del material','Costo unitario del material'];
 
-  constructor(private materialesService:MaterialesService) { }
+  constructor(private materialesService:MaterialesService) { 
+      this.materialesService.getTodosMateriales()
+          .subscribe(
+            (data:Respuesta) => this.clavesMateriales = data.materiales
+                                                          .map(
+                                                            (material: Material) => material.id 
+                                                            )
+          )
+  }
 
   ngOnInit() {
   }
 
-  changeID():void{
+  changeID(e,el):void{
+    if(this.material.id.length >= 5) {
+      if (this.clavesMateriales.includes(this.material.id)) {
+        this.material.id = '';
+        this.showMessage('Clave de material en uso!');
+      } else {
+        el.focus();
+      }
+    }
     if (this.material.id.charAt(this.material.id.length-1).includes("0") && this.material.id.length <=5) {
       return;
     }
@@ -35,7 +53,7 @@ export class AltaMaterialComponent implements OnInit {
     }
   }
 
-  alta(forma:NgForm):void {
+  alta(forma:NgForm, el):void {
     this.material.id = arreglarId(this.material.id);
     let camposVacios = comprobarDatosQueNoEstenVacios(this.material);
     
@@ -44,6 +62,7 @@ export class AltaMaterialComponent implements OnInit {
           .subscribe(
             (data:Respuesta) => {
               this.limpiarDatos();
+              el.focus();
             },
             (data:Respuesta) => {
               this.showMessage(data.error.mensaje);

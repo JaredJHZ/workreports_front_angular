@@ -21,10 +21,11 @@ export class AltaOrdenesComponent implements OnInit {
 
   mensaje:String;
 
-  clientesDisponibles: Cliente[];
-  empleadosDisponibles: Empleado[];
+  clavesClientes: String[];
+  clavesEmpleados:String[];
   tareasDisponibles: Tarea[];
   materialesDisponibles: Material[];
+  clavesOrdenes:String[];
 
   orden:Orden = {
     id:'',
@@ -42,6 +43,14 @@ export class AltaOrdenesComponent implements OnInit {
   constructor(private ordenesService:OrdenesService, private router:Router,
     private clientesService:ClientesService, private empleadosService:EmpleadosService,
     private materialesService:MaterialesService, private tareasService:TareasService) {
+
+      this.ordenesService.getAllOrdenes()
+                            .subscribe(
+                              (data:Respuesta) => this.clavesOrdenes = data.ordenes
+                                                                .map(
+                                                                  (orden:Orden) => orden.id
+                                                                )
+                            )
       
       this.materialesService.getTodosMateriales()
           .subscribe(
@@ -50,7 +59,9 @@ export class AltaOrdenesComponent implements OnInit {
 
       this.clientesService.getClientes()
             .subscribe(
-              (data:Respuesta) => this.clientesDisponibles = data.clientes
+              (data:Respuesta) => this.clavesClientes = data.clientes.map(
+                                                        (cliente:Cliente) => cliente.id
+              )
             )
 
       this.tareasService.getAll()
@@ -58,6 +69,13 @@ export class AltaOrdenesComponent implements OnInit {
               (data:Respuesta) => this.tareasDisponibles = data.tareas
             )
       
+      this.empleadosService.getEmpleados()
+              .subscribe(
+                (data:Respuesta) => this.clavesEmpleados = data.empleados
+                                                              .map(
+                                                                (empleado:Empleado) => empleado.id
+                                                              )
+              )
 
     
   }
@@ -74,7 +92,16 @@ export class AltaOrdenesComponent implements OnInit {
     }
   }
 
-  changeID():void{
+  changeID(el):void{
+    if (this.orden.id.length >= 5 ){
+      if (this.clavesOrdenes.includes(this.orden.id)){
+        this.showMessage('Clave de orden en uso!');
+        this.orden.id = '';
+        return
+      } else {
+        el.focus();
+        }
+    }
     if (this.orden.id.charAt(this.orden.id.length-1)  === '0' && this.orden.id.length <= 5) {
       return
     } 
@@ -83,7 +110,16 @@ export class AltaOrdenesComponent implements OnInit {
     }
   }
 
-  changeCliente():void {
+  changeCliente(el):void {
+    if (this.orden.cliente.length >= 5) {
+        if(this.clavesClientes.includes(this.orden.cliente)) {
+          el.focus();
+        } else {
+          this.showMessage('Ese cliente no existe!');
+          this.orden.cliente = '';
+          return;
+        }
+    }
     if (this.orden.cliente.charAt(this.orden.cliente.length-1)  === '0' && this.orden.cliente.length <= 5) {
       return
     } 
@@ -92,7 +128,15 @@ export class AltaOrdenesComponent implements OnInit {
     }
   }
 
-  changeEmpleado():void {
+  changeEmpleado(el):void {
+    if (this.orden.empleado.length >= 5) {
+        if(this.clavesEmpleados.includes(this.orden.empleado)) {
+          el.focus();
+        } else {
+          this.orden.empleado = '';
+          this.showMessage('El empleado no existe!');
+        }
+    }
     if (this.orden.empleado.charAt(this.orden.empleado.length-1)  === '0' && this.orden.empleado.length <= 5) {
       return
     } 
@@ -169,7 +213,6 @@ export class AltaOrdenesComponent implements OnInit {
     if (camposVacios.length <= 0) {
       if (this.comprobarTareas()) {
         this.orden.tareas = this.llenarTareas();
-        console.log(this.orden.tareas);
         if (this.comprobarMateriales()) {
           this.ordenesService.agregarOrden(this.orden)
               .subscribe(

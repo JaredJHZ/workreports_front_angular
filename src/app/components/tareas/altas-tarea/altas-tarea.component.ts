@@ -12,6 +12,8 @@ import { arreglarId, comprobarDatosQueNoEstenVacios } from 'src/app/funciones';
 })
 export class AltasTareasComponent implements OnInit {
 
+  claveTareas:String[];
+
   mensaje: String ;
 
   tarea: Tarea = {
@@ -19,7 +21,8 @@ export class AltasTareasComponent implements OnInit {
     nombre:'',
     tarifa_hora:0,
     estimado_horas:0,
-    estado:''
+    estado:'',
+    real_horas: 'x'
   }
 
   horas_reales:number = 0;
@@ -28,12 +31,29 @@ export class AltasTareasComponent implements OnInit {
 
   estados: String [] = ['SIN INICIAR','EN PROGRESO','COMPLETA'];
 
-  constructor(private tareaService: TareasService) { }
+  constructor(private tareaService: TareasService) {
+      this.tareaService.getAll()
+          .subscribe(
+            (data:Respuesta) => this.claveTareas = data.tareas
+                                                          .map(
+                                                            (tarea:Tarea) => tarea.id
+                                                          )
+          )
+   }
 
   ngOnInit() {
   }
 
-  changeID():void{
+  changeID(el):void{
+    if(this.tarea.id.length >= 5) {
+      if(this.claveTareas.includes(this.tarea.id)) {
+        this.tarea.id = '';
+        this.showMessage('Clave de tarea en uso!');
+        return;
+      } else {
+        el.focus();
+      }
+    }
     if(this.tarea.id.charAt(this.tarea.id.length-1).includes("0") && this.tarea.id.length <= 5) {
       return
     }
@@ -46,7 +66,7 @@ export class AltasTareasComponent implements OnInit {
     this.tarea.horas_reales = this.horas_reales;
   }
   
-  alta(forma: NgForm) {
+  alta(forma: NgForm, el) {
     this.tarea.id = arreglarId(this.tarea.id);
     let camposVacios = comprobarDatosQueNoEstenVacios(this.tarea);
     if(this.tarea.estado === 'COMPLETA') {
@@ -66,7 +86,10 @@ export class AltasTareasComponent implements OnInit {
     if(camposVacios.length <= 0) {
         this.tareaService.agregarTarea(this.tarea)
             .subscribe(
-              (data:Respuesta) => this.limpiarDatos(),
+              (data:Respuesta) => {
+                this.limpiarDatos();
+                el.focus();
+              },
               (data:Respuesta) => {
                 this.showMessage(data.error.mensaje);
                 this.tarea.id = '';
@@ -87,7 +110,8 @@ export class AltasTareasComponent implements OnInit {
       nombre:'',
       tarifa_hora:0,
       estimado_horas:0,
-      estado:''
+      estado:'',
+      real_horas:''
     }
   }
 

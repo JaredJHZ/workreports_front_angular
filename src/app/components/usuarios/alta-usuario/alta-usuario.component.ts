@@ -12,6 +12,8 @@ import { comprobarDatosQueNoEstenVacios, arreglarId } from 'src/app/funciones';
 })
 export class AltaUsuarioComponent implements OnInit {
 
+  clavesUsadas:String[] = [];
+
   usuario:Usuario= {
     id:'',
     usuario:'',
@@ -22,20 +24,31 @@ export class AltaUsuarioComponent implements OnInit {
   mensaje:String;
 
   constructor(private router:Router, private usuariosService:UsuariosService) {
-
+      this.usuariosService.getUsuarios()
+          .subscribe(
+            (data:Respuesta) => {
+              this.clavesUsadas = data.usuarios.map(
+                (usuario) => usuario.id
+              )
+              console.log(this.clavesUsadas);
+            } 
+          )
    }
 
   ngOnInit() {
   }
 
 
-  alta(forma:NgForm){
+  alta(forma:NgForm, el){
     let camposVacios = comprobarDatosQueNoEstenVacios(this.usuario);
     this.usuario.id = arreglarId(this.usuario.id);
     if(camposVacios.length <= 0) {
       this.usuariosService.agregarUsuario(this.usuario)
           .subscribe(
-            (data:Respuesta) => this.limpiarDatos(),
+            (data:Respuesta) => {
+              this.limpiarDatos();
+              el.focus();
+            },
             (data:Respuesta) => {
               this.showMessage(data.error.mensaje);
               this.usuario.id = '';
@@ -46,12 +59,27 @@ export class AltaUsuarioComponent implements OnInit {
     }
   }
 
-  changeID():void{
+  changeID(e, el):void{
+    if (this.usuario.id.length >=5) {
+      if (this.clavesUsadas.includes(this.usuario.id)) {
+        this.showMessage("Clave en uso!");
+        this.usuario.id = '';
+      } else {
+        el.focus();
+      }
+    }
     if (this.usuario.id.charAt(this.usuario.id.length-1).includes("0") && this.usuario.id.length <= 5){
       return;
     }
     if(!Number(this.usuario.id.charAt(this.usuario.id.length-1)) || this.usuario.id.length > 5){
       this.usuario.id = this.usuario.id.slice(0,this.usuario.id.length-1);
+    }
+  }
+
+  changePassFocus(e,el):void {
+    console.log(e.keyCode);
+    if (this.usuario.usuario.length >= 50) {
+      el.focus();
     }
   }
 

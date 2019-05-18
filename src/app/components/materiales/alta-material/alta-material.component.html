@@ -1,42 +1,59 @@
 <h1 class="Title">Alta de material</h1>
 
-<div class="row justify-content-center h-50">
-    <div class="col-md-3" style="margin:auto;">
-            <form class="custom-form " (ngSubmit)="alta(forma)" #forma="ngForm">
-                    <div class="form-group">
-                      <label >Clave del material</label>
-                      <div class="row justify-content-center">
-                                <input (keyup)="changeID()"  [(ngModel)]="material['id']" name="id" type="text" 
-                                class="form-control input-id"  placeholder="Clave">
-                      </div>
+<div class="row justify-content-center fullh h-100">
+    <div class="col-md-12" >
+            <form (keydown.enter)="$event.preventDefault()" class="custom-form fullh" (ngSubmit)="alta(forma,clave)" #forma="ngForm">
+                
+                <div class="row justify-content-center" style="width: 100%;">
+                        <app-alerta *ngIf="mensaje" [mensaje]="mensaje"></app-alerta> 
+                </div>
+                
+                <div class="row" style="margin-top: 100px;">
+                    <div class="col-md-12">
+                            <div class="form-group">
+                                    <label >Clave del material</label>
+                                    <div class="row justify-content-center">
+                                              <input #clave (keyup)="changeID($event,name)"  [(ngModel)]="material['id']" name="id" type="text" 
+                                              class="form-control input-id"  >
+                                    </div>
+                                  </div>
                     </div>
-                    
-                    <div class="form-group">
-                            <label >Nombre del material</label>
-                            <div class="row justify-content-center">
-                                <input  [(ngModel)]="material['nombre']" name="nombre" type="text" 
-                                class="form-control input-small-text"  placeholder="Nombre">
-                            </div>
-                          </div>
-                    <div class="form-group">
-                            <label >Costo unitario del material</label>
-                            <div class="row justify-content-center">
-                                <input  [(ngModel)]="material['costo']" name="costo_unitario" type="number" 
-                                class="form-control input-small-text"  placeholder="Costo unitario">
-                            </div>
-                    </div>
+                </div>
 
-                    <div class="row">
+                <div class="row" style="margin-top: 120px;">
+                    <div class="col-md-6">
+                            <div class="form-group">
+                                    <label >Nombre del material</label>
+                                    <div class="row justify-content-center">
+                                        <input (keyup.enter)="costo.focus()" #name  [(ngModel)]="material['nombre']" name="nombre" type="text" 
+                                        class="form-control input-small-text"  >
+                                    </div>
+                                  </div>
+                    </div>
+                    <div class="col-md-6">
+                            <div class="form-group">
+                                    <label >Costo unitario del material</label>
+                                    <div class="row justify-content-center">
+                                        <input  #costo [(ngModel)]="material['costo']" name="costo_unitario" type="number" 
+                                        class="form-control input-small-text"  >
+                                    </div>
+                            </div>
+                    </div>
+                </div>
+                    
+
+
+                    <div class="row" style="margin-top:80px;">
                             <div class="col-md-6">
-                                <button [routerLink]="['/menu']" class="btn btn-danger colord">Cancelar</button>
+                                <button style="margin-left: 550px;" [routerLink]="['/menu']" class="btn btn-danger colord">Cancelar</button>
                             </div>
                             <div class="col-md-6">
-                                <button type="submit" class="btn btn-primary colorb">Agregar</button>
+                                <button style="margin-right: 550px;" (keyup.enter)="alta(forma,clave)" #agregar type="submit" class="btn btn-primary colorb">Agregar</button>
                             </div>
                     </div>
                 
                     
             </form>
-            <app-alerta *ngIf="mensaje" [mensaje]="mensaje"></app-alerta> 
+
     </div>
 </div>
