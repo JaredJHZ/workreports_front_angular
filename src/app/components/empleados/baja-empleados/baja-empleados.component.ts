@@ -48,7 +48,6 @@ export class BajaEmpleadosComponent implements OnInit {
                           return false;
                         }
                       )
-                      console.log(this.listaDeEmpleados);
                       if (this.listaDeEmpleados.length <= 0) {
                         this.boton1 = 'Cancelar';
                         this.boton2 = 'Eliminar';
@@ -107,6 +106,12 @@ export class BajaEmpleadosComponent implements OnInit {
   setTimeout(() => {
     this.mensaje = '';
   }, 3000);
+}
+
+seleccionar():void {
+  this.boton1 = "Cancelar";
+  this.boton2 = "Eliminar";
+  this.listaDeEmpleados = [];
 }
 
 }

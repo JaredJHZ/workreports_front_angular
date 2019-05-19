@@ -14,6 +14,8 @@ export class ModificarUsuarioComponent implements OnInit {
   terminoBuscado:string;
   listaDeUsuarios:Usuario[];
   mensaje:String;
+  boton1:String = 'Anterior';
+  boton2:String = 'Siguiente';
 
   constructor(private usuariosService:UsuariosService, private activatedRoute:ActivatedRoute, private router:Router) {
     this.activatedRoute.params.subscribe(
@@ -30,6 +32,11 @@ export class ModificarUsuarioComponent implements OnInit {
                         this.listaDeUsuarios = usuarios.filter(
                             (usuario) => usuario.id !== this.usuario.id && usuario.usuario.toUpperCase().includes(this.terminoBuscado.toUpperCase())
                         )
+
+                        if (this.listaDeUsuarios.length <= 0) {
+                          this.boton1 = 'Cancelar';
+                          this.boton2 = 'Modificar';
+                        }
                       }
                     )
               }
@@ -66,6 +73,26 @@ export class ModificarUsuarioComponent implements OnInit {
    setTimeout(() => {
      this.mensaje = '';
    }, 3000);
+ }
+
+ boton1Handler():void {
+   if (this.boton1.includes('Cancelar')) {
+     this.router.navigate(['/']);
+   }else {
+     this.anterior();
+   }
+ }
+
+ boton2Handler():void {
+  if(this.boton2.includes('Modificar')) {
+    this.modificar();
+  }
+ }
+
+ seleccionar():void {
+   this.listaDeUsuarios = [];
+   this.boton1 = 'Cancelar';
+   this.boton2 = 'Modificar';
  }
  
 

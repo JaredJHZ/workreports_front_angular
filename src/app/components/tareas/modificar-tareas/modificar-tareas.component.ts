@@ -17,6 +17,8 @@ export class ModificarTareasComponent implements OnInit {
   mensaje:String;
   fecha_termino:Date;
   horas_reales:number;
+  boton1:String = 'Anterior';
+  boton2:String = 'Siguiente';
 
   estados: String [] = ['SIN INICIAR','EN PROGRESO','COMPLETA'];
 
@@ -37,6 +39,10 @@ export class ModificarTareasComponent implements OnInit {
                             this.listaDeTareas = tareas.filter(
                               (tarea) => tarea.id !== this.tarea.id && tarea.nombre.toUpperCase().includes(this.terminoBuscado.toUpperCase())
                             )
+                            if (this.listaDeTareas.length <= 0) {
+                              this.boton1 = 'Cancelar';
+                              this.boton2 = 'Modificar';
+                            }
                           }
                         )
                 }
@@ -96,5 +102,21 @@ export class ModificarTareasComponent implements OnInit {
      this.mensaje = '';
    }, 3000);
  }
+
+ boton1Handler():void {
+  if (this.boton1.includes('Cancelar')) {
+    this.router.navigate(['/']);
+  } else {
+    this.anterior();
+  }
+}
+
+boton2Handler():void {
+  if (this.boton2.includes('Modificar')) {
+    this.modificar();
+  } else {
+    this.siguiente();
+  }
+}
 
 }

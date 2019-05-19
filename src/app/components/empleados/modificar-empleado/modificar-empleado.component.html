@@ -1,7 +1,13 @@
 <h1 class="Title">Modificacion de empleado</h1>
-<div class="row">
-  <div class="col-md-3" style="margin:auto;">
-      <form *ngIf="empleado" class="custom-form ">
+<div class="row fullh">
+  <div class="col-md-12 fullh">
+      <form *ngIf="empleado" class="custom-form fullh">
+
+            <div class="row">
+                    <div class="col-md-12">
+                            <app-alerta *ngIf="mensaje" [mensaje]="mensaje"></app-alerta> 
+                    </div>
+                </div>
           
           <div class="form-group">
                   <label >Nombre del empleado</label>
@@ -26,22 +32,27 @@
                   class="form-control input-small-text"  placeholder="Apellido materno">
               </div>
       </div>
+
+      <div *ngIf="!listaDeEmpleados || listaDeEmpleados.length > 0" class="row justify-content-center">
+            <button style="margin: 5px" (click)="seleccionar()" class="btn btn-primary">Seleccionar</button>
+    </div>
   
-      <div class="row">
-        <div class="col-md-6">
-            <button style="margin-left: 5px" [routerLink]="['/menu']" class="btn btn-danger colord">Cancelar</button> 
-        </div>
-        <div class="col-md-6">
-            <button type="button" (click)="modificar()" class="btn btn-primary colorb">Modificar</button>
-        </div>
-      </div>
+      <div class="row" style="margin-top: 20px;">
+            <div class="col-md-6">
+                    <div class="row justify-content-center">
+                        <button style="margin-left:550px;"  (click)="b1Handler()" class="btn btn-danger colord">{{boton1}}</button>
+                    </div>
+            </div>
+            <div class="col-md-6">
+                    <div class="row justify-content-center">
+                        <button style="margin-right:550px;" (click)="b2Handler()" type="button"  class="btn btn-primary colorb">{{boton2}}</button>
+                    </div>
+            </div>
+    </div>
+
+    
   </form>
 
     <app-alerta *ngIf="mensaje" [mensaje]="mensaje"></app-alerta> 
   </div>
-</div>
-
-<div class="row justify-content-center">
-    <button style="margin: 25px" (click)="anterior()" class="btn btn-danger">Anterior</button>
-    <button style="margin: 25px" (click)="siguiente()" type="submit" class="btn btn-primary">Siguiente</button>
 </div>

@@ -14,6 +14,8 @@ export class ModificarMaterialComponent implements OnInit {
   terminoBuscado:string;
   listaDeMateriales:Material[];
   mensaje:String;
+  boton1:String = 'Anterior';
+  boton2:String = 'Siguiente';
 
   constructor(private materialesService:MaterialesService, private activatedRoute:ActivatedRoute, private router:Router) {
       this.activatedRoute.params.subscribe(
@@ -29,6 +31,10 @@ export class ModificarMaterialComponent implements OnInit {
                           this.listaDeMateriales = materiales.filter(
                               (material) => material.id !== this.material.id && material.nombre.toUpperCase().includes(this.terminoBuscado.toUpperCase())
                           )
+                          if (this.listaDeMateriales.length <= 0) {
+                            this.boton1 = 'Cancelar';
+                            this.boton2 = 'Modificar';
+                          }
                         }
                       )
                 }
@@ -59,6 +65,29 @@ export class ModificarMaterialComponent implements OnInit {
     this.router.navigate(['materiales/modificaciones',this.terminoBuscado,this.listaDeMateriales[0].id]);
   }
  }
+
+ seleccionar():void {
+  this.boton1 = "Cancelar";
+  this.boton2 = "Modificar";
+  this.listaDeMateriales = [];
+}
+
+ boton1Handler() {
+   if (this.boton1.includes('Cancelar')) {
+     this.router.navigate(['/']);
+   } else {
+     this.anterior();
+   }
+ }
+
+ boton2Handler() {
+   if (this.boton2.includes('Modificar')) {
+     this.modificar();
+   } else {
+     this.siguiente();
+   }
+ }
+
 
  showMessage(mensaje:String):void{
   this.mensaje = mensaje;

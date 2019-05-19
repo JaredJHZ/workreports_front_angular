@@ -17,6 +17,8 @@ export class ModificarClienteComponent implements OnInit {
   apPaterno:String;
   apMaterno:String;
   listaDeClientes:Cliente[];
+  boton1:String = 'Anterior';
+  boton2:String = 'Siguiente';
 
   constructor(private clienteService:ClientesService, 
     private activatedRoute:ActivatedRoute,
@@ -82,6 +84,29 @@ export class ModificarClienteComponent implements OnInit {
      this.mensaje = '';
    }, 3000);
  }
+
+
+ b1Handler():void {
+  if(this.boton1.includes('Cancelar')) {
+    this.router.navigate(['/']);
+  } else {
+    this.anterior();
+  }
+}
+
+b2Handler():void {
+  if(this.boton2.includes('Modificar')) {
+    this.modificar();
+  } else {
+    this.siguiente();
+  }
+}
+
+seleccionar():void {
+  this.boton1 = "Cancelar";
+  this.boton2 = "Modificar";
+  this.listaDeClientes = [];
+}
  
 
   ngOnInit() {

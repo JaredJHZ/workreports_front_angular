@@ -64,6 +64,12 @@ export class BajaTareasComponent implements OnInit {
     }
   }
 
+  seleccionar():void {
+    this.boton1 = "Cancelar";
+    this.boton2 = "Modificar";
+    this.listaDeTareas = [];
+  }
+
   ngOnInit() {
   }
 

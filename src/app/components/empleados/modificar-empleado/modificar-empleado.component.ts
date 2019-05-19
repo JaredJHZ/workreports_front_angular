@@ -16,6 +16,8 @@ export class ModificarEmpleadoComponent implements OnInit {
   apMaterno:string;
   mensaje:String;
   listaDeEmpleados:Empleado[];
+  boton1:String = 'Anterior';
+  boton2:String = 'Siguiente';
 
   constructor(private empleadoService:EmpleadosService, private activatedRoute:ActivatedRoute, private router:Router) {
     this.activatedRoute.params.subscribe(
@@ -27,22 +29,29 @@ export class ModificarEmpleadoComponent implements OnInit {
             .subscribe(
               (data:Respuesta) => {
                 this.empleado = data.empleado;
-                console.log(this.empleado);
                 this.empleadoService.getEmpleados()
                     .subscribe(
-                      (respuesta:Respuesta) => this.listaDeEmpleados = respuesta.empleados.filter(
-                        (empleado: Empleado) => {
-                          if (this.nombre.toUpperCase() === empleado.nombre.toUpperCase() ) {
-                            if (this.apPaterno.toUpperCase()  === empleado.ap_paterno.toUpperCase() ){
-                              if (this.apMaterno.toUpperCase()  === empleado.ap_materno.toUpperCase() ) {
-                                return true;
-                              }
-                            }
-                          }
-                
-                          return false;
+                      (respuesta:Respuesta) => {
+                          this.listaDeEmpleados = respuesta.empleados.filter(
+                                (empleado: Empleado) => {
+                                if(this.empleado.id === empleado.id) {
+                                  return false;
+                                }
+                                if (this.nombre.toUpperCase() === empleado.nombre.toUpperCase() ) {
+                                  if (this.apPaterno.toUpperCase()  === empleado.ap_paterno.toUpperCase() ){
+                                    if (this.apMaterno.toUpperCase()  === empleado.ap_materno.toUpperCase() ) {
+                                      return true;
+                                    }
+                                  }
+                                }
+                                return false;
                         }
-                      )
+                        )
+                        if(this.listaDeEmpleados.length <=0 ) {
+                          this.boton1 = 'Cancelar';
+                          this.boton2 = 'Modificar';
+                        }
+                      }
                     )
               }
             )
@@ -84,6 +93,28 @@ showMessage(mensaje:String):void{
  setTimeout(() => {
    this.mensaje = '';
  }, 3000);
+}
+
+b1Handler():void {
+  if (this.boton1.includes('Cancelar')) {
+    this.router.navigate(['/']);
+  } else {
+    this.anterior();
+  }
+}
+
+b2Handler():void {
+  if(this.boton2.includes('Modificar')) {
+    this.modificar();
+  } else {
+    this.siguiente();
+  }
+}
+
+seleccionar():void {
+  this.boton1 = "Cancelar";
+  this.boton2 = "Modificar";
+  this.listaDeEmpleados = [];
 }
 
 }

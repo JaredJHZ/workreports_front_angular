@@ -79,6 +79,10 @@ export class BajaClientesComponent implements OnInit {
     }
   }
 
+  seleccionar() {
+    
+  }
+
   borrar():void {
     this.clienteService.eliminarCliente(this.cliente.id)
         .subscribe(
