@@ -13,6 +13,7 @@ export class ConsultaEmpleadosComponent implements OnInit {
   mostrarResultados:boolean = false;
   empleadosBuscados:Empleado[];
   terminoBuscado:string;
+  mensaje:String;
 
   constructor(private empleadosService:EmpleadosService) { 
       this.empleadosService.getEmpleados()
@@ -25,13 +26,31 @@ export class ConsultaEmpleadosComponent implements OnInit {
   }
 
   buscar():void {
-    this.mostrarResultados = true;
+    if(this.empleadosBuscados.length <= 0) {
+      this.showMessage('Busqueda de empleos');
+    } else {
+      this.mostrarResultados = true;
+    }
+
+  }
+
+  limpiar():void {
+    this.mostrarResultados = false;
+    this.terminoBuscado = '';
+    this.empleadosBuscados = [];
   }
 
   refrescarBusqueda():void {
     this.empleadosBuscados = this.empleados.filter(
         (empleado) => empleado.nombre.toUpperCase().includes(this.terminoBuscado.toUpperCase())
     )
+  }
+
+  showMessage(mensaje:String):void {
+    this.mensaje = mensaje;
+    setTimeout(() => {
+      this.mensaje = '';
+    }, 3000);
   }
 
 

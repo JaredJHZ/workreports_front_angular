@@ -1,6 +1,6 @@
 <div class="row" style="height:100%;">
 
-    <div class="col-md-9 color" style="height:100%;">
+    <div class="col-md-4 color" style="height:100%;">
       <div class="Title"  style="color:black;">
           <h1 >WorkReports</h1>
           <h3 >Iniciar sesión</h3>
@@ -10,21 +10,24 @@
             <form novalidate (ngSubmit)="enter(forma)" #forma="ngForm" class="form">
               <div class="row justify-content-center">
                   <div class="form-group">
-                      <label style="color:black;" for="usuario">Usuario</label>
+                    <div class="row justify-content-center">
+                        <label style="color:black;" for="usuario">Usuario</label>
+                    </div>
                       <input type="text" class="form-control input-small-text" id="usuario" aria-describedby="usuario"
                       [(ngModel)]="user.usuario"
-                      name="usuario"
-                      placeholder="Ingresar usuario">
+                      name="usuario">
                     </div>
               </div>
 
               <div class="row justify-content-center">
                   <div class="form-group input-small-text">
-                      <label style="color:black;" for="Contraseña">Contraseña</label>
+                    <div class="row justify-content-center">
+                        <label style="color:black;" for="Contraseña">Contraseña</label>
+                    </div>
                       <input type="password"
                       name="password"
                       [(ngModel)]="user.password"
-                      class="form-control" id="contraseña" placeholder="contraseña">
+                      class="form-control" id="contraseña">
                     </div>
               </div>
   
@@ -39,7 +42,7 @@
         </div>
     </div>
 
-    <div class="col-md-3 newh" style="padding:0;">
+    <div class="col-md-8 newh" style="padding:0;">
         <img style="height:100%" src="/assets/d1.jpeg" alt="" srcset="">
     </div>
   </div>

@@ -1,42 +1,33 @@
 <app-navbar></app-navbar>
-<div class="row">
-  <button style="margin:30px; margin-bottom: 0; margin-top: 5px;" [routerLink]="['consulta/ordenes']" class="btn btn-danger atras colord">Atras</button>
+
+<div class="col-md-12">
+      <div class="row justify-content-center">
+          <h2 style="text-align: center;" class="Title">Consulta de orden {{id}}</h2>
+      </div>
+      <div class="row justify-content-center" style="margin-top: 50px;">
+        <h3 style="text-align: center;">Informacion de la orden</h3>
+        <div *ngIf="orden" class="col-md-12">
+                <h3 style="text-align: center;" *ngIf="orden.cliente"> <small>Nombre del cliente: </small><strong>{{orden.cliente }}</strong> </h3>
+                <h3 style="text-align: center;" *ngIf="orden.empleado"> <small>Nombre del empleado asignado: </small> <strong>{{orden.empleado}}</strong></h3>
+                <h3 style="text-align: center;"> <small>Fecha de creacion:</small>  <strong>{{orden.fecha_de_creacion}}</strong></h3>
+        </div>
+      </div>
+      <div class="row">
+
+      </div>
 </div>
+
 
 <div style="margin-bottom:30px;" class="row justify-content-center tipo">
   <div class="col-md-12">
-    <h2 class="Title">Consulta de orden {{id}}</h2>
-    <h5 style="color:white; text-align:center;">Tipo de reporte</h5>
-    
-    <select [(ngModel)]="tipoDeConsulta" (change)="actualizar()" style="width:10%; margin: auto;"  class="form-control"  name="tipo" id="">
-      <option value="1">Simple</option>
-      <option value="2">Con cliente</option>
-      <option value="3">Completa</option>
-    </select>
+
 
   </div>
 </div>
 
-<div class="row">
-  <div class="col-md-4">
-    <div class="row justify-content-center">
-      <img src="/assets/orden.jpeg" alt="tarea" class="img">
-    </div>
-  </div>
-
-  <div *ngIf="orden" class="col-md-8 sub">
-    <h3 style="text-align: center;" *ngIf="orden.cliente">Nombre del cliente: <strong>{{orden.cliente}}</strong> </h3>
-    <h3 style="text-align: center;" *ngIf="orden.empleado">Nombre del empleado asignado: <strong>{{orden.empleado}}</strong></h3>
-    <h3 style="text-align: center;">Fecha de creacion: <strong>{{orden.fecha_de_creacion}}</strong></h3>
-    <div class="row justify-content-center" style="margin-top: 5px;">
-        <button (click)="generatePDF()" class="btn btn-primary colorb">Generar PDF</button>
-    </div>
-  </div>
-</div>
-
-<div *ngIf="orden" class="row tareas sub">
+<div style="padding: 30px;" *ngIf="orden" class="row tareas sub">
   <div class="col-md-12">
-    <h3 class="sub">Tareas</h3>
+    <h3 class="sub">Serie de Tareas</h3>
           <table class="table sub">
             <thead class="thead-dark">
               <tr>
@@ -53,16 +44,21 @@
                 <td>{{tarea.horas}}</td>
                 <td>${{tarea.total}}</td>
               </tr>
+              <tr>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col">Costo total de las tareas </th>
+                  <th scope="col">${{orden.costo_total_de_tareas}}</th>
+                </tr>
             </tbody>
           </table>
-          <h3 style="text-align:center;">Costo total por tareas: ${{orden.costo_total_de_tareas}}</h3>
   </div>
 </div>
 
 
-<div style="margin-bottom:30px;" *ngIf="orden" class="row materiales sub">
+<div style="padding: 30px;"  *ngIf="orden" class="row materiales sub">
     <div class="col-md-12">
-        <h3 class="sub">Materiales</h3>
+        <h3 class="sub">Lista de Materiales</h3>
               <table class="table sub">
                 <thead class="thead-dark">
                   <tr>
@@ -79,8 +75,25 @@
                     <td>{{material.cantidad}}</td>
                     <td>${{material.costo_total_material}}</td>
                   </tr>
+                  <tr>
+                      <th scope="col"></th>
+                      <th scope="col"></th>
+                      <th scope="col">Costo total del material </th>
+                      <th scope="col">${{orden.costo_total_de_materiales}}</th>
+                    </tr>
                 </tbody>
               </table>
-              <h3 style="text-align:center;">Costo total de materiales: ${{orden.costo_total_de_materiales}}</h3>
+      </div>
+      <div class="col-md-12" style=" margin-bottom: 30px;">
+          <div class="col-md-12">
+            <div class="row justify-content-center">
+                <button (click)="generatePDF()" class="btn btn-primary colorb">Generar PDF</button>
+            </div>
+            <div class="row justify-content-center">
+                <button style="margin:30px; margin-bottom: 0; margin-top: 5px;" 
+                [routerLink]="['/']" class="btn btn-danger">Regresar al menu principal</button>
+              </div>
+          </div>
       </div>
 </div>
+

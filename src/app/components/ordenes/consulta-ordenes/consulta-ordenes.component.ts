@@ -14,18 +14,28 @@ export class ConsultaOrdenesComponent implements OnInit {
   mostrarResultados:boolean = false;
   ordenesBuscadas:Orden[];
   terminoBuscado:string;
+  mensaje:String;
 
   constructor(private router:Router, private ordenesService:OrdenesService) { 
     this.ordenesService.getAllOrdenes()
         .subscribe(
           (data:Respuesta) => {
             this.ordenes = data.ordenes;
-            console.log(this.ordenes);
           }
         )
   }
 
+  limpiar():void {
+    this.terminoBuscado = '';
+    this.ordenesBuscadas = [];
+    this.mostrarResultados = false;
+  }
+
   buscar():void {
+    if (this.ordenesBuscadas.length <= 0) {
+      this.showMessage('No existen ordenes con esa clave');
+      return;
+    }
     this.mostrarResultados = true;
   }
 
@@ -50,5 +60,14 @@ export class ConsultaOrdenesComponent implements OnInit {
   reporte(id):void {
     this.router.navigate(['reporte/orden', id]);
   }
+
+
+  showMessage(mensaje:String):void {
+    this.mensaje = mensaje;
+    setTimeout(() => {
+      this.mensaje = '';
+    }, 3000);
+  }
+
 
 }

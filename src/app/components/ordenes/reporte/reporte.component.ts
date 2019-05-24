@@ -22,7 +22,13 @@ export class ReporteComponent implements OnInit {
     this.activatedRoute.params
         .subscribe(
           (parametros) => {
-            this.id = parametros.id
+            this.id = parametros.id;
+            let tipo = parametros.tipo;
+            if (tipo === 'cliente') {
+              this.tipoDeConsulta = '2';
+            } else {
+              this.tipoDeConsulta = '3';
+            }
             this.ordenService.getOrden(this.id)
                 .subscribe(
                   (data: Respuesta) => {
@@ -31,6 +37,7 @@ export class ReporteComponent implements OnInit {
                     this.empleado = this.orden.empleado;
                     this.orden.cliente = '';
                     this.orden.empleado = '';
+                    this.actualizar();
                   }
                 )
           }

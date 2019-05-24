@@ -74,5 +74,46 @@ export class OrdenesService {
       headers: headers
     });
    }
+
+   modificarOrden(id, orden) {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('authentication',this.loginService.getToken());
+    return this.http.put(this.url+id, orden ,{
+      headers: headers
+    });
+
+   }
+
+
+   agregarTarea(id,id_tarea) {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('authentication',this.loginService.getToken());
+    return this.http.post(this.url+"tareas/"+id+"/"+id_tarea , null, {
+      headers: headers
+    });
+  }
    
+  eliminarTarea(id,id_tarea){
+      let headers: HttpHeaders = new HttpHeaders();
+      headers = headers.append('authentication',this.loginService.getToken());
+      return this.http.delete(this.url+"tareas/"+id+"/"+id_tarea , {
+        headers: headers
+      });
+    }
+
+    agregarMaterial(id, id_material , material ) {
+      let headers: HttpHeaders = new HttpHeaders();
+      headers = headers.append('authentication',this.loginService.getToken());
+      return this.http.post(this.url+"materiales/"+id+"/"+id_material , material ,{
+        headers: headers
+      });
+    }
+
+    eliminarMaterial(id,id_material) {
+      let headers: HttpHeaders = new HttpHeaders();
+      headers = headers.append('authentication',this.loginService.getToken());
+      return this.http.delete(this.url+"materiales/"+id+"/"+id_material  ,{
+        headers: headers
+      });
+    }
 }

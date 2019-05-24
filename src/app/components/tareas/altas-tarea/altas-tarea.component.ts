@@ -14,6 +14,8 @@ export class AltasTareasComponent implements OnInit {
 
   claveTareas:String[];
 
+  mensajeClave: boolean = false;
+
   mensaje: String ;
 
   tarea: Tarea = {
@@ -48,9 +50,10 @@ export class AltasTareasComponent implements OnInit {
     if(this.tarea.id.length >= 5) {
       if(this.claveTareas.includes(this.tarea.id)) {
         this.tarea.id = '';
-        this.showMessage('Clave de tarea en uso!');
+        this.mensajeClave = true;
         return;
       } else {
+        this.mensajeClave = false;
         el.focus();
       }
     }

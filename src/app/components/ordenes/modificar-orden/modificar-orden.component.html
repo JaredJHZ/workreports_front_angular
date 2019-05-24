@@ -1,0 +1,140 @@
+<h1 class="Title">Modificar orden</h1>
+
+<form  *ngIf="orden" (keydown.enter)="$event.preventDefault()" class="custom-form fullh" action="">
+    <div  class="col-md-12">
+        <div class="row">
+            <div class="col-md-6">
+                    <div class="row justify-content-center">
+                                <div class="form-group">
+                                                <label >Clave del cliente</label>
+                                                <div class="row justify-content-center">
+                                                    <input #cliente (keyup)="changeCliente(empleado)" 
+                                                     [(ngModel)]="orden['cliente']" name="cliente"
+                                                      type="text" 
+                                                    class="form-control input-id">
+                                                </div>    
+                                                <label *ngIf="mensajeCliente">No existe el cliente</label>
+                                </div>
+                    </div>
+            </div>
+            <div class="col-md-6">
+                    <div class="row justify-content-center">
+                                <div class="form-group">
+                                        <label >Nombre del cliente</label>
+                                        <div #nombrec class="row justify-content-center">
+                                                    <input disabled  
+                                                     [(ngModel)]="nombreCliente"
+                                                      name="nombrec" type="text" 
+                                                    class="form-control input-id">
+                                        </div>    
+                                </div>
+                    </div>
+            </div>
+        </div>
+    
+        <div class="row" style="margin-top: 50px;" >
+            <div class="col-md-6">
+                    <div class="row justify-content-center">
+                            <div class="form-group">
+                                    <label >Clave del empleado supervisor</label>    
+                                    <div  class="row justify-content-center">
+                                        <input #empleado 
+                                        (keyup)="changeEmpleado(calle)"
+                                         [(ngModel)]="orden['empleado']" 
+                                         name="id_empleado" type="text" 
+                                        class="form-control input-id">
+                                    </div> 
+                                    <label *ngIf="mensajeEmpleado">No existe el empleado</label>
+                            </div>
+                    </div>
+            </div>
+            <div class="col-md-6">
+                    <div class="row justify-content-center">
+                            <div class="form-group">
+                                    <label >Nombre del empleado supervisor</label>    
+                                    <div #nombree class="row justify-content-center">
+                                            <input disabled   
+                                            [(ngModel)]="nombreEmpleado" 
+                                            name="nombre_empleado" type="text" 
+                                            class="form-control input-id">
+                                        </div>    
+                            </div>
+                    </div>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 50px;">
+                <div class="col-md-3">
+                         <div class="row justify-content-center">
+                                <div class="form-group">
+                                        <label >Calle</label>    
+                                        <div  class="row justify-content-center">
+                                        <input #calle
+                                        (keyup.enter)="ciudad.focus()" 
+                                       [(ngModel)]="orden['calle']" 
+                                        name="calle" type="text" 
+                                        class="form-control input-small-text">
+                                                        </div> 
+                                        </div>
+                                </div>
+                </div>    
+                <div class="col-md-3">
+                                <div class="row justify-content-center">
+                                       <div class="form-group">
+                                               <label >Ciudad</label>    
+                                               <div  class="row justify-content-center">
+                                               <input #ciudad 
+                                               (keyup.enter)="estado.focus()"
+                                              [(ngModel)]="orden['ciudad']" 
+                                               name="ciudad" type="text" 
+                                               class="form-control input-long-text">
+                                                               </div> 
+                                               </div>
+                                       </div>
+                </div>     
+                <div class="col-md-3">
+                                <div class="row justify-content-center">
+                                       <div class="form-group">
+                                               <label >Estado</label>    
+                                               <div  class="row justify-content-center">
+                                               <input #estado 
+                                               (keyup.enter)="cp.focus()"
+                                              [(ngModel)]="orden['estado']" 
+                                               name="direccion" type="text" 
+                                               class="form-control input-small-text">
+                                                               </div> 
+                                               </div>
+                                       </div>
+                       </div> 
+                       <div class="col-md-3">
+                                <div class="row justify-content-center">
+                                       <div class="form-group">
+                                               <label >Codigo postal</label>    
+                                               <div  class="row justify-content-center">
+                                               <input #cp 
+                                              [(ngModel)]="orden['cp']" 
+                                               name="direccion" type="text" 
+                                               class="form-control input-id">
+                                                               </div> 
+                                               </div>
+                                       </div>
+                       </div> 
+        </div>
+    
+</div>
+
+<div style="margin-top:130px; margin-bottom: 50px; border-top: 3px solid white; padding: 30px;" class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="row justify-content-center">
+          <button style="margin-left:550px;" type="button" routerLink="['/']" class="btn colord">Cancelar</button>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row justify-content-center">
+          <button style="margin-right:500px;" type="button" (click)="modificarOrden()" class="btn colorb">Modificar</button>
+      </div>
+    </div>
+</div>
+
+</form>
+    

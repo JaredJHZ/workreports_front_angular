@@ -31,17 +31,27 @@ import { ConsultaEmpleadosComponent } from './components/empleados/consulta-empl
 import { ConsultaClientesComponent } from './components/clientes/consulta-clientes/consulta-clientes.component';
 import { ConsultaTareasComponent } from './components/tareas/consulta-tareas/consulta-tareas.component';
 import { AltaOrdenesComponent } from './components/ordenes/alta-ordenes/alta-ordenes.component';
-import { EliminarOrdenComponent } from './components/orden/eliminar-orden/eliminar-orden.component';
-import { SeleccionarOrdenComponent } from './components/orden/seleccionar-orden/seleccionar-orden.component';
 import { BusquedaOrdenesComponent } from './components/ordenes/busqueda-ordenes/busqueda-ordenes.component';
 import { BajaOrdenComponent } from './components/ordenes/baja-orden/baja-orden.component';
 import { ConsultaOrdenesComponent } from './components/ordenes/consulta-ordenes/consulta-ordenes.component';
 import { ReporteComponent } from './components/ordenes/reporte/reporte.component';
+import { ReportesComponent } from './ordenes/busqueda/reportes/reportes.component';
+import { ModificarOrdenComponent } from './components/ordenes/modificar-orden/modificar-orden.component';
+import { BusquedaTareaOrdenComponent } from './ordenes/busqueda-tarea-orden/busqueda-tarea-orden.component';
+import { BusquedaMaterialesOrdenComponent } from './ordenes/busqueda-materiales-orden/busqueda-materiales-orden.component';
 
 const routes: Routes = [
   {
     component:LoginComponent,
     path:'login'
+  },
+  {
+    component: ReportesComponent,
+    path:'reporte/:tipo'
+  },
+  {
+    component: ReporteComponent,
+    path:'reporte/:tipo/:id'
   },
   {
     component: HomeComponent,
@@ -164,12 +174,21 @@ const routes: Routes = [
     path:'ordenes/bajas/:termino/:id'
   },
   {
-    component:ConsultaOrdenesComponent,
-    path:'consulta/ordenes'
+    component:ModificarOrdenComponent,
+    path:'ordenes/modificaciones/:termino/:id'
   },
   {
-    component:ReporteComponent,
-    path:'reporte/orden/:id'
+    component: BusquedaTareaOrdenComponent,
+    path:':tipo/tareaordenes'
+  },
+  {
+    component: BusquedaMaterialesOrdenComponent,
+    path:':tipo/materialordenes'
+  }
+  ,
+  {
+    component:ConsultaOrdenesComponent,
+    path:'consulta/ordenes'
   },
   {
     path:'**',

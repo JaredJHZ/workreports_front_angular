@@ -15,17 +15,29 @@ import { TareasService } from 'src/app/services/tareas.service';
 })
 export class AltaOrdenesComponent implements OnInit {
 
+  numeroMaterial:number = 0;
+  numeroTarea:number = 0;
+
   materiales:MaterialesParaOrden[] = [{id:'',cantidad_estimada:null,cantidad_utilizada:null}];
 
   tareas:any [] = [{id:''}];
 
   mensaje:String;
+  mensajeClave:boolean = false;
+  mensajeCliente:boolean = false;
+  mensajeEmpleado:boolean = false;
+  mensajeMaterial:boolean = false;
+  mensajeTarea:boolean = false;
 
   clavesClientes: String[];
   clavesEmpleados:String[];
-  tareasDisponibles: Tarea[];
-  materialesDisponibles: Material[];
+  clavesTareas:String[];
   clavesOrdenes:String[];
+  clavesMateriales:String[];
+  nombreCliente:String;
+  nombreEmpleado:String;
+  nombreMaterial:String;
+  nombreTarea:String;
 
   orden:Orden = {
     id:'',
@@ -44,6 +56,8 @@ export class AltaOrdenesComponent implements OnInit {
     private clientesService:ClientesService, private empleadosService:EmpleadosService,
     private materialesService:MaterialesService, private tareasService:TareasService) {
 
+      
+
       this.ordenesService.getAllOrdenes()
                             .subscribe(
                               (data:Respuesta) => this.clavesOrdenes = data.ordenes
@@ -53,10 +67,6 @@ export class AltaOrdenesComponent implements OnInit {
                               (error) => this.clavesEmpleados = []
                             )
       
-      this.materialesService.getTodosMateriales()
-          .subscribe(
-            (data:Respuesta) => this.materialesDisponibles = data.materiales
-          )
 
       this.clientesService.getClientes()
             .subscribe(
@@ -66,45 +76,85 @@ export class AltaOrdenesComponent implements OnInit {
             )
 
       this.tareasService.getAll()
-            .subscribe(
-              (data:Respuesta) => this.tareasDisponibles = data.tareas
-            )
-      
+                .subscribe(
+                  (data:Respuesta) => this.clavesTareas = data.tareas.map(
+                    (tarea:Tarea) => tarea.id
+                  )
+                )
+
+      this.materialesService.getTodosMateriales()
+                  .subscribe(
+                    (data:Respuesta) => this.clavesMateriales = data.materiales.map(
+                      (material:Material) => material.id
+                    )
+                  )
+
       this.empleadosService.getEmpleados()
-              .subscribe(
-                (data:Respuesta) => this.clavesEmpleados = data.empleados
-                                                              .map(
-                                                                (empleado:Empleado) => empleado.id
-                                                              )
-              )
+                    .subscribe(
+                      (data:Respuesta) => this.clavesEmpleados = data.empleados.map(
+                        (empleado:Empleado) => empleado.id
+                      )
+                    )
+
+      
+     
+      
+
 
     
+  }
+
+  altaYBloquear(clave,cliente,empleado,fecha1,fecha2,calle,ciudad,estado, cp):void {
+    clave.disabled = true;
+    cliente.disabled = true;
+    empleado.disabled = true;
+    fecha1.disabled = true;
+    fecha2.disabled = true;
+    calle.disabled = true;
+    ciudad.disabled = true;
+    estado.disabled = true;
+    cp.disabled = true;
   }
 
   ngOnInit() {
   }
 
-  changeTarea(i):void {
-    if (this.tareas[i].id.charAt(this.tareas[i].id.length-1)  === '0' && this.tareas[i].id.length <= 5) {
+  changeTarea():void {
+    if (this.tareas[this.numeroTarea].id.length >= 5) {
+      if (!this.comprobarTareas()) {
+        this.tareas[this.numeroTarea].id = '';
+        this.mensajeTarea = true;
+      } else {
+        this.tareasService.getTarea(this.tareas[this.numeroTarea].id)
+            .subscribe(
+              (data:Respuesta) => {
+                this.nombreTarea = data.tarea.nombre;
+                this.mensajeTarea = false;
+              }
+            )
+      }
+    }
+    if (this.tareas[this.numeroTarea].id.charAt(this.tareas[this.numeroTarea].id.length-1)  === '0' && this.tareas[this.numeroTarea].id.length <= 5) {
       return
     } 
-    if(!Number(this.tareas[i].id.charAt(this.tareas[i].id.length-1)) || this.tareas[i].id.length > 5) {
-      this.tareas[i].id = this.tareas[i].id.slice(0, this.tareas[i].id.length - 1);
+    if(!Number(this.tareas[this.numeroTarea].id.charAt(this.tareas[this.numeroTarea].id.length-1)) || this.tareas[this.numeroTarea].id.length > 5) {
+      this.tareas[this.numeroTarea].id = this.tareas[this.numeroTarea].id.slice(0, this.tareas[this.numeroTarea].id.length - 1);
     }
   }
 
   changeID(el):void{
     if (this.orden.id.length >= 5 ){
-      if (this.clavesOrdenes === undefined) {
+      if (this.clavesOrdenes == undefined) {
         el.focus();
-      }
-      if (this.clavesOrdenes.includes(this.orden.id)){
-        this.showMessage('Clave de orden en uso!');
+        return;
+      } else if (this.clavesOrdenes.includes(this.orden.id)){
+        this.mensajeClave = true;
         this.orden.id = '';
         return
       } else {
+        this.mensajeClave = false;
         el.focus();
-        }
+      }
     }
     if (this.orden.id.charAt(this.orden.id.length-1)  === '0' && this.orden.id.length <= 5) {
       return
@@ -117,9 +167,16 @@ export class AltaOrdenesComponent implements OnInit {
   changeCliente(el):void {
     if (this.orden.cliente.length >= 5) {
         if(this.clavesClientes.includes(this.orden.cliente)) {
+          this.clientesService.getCliente(this.orden.cliente)
+              .subscribe(
+                (data:Respuesta) => {
+                  this.nombreCliente = data.cliente.nombre;
+                  this.mensajeCliente = false;
+                }
+              )
           el.focus();
         } else {
-          this.showMessage('Ese cliente no existe!');
+          this.mensajeCliente = true;
           this.orden.cliente = '';
           return;
         }
@@ -134,12 +191,18 @@ export class AltaOrdenesComponent implements OnInit {
 
   changeEmpleado(el):void {
     if (this.orden.empleado.length >= 5) {
-        if(this.clavesEmpleados.includes(this.orden.empleado)) {
-          el.focus();
-        } else {
-          this.orden.empleado = '';
-          this.showMessage('El empleado no existe!');
-        }
+         if(this.clavesEmpleados.includes(this.orden.empleado)){
+           this.empleadosService.getEmpleado(this.orden.empleado)
+              .subscribe(
+                (data:Respuesta) => {
+                  this.nombreEmpleado = data.empleado.nombre;
+                  this.mensajeEmpleado = false;
+                }
+              )
+         } else {
+           this.mensajeEmpleado = true;
+           this.orden.empleado = '';
+         }
     }
     if (this.orden.empleado.charAt(this.orden.empleado.length-1)  === '0' && this.orden.empleado.length <= 5) {
       return
@@ -158,12 +221,29 @@ export class AltaOrdenesComponent implements OnInit {
     }
   }
 
-  changeMaterialID(i):void {
-    if (this.materiales[i].id.charAt(this.materiales[i].id.length-1)  === '0' && this.materiales[i].id.length <= 5) {
+  changeMaterialID(el):void {
+    if(this.materiales[this.numeroMaterial].id.length >= 5) {
+      if(this.comprobarMateriales()){
+        this.materialesService.getMaterial(this.materiales[this.numeroMaterial].id)
+            .subscribe(
+              (data:Respuesta) => {
+                this.nombreMaterial = data.material.nombre;
+                this.mensajeMaterial = false;
+              }
+            )
+        el.focus();
+      } else {
+       this.mensajeMaterial = true;
+
+       this.materiales[this.numeroMaterial].id = '';
+      }
+
+    }
+    if (this.materiales[this.numeroMaterial].id.charAt(this.materiales[this.numeroMaterial].id.length-1)  === '0' && this.materiales[this.numeroMaterial].id.length <= 5) {
       return
     } 
-    if(!Number(this.materiales[i].id.charAt(this.materiales[i].id.length-1)) || this.materiales[i].id.length > 5){
-      this.materiales[i].id = this.materiales[i].id.slice(0,this.materiales[i].id.length-1);
+    if(!Number(this.materiales[this.numeroMaterial].id.charAt(this.materiales[this.numeroMaterial].id.length-1)) || this.materiales[this.numeroMaterial].id.length > 5){
+      this.materiales[this.numeroMaterial].id = this.materiales[this.numeroMaterial].id.slice(0,this.materiales[this.numeroMaterial].id.length-1);
     }
   }
 
@@ -174,6 +254,7 @@ export class AltaOrdenesComponent implements OnInit {
       cantidad_utilizada:null
     }
     this.materiales.push(auxiliar);
+    this.numeroMaterial += 1;
   }
 
   borrarMaterial(i) {
@@ -191,6 +272,7 @@ export class AltaOrdenesComponent implements OnInit {
       id:''
     };
     this.tareas.push(newTarea);
+    this.numeroTarea += 1;
   }
 
   borrarTarea(i) {
@@ -245,8 +327,8 @@ export class AltaOrdenesComponent implements OnInit {
   comprobarTareas():boolean {
     let encontrados:number = 0;
     for(let i = 0 ; i<this.tareas.length ; i++) {
-        for(let j = 0 ; j<this.tareasDisponibles.length ; j++){
-            if(this.tareasDisponibles[j].id === this.tareas[i].id) {
+        for(let j = 0 ; j<this.clavesTareas.length ; j++){
+            if(this.clavesTareas[j] === this.tareas[i].id) {
               encontrados+=1;
               break;
             }
@@ -258,8 +340,8 @@ export class AltaOrdenesComponent implements OnInit {
   comprobarMateriales():boolean {
     let encontrados:number = 0;
     for(let i = 0 ; i < this.materiales.length ; i++) {
-      for(let j = 0 ; j < this.materialesDisponibles.length ; j++) {
-        if (this.materialesDisponibles[j].id === this.materiales[i].id) {
+      for(let j = 0 ; j < this.clavesMateriales.length ; j++) {
+        if (this.clavesMateriales[j] === this.materiales[i].id) {
           encontrados+=1;
           break;
         }
@@ -268,5 +350,6 @@ export class AltaOrdenesComponent implements OnInit {
     
     return encontrados === this.materiales.length;
   }
+
 
 }

@@ -16,6 +16,7 @@
                                               <input #clave (keyup)="changeID($event,name)"  [(ngModel)]="material['id']" name="id" type="text" 
                                               class="form-control input-id"  >
                                     </div>
+                                    <label class="red" *ngIf="mensajeClave">Clave en uso!</label>
                                   </div>
                     </div>
                 </div>
@@ -43,12 +44,16 @@
                     
 
 
-                    <div class="row" style="margin-top:80px;">
+                    <div class="row justify-content-center" style="margin-top:80px;">
                             <div class="col-md-6">
-                                <button style="margin-left: 550px;" [routerLink]="['/menu']" class="btn btn-danger colord">Cancelar</button>
+                                <div class="row justify-content-center">
+                                        <button [routerLink]="['/menu']" class="btn btn-danger colord">Cancelar</button>
+                                </div>
                             </div>
                             <div class="col-md-6">
-                                <button style="margin-right: 550px;" (keyup.enter)="alta(forma,clave)" #agregar type="submit" class="btn btn-primary colorb">Agregar</button>
+                                <div class="row justify-content-center">
+                                    <button   #agregar type="submit" class="btn btn-primary colorb">Agregar</button>
+                                </div>
                             </div>
                     </div>
                 

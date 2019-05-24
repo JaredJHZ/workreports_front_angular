@@ -14,6 +14,7 @@ export class ConsultaMaterialesComponent implements OnInit {
   mostrarResultados:boolean = false;
   materialesBuscados:Material[];
   terminoBuscado:string;
+  mensaje:String;
   
   constructor(private router:Router, private materialesService:MaterialesService) { 
       this.materialesService.getTodosMateriales()
@@ -23,7 +24,17 @@ export class ConsultaMaterialesComponent implements OnInit {
   }
 
   buscar():void {
-    this.mostrarResultados = true;
+    if (this.materialesBuscados.length <= 0) {
+      this.showMessage('Ningun material se encuentra con esa busqueda');
+    } else {
+      this.mostrarResultados = true;
+    }
+  }
+
+  limpiar():void {
+    this.mostrarResultados = false;
+    this.terminoBuscado = '';
+    this.materialesBuscados = [];
   }
 
   refrescarBusqueda():void {
@@ -31,6 +42,14 @@ export class ConsultaMaterialesComponent implements OnInit {
         (material) => material.nombre.toUpperCase().includes(this.terminoBuscado.toUpperCase())
     )
   }
+
+  showMessage(mensaje:String):void {
+    this.mensaje = mensaje;
+    setTimeout(() => {
+      this.mensaje = '';
+    }, 3000);
+  }
+
 
   ngOnInit() {
   }

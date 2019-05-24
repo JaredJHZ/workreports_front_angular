@@ -84,7 +84,7 @@ export interface Orden {
     cp?:String;
     serie_de_tareas?:any;
     materiales?:MaterialesParaOrden[];
-    tareas?:String[];
+    tareas?:any[];
     lista_de_materiales?:any;
 }
 

@@ -24,6 +24,7 @@
                                         [(ngModel)]="tarea['id']" name="id" type="text" class="form-control input-id"
                                          id="clave de la tarea" (keyup)="changeID(name)" >
                                     </div>
+                                    <label class="red"*ngIf="mensajeClave" >Clave de la tarea en uso</label>
                             </div>
                     </div>
 
@@ -46,7 +47,7 @@
                     </div>
                 <div class="col-md-3">
                         <div class="form-group">
-                                <label>Tarifa por hora de la tarea</label>
+                                <label>Tarifa por hora</label>
                                 <div class="row justify-content-center">
                                     <input #tarifa (keyup.enter)="estimado.focus()"
                                     [(ngModel)]="tarea['tarifa_hora']" name="tarifa_hora" type="number" 
@@ -58,7 +59,7 @@
                 </div>
                 <div class="col-md-3">
                         <div class="form-group">
-                                <label>Estimado de horas de la tarea</label>
+                                <label>Estimado de horas </label>
                                 <div class="row justify-content-center">
                                     <input #estimado (keyup.enter)="estado.focus()"
                                     [(ngModel)]="tarea['estimado_horas']" name="estimado_horas" 
@@ -105,10 +106,10 @@
             </div>
             <div class="row" style="margin-top:90px;">
                     <div class="col-md-6">
-                        <button style="margin-left: 550px;" [routerLink]="['/tareas']" class="btn btn-danger colord">Cancelar</button>
+                        <button  [routerLink]="['/tareas']" class="btn btn-danger colord">Cancelar</button>
                     </div>
                     <div class="col-md-6">
-                        <button style="margin-right: 550px;" type="submit" (keyup.enter)="alta(forma,clave)" class="btn btn-primary colorb">Agregar</button>
+                        <button  type="submit" (keyup.enter)="alta(forma,clave)" class="btn btn-primary colorb">Agregar</button>
                     </div>
             </div> 
         </form>     

@@ -23,6 +23,8 @@ export class AltaUsuarioComponent implements OnInit {
 
   mensaje:String;
 
+  textoClave:boolean = false;
+
   constructor(private router:Router, private usuariosService:UsuariosService) {
       this.usuariosService.getUsuarios()
           .subscribe(
@@ -30,7 +32,6 @@ export class AltaUsuarioComponent implements OnInit {
               this.clavesUsadas = data.usuarios.map(
                 (usuario) => usuario.id
               )
-              console.log(this.clavesUsadas);
             } 
           )
    }
@@ -62,10 +63,11 @@ export class AltaUsuarioComponent implements OnInit {
   changeID(e, el):void{
     if (this.usuario.id.length >=5) {
       if (this.clavesUsadas.includes(this.usuario.id)) {
-        this.showMessage("Clave en uso!");
+        this.textoClave = true;
         this.usuario.id = '';
       } else {
         el.focus();
+        this.textoClave = false;
       }
     }
     if (this.usuario.id.charAt(this.usuario.id.length-1).includes("0") && this.usuario.id.length <= 5){

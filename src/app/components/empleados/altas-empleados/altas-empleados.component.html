@@ -15,6 +15,7 @@
                        name="id" type="text" 
                       class="form-control input-id"  >
                   </div>
+                  <label class="red" *ngIf="mensajeClave">Clave del empleado en uso!</label>
                 </div>
           </div>
         </div>
@@ -53,10 +54,10 @@
 
       <div class="row" style="margin-top:100px;">
         <div class="col-md-6">
-            <button style="margin-left:550px;" [routerLink]="['/menu']" class="btn btn-danger colord">Cancelar</button>
+            <button  [routerLink]="['/menu']" class="btn btn-danger colord">Cancelar</button>
         </div>
         <div class="col-md-6">
-            <button style="margin-right:550px;" (keyup.enter)="alta(forma, clave)" #agregar type="submit" class="btn btn-primary colorb">Agregar</button> 
+            <button  (keyup.enter)="alta(forma, clave)" #agregar type="submit" class="btn btn-primary colorb">Agregar</button> 
         </div>
       </div>
 

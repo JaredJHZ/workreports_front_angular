@@ -21,6 +21,8 @@ export class AltaMaterialComponent implements OnInit {
 
   clavesMateriales:String[];
 
+  mensajeClave:boolean = false;
+
   opciones:string[] = ['Clave','Nombre del material','Costo unitario del material'];
 
   constructor(private materialesService:MaterialesService) { 
@@ -40,9 +42,10 @@ export class AltaMaterialComponent implements OnInit {
     if(this.material.id.length >= 5) {
       if (this.clavesMateriales.includes(this.material.id)) {
         this.material.id = '';
-        this.showMessage('Clave de material en uso!');
+        this.mensajeClave = true;
       } else {
         el.focus();
+        this.mensajeClave = false;
       }
     }
     if (this.material.id.charAt(this.material.id.length-1).includes("0") && this.material.id.length <=5) {

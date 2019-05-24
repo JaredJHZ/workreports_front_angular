@@ -1,18 +1,28 @@
-<h1 class="Title">Consulta de ordenes dde trabajo</h1>
-<div class="row justify-content-center">
-  <div style="color:black;" class="form-group">
-    <label>Clave de la orden</label>
+<h1 class="Title">Consulta de ordenes de trabajo</h1>
 
-    <div class="row justify-content-center">
-        <input (keyup)="changeID()" name="busqueda" [(ngModel)]="terminoBuscado" (keyup)="refrescarBusqueda()"
-        type="text" class="form-control input-id" placeholder="Clave">
-    </div>
-
-    <div style="margin-top:20px;" class="row justify-content-center">
-        <button  style="margin:5px;" routerLink="['/']" class="btn colord">Cancelar</button>
-        <button (click)="buscar()" style="margin:5px;" class="btn colorb">Buscar</button>
-    </div>
+<div style="margin-top: 300px;" *ngIf="!mostrarResultados" class="row justify-content-center">
+  <div class="col-md-12">
+      <div style="color:black;" class="form-group">
+        <div class="row justify-content-center">
+            <label>Clave de la orden</label>
+        </div>
+        <div class="row justify-content-center">
+            <input (keyup)="changeID()" name="busqueda" [(ngModel)]="terminoBuscado" (keyup)="refrescarBusqueda()"
+            type="text" class="form-control input-id" >
+        </div>
+    
+        <div style="margin-top:20px;" class="row justify-content-center">
+            <button  style="margin:5px;" routerLink="['/']" class="btn colord">Cancelar</button>
+            <button (click)="buscar()" style="margin:5px;" class="btn colorb">Buscar</button>
+        </div>
+      </div>
   </div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-md-12">
+        <app-alerta *ngIf="mensaje" [mensaje]="mensaje"></app-alerta>
+  </div> 
 </div>
 
 <div *ngIf="mostrarResultados" class="row justify-content-center" style="padding:30px;">
@@ -23,17 +33,23 @@
             <th scope="col">Cliente</th>
             <th scope="col">Fecha de creacion</th>
             <th scope="col">Direccion</th>
-            <th scope="col">Reporte</th>
           </tr>
         </thead>
-        <tbody style="color:white;">
+        <tbody style="color:black;" >
           <tr *ngFor="let orden of ordenesBuscadas;">
             <th scope="row">{{orden.id}}</th>
             <td>{{orden.cliente}}</td>
             <td>{{orden.fecha_creacion}}</td>
             <td>{{orden.calle + ", "+orden.ciudad+", "+orden.estado}}</td>
-            <td><button (click)="reporte(orden.id)" class="btn colorb">Reporte</button></td>
           </tr>
         </tbody>
       </table>
+</div>
+
+<div *ngIf="mostrarResultados" class="row justify-content-center" style="margin: 3px;">
+  <div class="col-md-12">
+          <div class="row justify-content-center">
+                  <button class="btn btn-danger" (click)="limpiar()">Regresar al menu de consulta</button>
+          </div>
+  </div>
 </div>

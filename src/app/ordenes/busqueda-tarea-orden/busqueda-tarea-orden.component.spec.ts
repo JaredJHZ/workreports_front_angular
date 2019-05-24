@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AgregarOrdenComponent } from './agregar-orden.component';
+import { BusquedaTareaOrdenComponent } from './busqueda-tarea-orden.component';
 
-describe('AgregarOrdenComponent', () => {
-  let component: AgregarOrdenComponent;
-  let fixture: ComponentFixture<AgregarOrdenComponent>;
+describe('BusquedaTareaOrdenComponent', () => {
+  let component: BusquedaTareaOrdenComponent;
+  let fixture: ComponentFixture<BusquedaTareaOrdenComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AgregarOrdenComponent ]
+      declarations: [ BusquedaTareaOrdenComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AgregarOrdenComponent);
+    fixture = TestBed.createComponent(BusquedaTareaOrdenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

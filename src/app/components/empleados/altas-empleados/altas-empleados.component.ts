@@ -22,6 +22,8 @@ export class AltasEmpleadosComponent implements OnInit {
 
   mensaje:String;
 
+  mensajeClave:boolean = false;
+
   constructor(private empleadosService:EmpleadosService) { 
     this.empleadosService.getEmpleados()
         .subscribe(
@@ -60,11 +62,14 @@ export class AltasEmpleadosComponent implements OnInit {
   changeID(e,el):void{
     if(this.empleado.id.length >= 5) {
       if (this.clavesDeEmpleados.includes(this.empleado.id)){
-        this.showMessage('Clave de empleado en uso!');
+        this.mensajeClave = true;
         this.empleado.id = '';
         return;
+      } else {
+        this.mensajeClave = false;
+        el.focus();
       }
-      el.focus();
+      
     }
     if(this.empleado.id.charAt(this.empleado.id.length - 1) === '0' && this.empleado.id.length <=5) {
       return;

@@ -23,6 +23,14 @@ export class ConsultaClientesComponent implements OnInit {
           )
   }
 
+  limpiar():void {
+    this.mostrarResultados = false;
+    this.nombreBuscado = '';
+    this.apellidomBuscado = '';
+    this.apellidopBuscado = '';
+    
+  }
+
   ngOnInit() {
   }
 

@@ -1,0 +1,150 @@
+
+<div class="col-md-12 fullh">
+    <div *ngIf="!mostrar" class="custom-form fullh">
+      <div class="row" style="margin-top: 250px;">
+          <div style="margin:auto;" class="col-md-5">
+            <h5 style="text-align: center;">Clave de la orden</h5>
+              <div class="row justify-content-center">
+                  <input class="form-control input-small-text" [(ngModel)]="terminoBuscado" (keyup)="cambiarBusqueda()"
+                   style="margin:auto;" type="text"
+                   >
+              </div>
+
+              <div *ngIf="!mostrar" style="margin:20px;" class="row justify-content-center">
+                  <div style="margin:auto;" class="col-md-5">
+                    <div class="row justify-content-center">
+                        <button [routerLink]="['/']" style="margin:5px;" class="btn colorb">Cancelar</button>
+                        <button (click)="busqueda()" style="margin:5px;" class="btn colord">Buscar</button>
+                    </div>
+                  </div>
+                </div>
+
+                      
+              <div class="row justify-content-center">
+                  <app-alerta *ngIf="mensaje" [mensaje]="mensaje"></app-alerta> 
+              </div>
+            </div>
+      </div>
+    </div> 
+
+    <form style="margin-top: 250px;" *ngIf="mostrar && tipo === 'alta'" (keydown.enter)="$event.preventDefault()" class="custom-form fullh" (ngSubmit)="alta(forma)" #forma="ngForm">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <app-alerta *ngIf="mensaje" [mensaje]="mensaje"></app-alerta> 
+            </div> 
+        </div>
+            <div style="margin-top:100px;" class="row justify-content-center">
+                    <div class="col-md-6">
+                         <div class="row justify-content-center">
+                            <div class="form-group">
+                                <label>Clave de la tarea</label>
+                                <div class="row justify-content-center">
+                                    <input #clave
+                                    
+                                    [(ngModel)]="id_tarea" name="id" type="text" class="form-control input-id"
+                                     id="clave de la tarea" (keyup)="cambiarIDTarea()" >
+                                </div>
+                        </div>
+                         </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="row justify-content-center">
+                                <div class="form-group">
+                                        <label>Nombre de la tarea</label>
+                                        <div class="row justify-content-center" style="padding: 5px;">
+                                            <input 
+                                            disabled
+                                            #name (keyup.enter)="tarifa.focus()"
+                                            [(ngModel)]="nombre_tarea" name="name" type="text" 
+                                             class="form-control small-text-id"
+                                             id="nombre de la tarea"  
+                                             >
+                                        </div>
+                                    </div>
+                        </div>
+                    </div>
+
+            </div>
+
+            <div *ngIf="mostrar" style="margin:20px;" class="row justify-content-center">
+                <div style="margin:auto;" class="col-md-5">
+                  <div class="row justify-content-center">
+                    <div class="col-md-6">
+                      <div class="row justify-content-center">
+                          <button (click)="limpiar()" style="margin:5px;" class="btn colorb">Cancelar</button>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="row justify-content-center">
+                          <button type="button" (click)="agregar()" style="margin:5px;" class="btn colord">Agregar</button>
+                      </div>
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+        </form>  
+
+        <form style="margin-top: 250px;" *ngIf="mostrar && tipo === 'baja'"  (keydown.enter)="$event.preventDefault()" class="custom-form fullh">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <app-alerta *ngIf="mensaje" [mensaje]="mensaje"></app-alerta> 
+                </div> 
+            </div>
+                <div style="margin-top:100px;" class="row justify-content-center">
+                        <div class="col-md-6">
+                             <div class="row justify-content-center">
+                                <div class="form-group">
+                                    <label>Clave de la tarea</label>
+                                    <div class="row justify-content-center">
+                                        <input #clave
+                                        
+                                        [(ngModel)]="id_tarea" name="id" type="text" class="form-control input-id"
+                                         id="clave de la tarea" (keyup)="encontrarID()" >
+                                    </div>
+                            </div>
+                             </div>
+                        </div>
+    
+                        <div class="col-md-6">
+                            <div class="row justify-content-center">
+                                    <div class="form-group">
+                                            <label>Nombre de la tarea</label>
+                                            <div class="row justify-content-center" style="padding: 5px;">
+                                                <input 
+                                                disabled
+                                                #name
+                                                [(ngModel)]="nombre_tarea" name="name" type="text" 
+                                                 class="form-control small-text-id"
+                                                 id="nombre de la tarea"  
+                                                 >
+                                            </div>
+                                        </div>
+                            </div>
+                        </div>
+    
+                </div>
+    
+                <div *ngIf="mostrar" style="margin:20px;" class="row justify-content-center">
+                    <div style="margin:auto;" class="col-md-5">
+                      <div class="row justify-content-center">
+                        <div class="col-md-6">
+                          <div class="row justify-content-center">
+                              <button (click)="limpiar()" style="margin:5px;" class="btn colorb">Cancelar</button>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="row justify-content-center">
+                              <button type="button" (click)="eliminar()" style="margin:5px;" class="btn colord">Eliminar</button>
+                          </div>
+                        </div>
+    
+    
+                      </div>
+                    </div>
+                  </div>
+            </form>  
+
+</div>

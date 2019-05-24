@@ -49,6 +49,10 @@ import { BusquedaOrdenesComponent } from './components/ordenes/busqueda-ordenes/
 import { BajaOrdenComponent } from './components/ordenes/baja-orden/baja-orden.component';
 import { ConsultaOrdenesComponent } from './components/ordenes/consulta-ordenes/consulta-ordenes.component';
 import { ReporteComponent } from './components/ordenes/reporte/reporte.component';
+import { ReportesComponent } from './ordenes/busqueda/reportes/reportes.component';
+import { ModificarOrdenComponent } from './components/ordenes/modificar-orden/modificar-orden.component';
+import { BusquedaTareaOrdenComponent } from './ordenes/busqueda-tarea-orden/busqueda-tarea-orden.component';
+import { BusquedaMaterialesOrdenComponent } from './ordenes/busqueda-materiales-orden/busqueda-materiales-orden.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +93,11 @@ import { ReporteComponent } from './components/ordenes/reporte/reporte.component
     BusquedaOrdenesComponent,
     BajaOrdenComponent,
     ConsultaOrdenesComponent,
-    ReporteComponent
+    ReporteComponent,
+    ReportesComponent,
+    ModificarOrdenComponent,
+    BusquedaTareaOrdenComponent,
+    BusquedaMaterialesOrdenComponent
   ],
   imports: [
     BrowserModule,

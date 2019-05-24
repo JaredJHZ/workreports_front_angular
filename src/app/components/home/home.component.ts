@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   bajas:string = 'seleccionar';
   modificaciones:string ='seleccionar';
   consultas:string = 'seleccionar';
+  reportes:string = 'seleccionar';
 
   constructor(private loginService: LoginService, private router:Router) {
     this.usuario = this.loginService.getInfo();
@@ -33,20 +34,33 @@ export class HomeComponent implements OnInit {
   }
 
   changeBajas():void {
-    if(this.bajas !== 'seleccionar') {
-      this.router.navigate(['/busqueda',this.bajas,'bajas']);
+    if(this.bajas.includes('materialordenes')){
+      this.router.navigate(['/baja','materialordenes']);
+    }else if(this.bajas.includes('tareaordenes')) {
+      this.router.navigate(['/baja','tareaordenes']);
+    } else {
+      if(this.bajas !== 'seleccionar') {
+        this.router.navigate(['/busqueda',this.bajas,'bajas']);
+      }
     }
+
   }
 
   changeModificaciones():void {
     if(this.modificaciones !== 'seleccionar') {
-      this.router.navigate(['/busqueda',this.modificaciones,'modificaciones'])
+      this.router.navigate(['/busqueda',this.modificaciones,'modificaciones']);
     }
   }
 
   changeConsultas():void {
     if(this.consultas !== 'seleccionar') {
-      this.router.navigate(['/consulta',this.consultas])
+      this.router.navigate(['/consulta',this.consultas]);
+    }
+  }
+
+  changeReportes(): void {
+    if(this.reportes !== 'seleccionar') {
+      this.router.navigate(['/reporte',this.reportes]);
     }
   }
 

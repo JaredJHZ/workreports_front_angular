@@ -27,6 +27,8 @@ export class AltaClientesComponent implements OnInit {
 
   mensaje:String;
 
+  mensajeClave:boolean;
+
   constructor(private clientesService:ClientesService) {
       this.clientesService.getClientes()
           .subscribe(
@@ -63,9 +65,10 @@ export class AltaClientesComponent implements OnInit {
     if (this.cliente.id.length >= 5) {
       if(this.clavesDeClientes.includes(this.cliente.id)) {
         this.cliente.id = '';
-        this.showMessage('Clave del cliente en uso!');
+        this.mensajeClave = true;
         return;
       } else {
+        this.mensajeClave = false;
         el.focus();
       }
     }

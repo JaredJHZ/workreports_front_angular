@@ -14,6 +14,8 @@
                                 <option value="clientes">Clientes</option>
                                 <option value="tareas">Tareas</option>
                                 <option value="ordenes">Ordenes</option>
+                                <option value="tareaordenes">Tarea en orden</option>
+                                <option value="materialordenes">Material en orden</option>
                         </select>
                 </div>
         </div>
@@ -30,6 +32,8 @@
                                         <option value="clientes">Clientes</option>
                                         <option value="tareas">Tareas</option>
                                         <option value="ordenes">Ordenes</option>
+                                        <option value="tareaordenes">Tarea en orden</option>
+                                        <option value="materialordenes">Material en orden</option>
                         </select>
                 </div>
         </div>
@@ -65,6 +69,20 @@
                                         <option value="ordenes">Ordenes</option>
                         </select>
                 </div>
+        </div>
+
+        <div class="col-md-2">
+                        <div class="form-group text-color-in-white">
+                                        <div class="row justify-content-center">
+                                                        <label style="text-align:center;">Reportes</label>
+                                                </div>
+                                <select [(ngModel)]="reportes" (change)="changeReportes()" class="form-control"  name="privilegios" >
+                                                <option value="seleccionar">Seleccionar</option>
+                                                <option value="simple">Simple</option>
+                                                <option value="cliente">Con cliente</option>
+                                                <option value="completo">Completo</option>
+                                </select>
+                        </div>
         </div>
         
 </div>

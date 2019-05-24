@@ -1,120 +1,158 @@
 <h1 class="Title">Alta de orden</h1>
-<form (keydown.enter)="$event.preventDefault()" class="custom-form" action="">
+<form  (keydown.enter)="$event.preventDefault()" class="custom-form" action="">
 <div *ngIf="orden" class="col-md-12">
     <div class="row">
-     <div class="col-md-6">
-            <h5>Informacion de la orden</h5>
-            <div class="row justify-content-center">
-                <div class="col-md-12">
-                    <app-alerta *ngIf="mensaje" [mensaje]="mensaje"></app-alerta>
-                </div> 
-            </div>
-            <div class="row justify-content-center">
-                    <div class="form-group">
-                            <label >Clave de la orden</label>
-                            <div #clave class="row justify-content-center">
-                                <input (keyup)="changeID(cliente)"  [(ngModel)]="orden['id']" name="id" type="text" 
-                                class="form-control input-id">
-                            </div>    
-                    </div>
-            </div>
-            <div class="row justify-content-center">
-                    <div class="form-group">
-                        <label >Clave del cliente</label>    
-                        <div class="row justify-content-center">
-                            <input #cliente (keyup)="changeCliente(empleado)" 
-                             [(ngModel)]="orden['cliente']" name="id_cliente" type="text" 
+        <div class="col-md-12">
+                <div class="form-group">
+                        <label >Clave de la orden</label>
+                        <div  class="row justify-content-center">
+                            <input #clave (keyup)="changeID(cliente)"  
+                            [(ngModel)]="orden['id']" name="id" type="text" 
                             class="form-control input-id">
                         </div>    
-                    </div>
-            </div>
-
-            <div class="row justify-content-center">
-                    <div class="form-group">
-                            <label >Clave del empleado supervisor</label>    
-                            <div  class="row justify-content-center">
-                                <input #empleado (keyup)="changeEmpleado(calle)" 
-                                 [(ngModel)]="orden['empleado']" name="id_empleado" type="text" 
-                                class="form-control input-id">
-                            </div> 
-                    </div>
-            </div>
+                        <label class="red" *ngIf="mensajeClave">La clave de la orden ya esta en uso</label>
+                </div>
+        </div>
     </div>
-
-    <div class="col-md-6">
-        <h5>Dirección de la orden</h5>
-        <div class="row justify-content-center">
+    <div class="row">
+        <div class="col-md-6">
                 <div class="form-group">
-                        <label>Calle</label>
+                        <label >Clave del cliente</label>
                         <div class="row justify-content-center">
-                            <input (keyup.enter)="ciudad.focus()" #calle  
-                            [(ngModel)]="orden['calle']" name="calle" type="text" 
-                            class="form-control input-small-text">
-                        </div> 
+                            <input #cliente (keyup)="changeCliente(empleado)" 
+                             [(ngModel)]="orden['cliente']" name="cliente"
+                              type="text" 
+                            class="form-control input-id">
+                        </div>    
+                        <label class="red" *ngIf="mensajeCliente">La clave del cliente no existe!</label>
                 </div>
         </div>
-
-        <div class="row justify-content-center">
+        <div class="col-md-6">
                 <div class="form-group">
-                        <label>Ciudad</label>
-                        <div class="row justify-content-center">
-                            <input #ciudad (keyup.enter)="estado.focus()" 
-                            [(ngModel)]="orden['ciudad']" name="ciudad" type="text" 
-                            class="form-control input-small-text"  >
-                        </div> 
-                </div>
-        </div>
+                        <label >Nombre del cliente</label>
+                        <div #nombrec class="row justify-content-center">
+                            <input disabled  
+                             [(ngModel)]="nombreCliente"
+                              name="nombrec" type="text" 
+                            class="form-control input-id">
+                        </div>    
 
-        <div class="row justify-content-center">
-                <div class="form-group">
-                        <label>Estado</label>
-                        <div class="row justify-content-center">
-                            <input (keyup.enter)="cp.focus()"  
-                            #estado [(ngModel)]="orden['estado']" name="estado" type="text" 
-                            class="form-control input-small-text">
-                        </div> 
-                </div>
-        </div>
-
-        <div class="row justify-content-center">
-                <div class="form-group">
-                        <label>Codigo postal</label>
-                        <div class="row justify-content-center">
-                            <input #cp (keyup)="changeCP()"  
-                            [(ngModel)]="orden['cp']" name="cp" type="text" 
-                            class="form-control input-id" >
-                        </div> 
                 </div>
         </div>
     </div>
 
-</div>
-
-<div class="row">
-    <div class="col-md-12">
-        <h5>Fecha de la orden</h5>
-        <div class="row">
-                <div class="col-md-6">
-                        <label>Fecha requerida</label>
-                        <div class="row justify-content-center">
-                            <input class="form-control input-small-text" name="fecha_requerda"
-                            [(ngModel)]="orden['fecha_requerida']"
-                            [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1">
-                            <owl-date-time [pickerMode]="'dialog'" #dt1></owl-date-time>
+    <div class="row">
+        <div class="col-md-6">
+                <div class="row justify-content-center">
+                        <div class="form-group">
+                                <label >Clave del empleado supervisor</label>    
+                                <div  class="row justify-content-center">
+                                    <input #empleado 
+                                    (keyup)="changeEmpleado(calle)"
+                                     [(ngModel)]="orden['empleado']" 
+                                     name="id_empleado" type="text" 
+                                    class="form-control input-id">
+                                </div> 
+                                <label class="red" *ngIf="mensajeEmpleado">La clave del empleado no existe!</label>
                         </div>
                 </div>
-                <div class="col-md-6">
-                        <label>Fecha de termino</label>
-                        <div class="row justify-content-center">
-                            <input class="form-control input-small-text" name="fecha_termino" 
-                            [(ngModel)]="orden['fecha_termino']"
-                            [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2">
-                            <owl-date-time [pickerMode]="'dialog'" #dt2></owl-date-time>
+        </div>
+        <div class="col-md-6">
+                <div class="row justify-content-center">
+                        <div class="form-group">
+                                <label >Nombre del empleado supervisor</label>    
+                                <div #nombree class="row justify-content-center">
+                                        <input disabled   
+                                        [(ngModel)]="nombreEmpleado" 
+                                        name="nombre_empleado" type="text" 
+                                        class="form-control input-id">
+                                    </div>    
                         </div>
                 </div>
         </div>
     </div>
-</div>
+
+    <div class="row">
+            <div class="col-md-12">
+                <h5>Fecha de la orden</h5>
+                <div class="row">
+                        <div class="col-md-6">
+                                <label>Fecha requerida</label>
+                                <div class="row justify-content-center">
+                                    <input #fecha1 class="form-control input-small-text" name="fecha_requerda"
+                                    [(ngModel)]="orden['fecha_requerida']"
+                                    [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1">
+                                    <owl-date-time [pickerMode]="'dialog'" #dt1></owl-date-time>
+                                </div>
+                        </div>
+                        <div class="col-md-6">
+                                <label>Fecha de termino</label>
+                                <div class="row justify-content-center">
+                                    <input #fecha2 class="form-control input-small-text" name="fecha_termino" 
+                                    [(ngModel)]="orden['fecha_termino']"
+                                    [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2">
+                                    <owl-date-time [pickerMode]="'dialog'" #dt2></owl-date-time>
+                                </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+    <div class="row">
+        <div class="col-md-12">
+                <h5>Dirección de la orden</h5>
+                <div class="row">
+                    <div class="col-md-3">
+                            <div class="row justify-content-center">
+                                    <div class="form-group">
+                                            <label>Calle</label>
+                                            <div class="row justify-content-center">
+                                                <input (keyup.enter)="ciudad.focus()" #calle  
+                                                [(ngModel)]="orden['calle']" name="calle" type="text" 
+                                                class="form-control input-small-text">
+                                            </div> 
+                                    </div>
+                            </div>
+                    </div>
+                    <div class="col-md-3">
+                            <div class="form-group">
+                                    <label>Ciudad</label>
+                                    <div class="row justify-content-center">
+                                        <input #ciudad (keyup.enter)="estado.focus()" 
+                                        [(ngModel)]="orden['ciudad']" name="ciudad" type="text" 
+                                        class="form-control input-small-text"  >
+                                    </div> 
+                            </div>
+                    </div>
+                    <div class="col-md-3">
+                            <div class="form-group">
+                                    <label>Estado</label>
+                                    <div class="row justify-content-center">
+                                        <input (keyup.enter)="cp.focus()"  
+                                        #estado [(ngModel)]="orden['estado']" name="estado" type="text" 
+                                        class="form-control input-small-text">
+                                    </div> 
+                            </div>
+                    </div>
+                    <div class="col-md-3">
+                            <div class="form-group">
+                                    <label>Codigo postal</label>
+                                    <div class="row justify-content-center">
+                                        <input #cp
+                                        (focusout)="altaYBloquear(clave,cliente,empleado,fecha1,fecha2,calle,ciudad,estado,cp)"
+                                         (keyup)="changeCP()"  
+                                        [(ngModel)]="orden['cp']" name="cp" type="text" 
+                                        class="form-control input-id" >
+                                    </div> 
+                            </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+
+
+
 
 
 <div class="row justify-content-center">
@@ -123,39 +161,48 @@
         </div>
       </div>
 
-      <div *ngFor="let material of materiales; let i = index;" class="row align-items-center">
+      <div class="row align-items-center">
           <div class="col-md-2">
-            <h5>Material {{i+1}}</h5>
+            <h5>Material {{numeroMaterial + 1}}</h5>
           </div>
           <div class="col-md-2">
               <label>Clave del material</label>
               <div class="row justify-content-center">
-                  <input (keyup)="changeMaterialID(i)" style="margin:3px;" 
-                   [(ngModel)]="material['id']" name={{i}} type="text" 
+                  <input (keyup)="changeMaterialID(ce)" style="margin:3px;" 
+                   [(ngModel)]="materiales[numeroMaterial]['id']" name="material" type="text" 
                   class="form-control input-id" >
               </div>
+              <label class="red" *ngIf="mensajeMaterial">La clave del materoal no existe!</label>
           </div>
+          <div class="col-md-2">
+                <label>Nombre del material</label>
+                <div class="row justify-content-center">
+                    <input  disabled style="margin:3px;" 
+                     [(ngModel)]="nombreMaterial" name="nombrematerial" type="text" 
+                    class="form-control input-id" >
+                </div>
+            </div>
           <div class="col-md-2">
               <label>Cantidad estimada</label>
               <div class="row justify-content-center">
-                  <input style="margin:3px;" name="{{i}}+c"  
-                  [(ngModel)]="material['cantidad_estimada']" type="number" 
+                  <input #ce style="margin:3px;" name="c"  
+                  [(ngModel)]="materiales[numeroMaterial]['cantidad_estimada']" type="number" 
                   class="form-control input-id" >
               </div>
           </div>
           <div class="col-md-2">
               <label>Cantidad real</label>
               <div class="row justify-content-center">
-                  <input style="margin:3px;" name="{{i}}+r"  
-                  [(ngModel)]="material['cantidad_utilizada']" type="number" 
+                  <input cr style="margin:3px;" name="cr"  
+                  [(ngModel)]="materiales[numeroMaterial]['cantidad_utilizada']" type="number" 
                   class="form-control input-id">
               </div>
           </div>
-          <div class="col-md-2">
-              <div style="margin:auto;" class="row justify-content-center">
-                  <button type="button" class="btn btn-danger" (click)="borrarMaterial(i)">X</button>
-              </div>
-          </div>
+          <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <app-alerta *ngIf="mensaje2" [mensaje]="mensaje2"></app-alerta>
+                </div> 
+            </div>
       </div>
 
 
@@ -169,23 +216,28 @@
         </div>
       </div>
 
-      <div *ngFor="let tarea of tareas; let i = index;" class="row align-items-center">
-        <div class="col-md-2">
-          <h5>Tarea {{i+1}}</h5>
+      <div class="row align-items-center">
+        <div class="col-md-4">
+          <h5>Tarea {{numeroTarea + 1}}</h5>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-4">
           <label>Clave de la tarea</label>
           <div class="row justify-content-center">
-                <input (keyup)="changeTarea(i)" 
-                style="margin:3px;"  [(ngModel)]="tarea['id']" name={{i}} type="text" 
+                <input (keyup)="changeTarea()" 
+                style="margin:3px;"  [(ngModel)]="tareas[numeroTarea]['id']" name="tarea" type="text" 
                 class="form-control input-id"  >
           </div>
+          <label class="red" *ngIf="mensajeTarea">La clave de la tarea no existe!</label>
             
         </div>
-        <div class="col-md-2 offset-md-4">
-            <div style="margin:auto;" class="row justify-content-center">
-                <button type="button" class="btn btn-danger" (click)="borrarTarea(i)">X</button>
-            </div>
+        <div class="col-md-4">
+        <label>Nombre de la tarea</label>
+                <div class="row justify-content-center">
+                        <input disabled
+                        style="margin:3px;"  [(ngModel)]="nombreTarea" 
+                        name="nombretarea" type="text" 
+                        class="form-control input-id"  >
+                  </div>
         </div>
       </div>
 
@@ -198,12 +250,12 @@
 <div style="margin-bottom: 50px; border-top: 3px solid white; padding: 30px;" class="row justify-content-center">
         <div class="col-md-6">
           <div class="row justify-content-center">
-              <button style="margin-left:550px;" type="button" routerLink="['/']" class="btn colord">Cancelar</button>
+              <button  type="button" routerLink="['/']" class="btn colord">Cancelar</button>
           </div>
         </div>
         <div class="col-md-6">
           <div class="row justify-content-center">
-              <button style="margin-right:500px;" type="button" (click)="agregarOrden()" class="btn colorb">Agregar orden</button>
+              <button  type="button" (click)="agregarOrden()" class="btn colorb">Agregar orden</button>
           </div>
         </div>
 </div>

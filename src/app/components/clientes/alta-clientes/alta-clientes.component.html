@@ -9,20 +9,28 @@
                         </div>
                 </div>
         </div>
-        <div class="row">
-                <div class="col-md-6">
-                        <h5>Información del cliente</h5>
-                        <div class="form-group">
-                                <label >Clave del cliente</label>
-                                <div class="row justify-content-center">
-                                        <input #clave (keyup)="changeID(name)"  [(ngModel)]="cliente['id']" name="id" type="text" 
-                                        class="form-control input-id"  >
-                                </div>
-                                
-                              </div>
+        <div class="row justify-content-center">
+                        <h5 style="text-align: center;">Informacion del cliente</h5>
+        </div>
 
-                              <div class="row">
-                                      <div class="col-md-4">
+        <div class="row">
+                <div class="col-md-12">
+                        <div class="row">
+                                <div class="col-md-12">
+                                        <div class="form-group">
+                                                <label >Clave del cliente</label>
+                                                <div class="row justify-content-center">
+                                                        <input #clave (keyup)="changeID(name)" 
+                                                         [(ngModel)]="cliente['id']" name="id" type="text" 
+                                                        class="form-control input-id"  >
+                                                </div>
+                                                <label class="red" *ngIf="mensajeClave" >Clave del cliente en uso!</label>     
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="row justify-content-center" style="margin-top:100px;">
+
+                                <div class="col-md-3">
                                                 <div class="form-group">
                                                                 <label >Nombre del cliente</label>
                                                                 <div  class="row justify-content-center">
@@ -31,8 +39,9 @@
                                                                 </div>
                                                                 
                                                 </div>
-                                      </div>
-                                      <div class="col-md-4">
+                                </div>
+
+                                <div class="col-md-3">
                                                 <div class="form-group">
                                                                 <label >Apellido paterno</label>
                                                                 <div class="row justify-content-center">
@@ -40,9 +49,9 @@
                                                                       class="form-control input-small-text"  >
                                                                 </div>
                                                 </div>
-                                      </div>
-                                        
-                                      <div class="col-md-4">
+                                </div>
+
+                                <div class="col-md-3">
                                                 <div class="form-group">
                                                                 <label >Apellido materno</label>
                                                                 <div class="row justify-content-center">
@@ -50,65 +59,79 @@
                                                                       class="form-control input-small-text"  >
                                                                 </div>
                                                 </div>
-                                      </div>
-                                      
-                              </div>
-                              
+                                </div>
 
-                  
-                              <div class="form-group">
-                                      <label >Email</label>
-                                      <div class="row justify-content-center">
-                                            <input #email (keyup.enter)="calle.focus()"  [(ngModel)]="cliente['email']" name="email" type="email" 
-                                            class="form-control input-long-text" >
-                                      </div>
-                              </div>
+                                <div class="col-md-3">
+                                                <div class="form-group">
+                                                                <label >Email</label>
+                                                                <div class="row justify-content-center">
+                                                                <input #email (keyup.enter)="calle.focus()"  [(ngModel)]="cliente['email']" name="email" type="email" 
+                                                                class="form-control input-long-text" >
+                                                                </div>
+                                                </div>
+                                </div>
+                        </div>
                 </div>
-
-                <div class="col-md-6">
-                        <h5>Direccion del cliente</h5>
-                            <div class="form-group">
-                                    <label >Calle</label>
-                                    <div class="row justify-content-center">
-                                            <input #calle (keyup.enter)="ciudad.focus()"   [(ngModel)]="cliente['calle']" name="calle" type="text" 
-                                            class="form-control input-small-text" >
-                                    </div>
-                                </div>
-                    
-                                <div class="form-group">
-                                    <label >Ciudad</label>
-                                    <div class="row justify-content-center">
-                                            <input #ciudad (keyup.enter)="estado.focus()"  [(ngModel)]="cliente['ciudad']" name="ciudad" type="text" 
-                                            class="form-control input-small-text"  >
-                                    </div>
-                                </div>
-                    
-                                <div class="form-group">
-                                    <label >Estado</label>
-                                    <div class="row justify-content-center">
-                                            <input #estado (keyup.enter)="cp.focus()"  [(ngModel)]="cliente['estado']" name="estado" type="text" 
-                                            class="form-control input-small-text" >
-                                    </div>
-                                </div>
-                    
-                                <div class="form-group">
-                                    <label >Codigo postal</label>
-                                    <div class="row justify-content-center">
-                                            <input #cp  [(ngModel)]="cliente['cp']" name="cp" type="text" 
-                                            class="form-control input-id" >
-                                    </div>
-                                </div>
-                    </div>
         </div>
-        <div class="row" style="margin-top:10px;">
+
+        <div class="row justify-content-center" style="margin-top:70px;">
+                <h5 style="text-align: center;">Direccion del cliente</h5>
+        </div>
+
+        <div class="row justify-content-center" >
+                <div class="col-md-3">
+                        <div class="form-group">
+                                <label >Calle</label>
+                                <div class="row justify-content-center">
+                                        <input #calle (keyup.enter)="ciudad.focus()"  
+                                        [(ngModel)]="cliente['calle']" name="calle" type="text" 
+                                        class="form-control input-small-text" >
+                                </div>
+                        </div>
+                </div>
+                <div class="col-md-3">
+                        <div class="form-group">
+                                <label >Ciudad</label>
+                                <div class="row justify-content-center">
+                                <input #ciudad (keyup.enter)="estado.focus()"  
+                                [(ngModel)]="cliente['ciudad']" name="ciudad" type="text" 
+                                class="form-control input-small-text"  >
+                                </div>
+                                            
+                        </div>
+                </div>
+                <div class="col-md-3">
+                        <div class="form-group">
+                                <label >Estado</label>
+                                <div class="row justify-content-center">
+                                        <input #estado (keyup.enter)="cp.focus()"  
+                                        [(ngModel)]="cliente['estado']" name="estado" type="text" 
+                                        class="form-control input-small-text" >
+                                </div>
+                        </div>
+                </div>
+                <div class="col-md-3">
+                        <div class="form-group">
+                                <label >Codigo postal</label>
+                                <div class="row justify-content-center">
+                                        <input #cp  [(ngModel)]="cliente['cp']"
+                                         name="cp" type="text" 
+                                        class="form-control input-id" >
+                                </div>
+                        </div>
+
+                </div>
+        </div>
+
+        <div class="row" style="margin-top:30px;">
                 <div class="col-md-6">
                     <div class="row justify-content-center">
-                          <button style="margin-left: 550px" [routerLink]="['/']" class="btn btn-danger colord">Cancelar</button> 
+                          <button  [routerLink]="['/']" class="btn btn-danger colord">Cancelar</button> 
                     </div>
                 </div>
                 <div class="col-md-6">
                       <div class="row justify-content-center">
-                          <button style="margin-right: 550px"  #agregar (keyup.enter)="alta(forma,clave)"  type="submit" class="btn btn-primary colorb">Agregar</button>
+                          <button   #agregar (keyup.enter)="alta(forma,clave)"  type="submit" class="btn btn-primary colorb">Agregar</button>
                       </div>
                 </div>
             </div>

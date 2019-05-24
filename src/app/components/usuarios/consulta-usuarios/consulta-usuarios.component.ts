@@ -12,6 +12,7 @@ export class ConsultaUsuariosComponent implements OnInit {
   mostrarResultados:boolean = false;
   usuariosBuscados:Usuario[];
   terminoBuscado:string;
+  mensaje:String;
   
   constructor(private usuariosService:UsuariosService) { 
     this.usuariosService.getUsuarios()
@@ -20,16 +21,34 @@ export class ConsultaUsuariosComponent implements OnInit {
         )
   }
 
+  limpiar():void {
+    this.mostrarResultados = false;
+    this.terminoBuscado = '';
+    this.usuariosBuscados = [];
+  }
+
   ngOnInit() {
   }
   buscar():void {
-    this.mostrarResultados = true;
+    if (this.usuariosBuscados.length <= 0) {
+      this.showMessage('Ningun usuario existe con ese criterio');
+    } else {
+      this.mostrarResultados = true;
+    }
   }
 
   refrescarBusqueda():void {
     this.usuariosBuscados = this.usuarios.filter(
         (usuario) => usuario.usuario.toUpperCase().includes(this.terminoBuscado.toUpperCase())
     )
+  }
+
+
+  showMessage(mensaje:String):void {
+    this.mensaje = mensaje;
+    setTimeout(() => {
+      this.mensaje = '';
+    }, 3000);
   }
 
 }
