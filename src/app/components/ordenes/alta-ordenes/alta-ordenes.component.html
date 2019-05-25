@@ -34,7 +34,7 @@
                             <input disabled  
                              [(ngModel)]="nombreCliente"
                               name="nombrec" type="text" 
-                            class="form-control input-id">
+                            class="form-control input-long-text">
                         </div>    
 
                 </div>
@@ -65,7 +65,7 @@
                                         <input disabled   
                                         [(ngModel)]="nombreEmpleado" 
                                         name="nombre_empleado" type="text" 
-                                        class="form-control input-id">
+                                        class="form-control input-long-text">
                                     </div>    
                         </div>
                 </div>
@@ -98,22 +98,34 @@
             </div>
         </div>
 
-    <div class="row">
+    <div class="row" style="margin-top: 5px;">
         <div class="col-md-12">
                 <h5>Dirección de la orden</h5>
-                <div class="row">
+                <div style="margin-top: 5px;" class="row">
                     <div class="col-md-3">
                             <div class="row justify-content-center">
                                     <div class="form-group">
                                             <label>Calle</label>
                                             <div class="row justify-content-center">
-                                                <input (keyup.enter)="ciudad.focus()" #calle  
+                                                <input (keyup.enter)="numero.focus()" #calle  
                                                 [(ngModel)]="orden['calle']" name="calle" type="text" 
                                                 class="form-control input-small-text">
                                             </div> 
                                     </div>
                             </div>
                     </div>
+                    <div class="col-md-1">
+                        <div class="row justify-content-center">
+                                <div class="form-group">
+                                        <label>Numero</label>
+                                        <div class="row justify-content-center">
+                                            <input (keypress)="noNegatives($event)" (keyup.enter)="ciudad.focus()" #numero  
+                                            [(ngModel)]="numeroDir" name="numeroDir" type="number" 
+                                            class="form-control input-id">
+                                        </div> 
+                                </div>
+                        </div>
+                </div>
                     <div class="col-md-3">
                             <div class="form-group">
                                     <label>Ciudad</label>
@@ -124,7 +136,7 @@
                                     </div> 
                             </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                             <div class="form-group">
                                     <label>Estado</label>
                                     <div class="row justify-content-center">
@@ -138,8 +150,8 @@
                             <div class="form-group">
                                     <label>Codigo postal</label>
                                     <div class="row justify-content-center">
-                                        <input #cp
-                                        (focusout)="altaYBloquear(clave,cliente,empleado,fecha1,fecha2,calle,ciudad,estado,cp)"
+                                        <input #cp (keypress)="noNegatives($event)"
+                                        (focusout)="altaYBloquear(clave,cliente,empleado,fecha1,fecha2,calle,ciudad,estado,cp, numero)"
                                          (keyup)="changeCP()"  
                                         [(ngModel)]="orden['cp']" name="cp" type="text" 
                                         class="form-control input-id" >
@@ -172,20 +184,20 @@
                    [(ngModel)]="materiales[numeroMaterial]['id']" name="material" type="text" 
                   class="form-control input-id" >
               </div>
-              <label class="red" *ngIf="mensajeMaterial">La clave del materoal no existe!</label>
+              <label class="red" *ngIf="mensajeMaterial">La clave del material no existe!</label>
           </div>
           <div class="col-md-2">
                 <label>Nombre del material</label>
                 <div class="row justify-content-center">
                     <input  disabled style="margin:3px;" 
                      [(ngModel)]="nombreMaterial" name="nombrematerial" type="text" 
-                    class="form-control input-id" >
+                    class="form-control input-small-text" >
                 </div>
             </div>
           <div class="col-md-2">
               <label>Cantidad estimada</label>
               <div class="row justify-content-center">
-                  <input #ce style="margin:3px;" name="c"  
+                  <input (keypress)="noNegatives($event)" #ce style="margin:3px;" name="c"  
                   [(ngModel)]="materiales[numeroMaterial]['cantidad_estimada']" type="number" 
                   class="form-control input-id" >
               </div>
@@ -193,7 +205,7 @@
           <div class="col-md-2">
               <label>Cantidad real</label>
               <div class="row justify-content-center">
-                  <input cr style="margin:3px;" name="cr"  
+                  <input (keypress)="noNegatives($event)" cr style="margin:3px;" name="cr"  
                   [(ngModel)]="materiales[numeroMaterial]['cantidad_utilizada']" type="number" 
                   class="form-control input-id">
               </div>
@@ -236,7 +248,7 @@
                         <input disabled
                         style="margin:3px;"  [(ngModel)]="nombreTarea" 
                         name="nombretarea" type="text" 
-                        class="form-control input-id"  >
+                        class="form-control input-long-text"  >
                   </div>
         </div>
       </div>

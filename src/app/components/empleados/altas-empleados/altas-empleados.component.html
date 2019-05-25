@@ -25,7 +25,7 @@
               <div class="form-group">
                   <label >Nombre del empleado</label>
                   <div class="row justify-content-center">
-                      <input (keyup.enter)="apellidop.focus()" #name  [(ngModel)]="empleado['nombre']" name="nombre" type="text" 
+                      <input (keypress)="omit_special_char($event)" (keyup.enter)="apellidop.focus()" #name  [(ngModel)]="empleado['nombre']" name="nombre" type="text" 
                       class="form-control input-small-text"  >
                   </div>
           </div>
@@ -34,7 +34,7 @@
               <div class="form-group">
                   <label >Apellido paterno</label>
                   <div class="row justify-content-center">
-                      <input (keyup.enter)="apellidom.focus()" #apellidop [(ngModel)]="empleado['ap_paterno']" name="costo_unitario" type="text" 
+                      <input (keypress)="omit_special_char($event)" (keyup.enter)="apellidom.focus()" #apellidop [(ngModel)]="empleado['ap_paterno']" name="costo_unitario" type="text" 
                       class="form-control input-small-text"  >
                   </div>
           </div>
@@ -44,7 +44,7 @@
               <div class="form-group">
                   <label >Apellido materno</label>
                   <div class="row justify-content-center">
-                      <input (keyup.enter)="agregar.focus()" #apellidom [(ngModel)]="empleado['ap_materno']" name="costo_unitario" type="text" 
+                      <input (keypress)="omit_special_char($event)" (keyup.enter)="agregar.focus()" #apellidom [(ngModel)]="empleado['ap_materno']" name="costo_unitario" type="text" 
                       class="form-control input-small-text"  >
                   </div>
           </div>
@@ -52,7 +52,7 @@
         </div>
 
 
-      <div class="row" style="margin-top:100px;">
+      <div class="row" style="margin-top:228px;">
         <div class="col-md-6">
             <button  [routerLink]="['/menu']" class="btn btn-danger colord">Cancelar</button>
         </div>

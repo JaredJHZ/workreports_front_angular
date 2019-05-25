@@ -38,8 +38,15 @@ export class AltaMaterialComponent implements OnInit {
   ngOnInit() {
   }
 
+  
+
   changeID(e,el):void{
     if(this.material.id.length >= 5) {
+
+      if (this.clavesMateriales === undefined) {
+        el.focus();
+      }
+
       if (this.clavesMateriales.includes(this.material.id)) {
         this.material.id = '';
         this.mensajeClave = true;
@@ -92,6 +99,18 @@ export class AltaMaterialComponent implements OnInit {
     setTimeout(() => {
       this.mensaje = '';
     }, 3000);
+  }
+
+
+  noNegatives(event)
+  {   
+     let k;  
+     k = event.charCode;
+     console.log((Number(event.key)));
+     if (Number(event.key) < 0) {
+       return false;
+     }
+     return((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57)); 
   }
 
 }

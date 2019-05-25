@@ -35,7 +35,7 @@
                             <div class="form-group">
                                     <label >Costo unitario del material</label>
                                     <div class="row justify-content-center">
-                                        <input  #costo [(ngModel)]="material['costo']" name="costo_unitario" type="number" 
+                                        <input min="0" #costo [(ngModel)]="material['costo']" name="costo_unitario" type="number" 
                                         class="form-control input-small-text"  >
                                     </div>
                             </div>
@@ -44,7 +44,7 @@
                     
 
 
-                    <div class="row justify-content-center" style="margin-top:80px;">
+                    <div class="row justify-content-center" style="margin-top:228px;">
                             <div class="col-md-6">
                                 <div class="row justify-content-center">
                                         <button [routerLink]="['/menu']" class="btn btn-danger colord">Cancelar</button>

@@ -39,6 +39,8 @@ export class AltaOrdenesComponent implements OnInit {
   nombreMaterial:String;
   nombreTarea:String;
 
+  numeroDir:number;
+
   orden:Orden = {
     id:'',
     cliente:'',
@@ -104,7 +106,7 @@ export class AltaOrdenesComponent implements OnInit {
     
   }
 
-  altaYBloquear(clave,cliente,empleado,fecha1,fecha2,calle,ciudad,estado, cp):void {
+  altaYBloquear(clave,cliente,empleado,fecha1,fecha2,calle,ciudad,estado, cp, numero):void {
     clave.disabled = true;
     cliente.disabled = true;
     empleado.disabled = true;
@@ -114,6 +116,8 @@ export class AltaOrdenesComponent implements OnInit {
     ciudad.disabled = true;
     estado.disabled = true;
     cp.disabled = true;
+    numero.disabled = true;
+    this.orden.calle += " "+this.numeroDir;
   }
 
   ngOnInit() {
@@ -170,7 +174,8 @@ export class AltaOrdenesComponent implements OnInit {
           this.clientesService.getCliente(this.orden.cliente)
               .subscribe(
                 (data:Respuesta) => {
-                  this.nombreCliente = data.cliente.nombre;
+                  console.log(data);
+                  this.nombreCliente = data.cliente.nombre.concat(' ',data.cliente.ap_paterno.toString(), ' ', data.cliente.ap_materno.toString());
                   this.mensajeCliente = false;
                 }
               )
@@ -195,7 +200,7 @@ export class AltaOrdenesComponent implements OnInit {
            this.empleadosService.getEmpleado(this.orden.empleado)
               .subscribe(
                 (data:Respuesta) => {
-                  this.nombreEmpleado = data.empleado.nombre;
+                  this.nombreEmpleado = data.empleado.nombre.concat(' '+data.empleado.ap_paterno.toString() + ' '+data.empleado.ap_materno.toString());
                   this.mensajeEmpleado = false;
                 }
               )

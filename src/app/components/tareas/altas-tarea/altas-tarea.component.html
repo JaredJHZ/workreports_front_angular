@@ -9,7 +9,7 @@
 <div class="row h100 fullh">
 
 <div class="col-md-12" >
-<form (keydown.enter)="$event.preventDefault()" class="custom-form fullh" (ngSubmit)="alta(forma)" #forma="ngForm">
+<form (keydown.enter)="$event.preventDefault()" class="custom-form fullh" (ngSubmit)="alta(forma,clave)" #forma="ngForm">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <app-alerta *ngIf="mensaje" [mensaje]="mensaje"></app-alerta> 
@@ -49,7 +49,7 @@
                         <div class="form-group">
                                 <label>Tarifa por hora</label>
                                 <div class="row justify-content-center">
-                                    <input #tarifa (keyup.enter)="estimado.focus()"
+                                    <input (keypress)="noNegatives($event)" #tarifa (keyup.enter)="estimado.focus()"
                                     [(ngModel)]="tarea['tarifa_hora']" name="tarifa_hora" type="number" 
                                      class="form-control input-id"
                                      id="tarifa de la tarea"  
@@ -61,7 +61,7 @@
                         <div class="form-group">
                                 <label>Estimado de horas </label>
                                 <div class="row justify-content-center">
-                                    <input #estimado (keyup.enter)="estado.focus()"
+                                    <input  (keypress)="noNegatives($event)" #estimado (keyup.enter)="estado.focus()"
                                     [(ngModel)]="tarea['estimado_horas']" name="estimado_horas" 
                                      type="number" class="form-control input-id"
                                      id="estimado_horas"  >
@@ -84,7 +84,7 @@
                         <div *ngIf="tarea['estado'] === 'COMPLETA'" class="form-group">
                                 <label>Horas que se llevo la tarea</label>
                                 <div class="row justify-content-center">
-                                    <input #horas (keyup.enter)="fecha.focus()"
+                                    <input  (keypress)="noNegatives($event)" #horas (keyup.enter)="fecha.focus()"
                                     [(ngModel)]="horas_reales" name="horas_relaes"
                                      type="number" class="form-control input-id"
                                      id="estimado_horas" 
@@ -104,7 +104,7 @@
                         </div>
                 </div>
             </div>
-            <div class="row" style="margin-top:90px;">
+            <div class="row" style="margin-top:228px;">
                     <div class="col-md-6">
                         <button  [routerLink]="['/tareas']" class="btn btn-danger colord">Cancelar</button>
                     </div>

@@ -25,6 +25,20 @@ export class AltaClientesComponent implements OnInit {
     email:''
   }
 
+
+  noNegatives(event)
+  {   
+     let k;  
+     k = event.charCode;
+     console.log((Number(event.key)));
+     if (Number(event.key) < 0) {
+       return false;
+     }
+     return((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57)); 
+  }
+
+  numeroDir:number;
+
   mensaje:String;
 
   mensajeClave:boolean;
@@ -45,6 +59,7 @@ export class AltaClientesComponent implements OnInit {
   alta(forma:NgForm, el){
     this.cliente.id = arreglarId(this.cliente.id);
     let camposVacios = comprobarDatosQueNoEstenVacios(this.cliente);
+    this.cliente.calle += this.cliente.calle +" "+this.numeroDir;
     if(camposVacios.length <=0) {
         this.clientesService.agregarCliente(this.cliente)
             .subscribe(
@@ -107,8 +122,17 @@ export class AltaClientesComponent implements OnInit {
       estado:'',
       cp:''
     }
+
+    this.numeroDir = 0;
   }
-
-
+  omit_special_char(event)
+  {   
+     let k;  
+     k = event.charCode;
+     if (Number(event.key)) {
+       return false;
+     }
+     return((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57)); 
+  }
 
 }

@@ -32,9 +32,9 @@
 
                                 <div class="col-md-3">
                                                 <div class="form-group">
-                                                                <label >Nombre del cliente</label>
+                                                                <label >Nombre</label>
                                                                 <div  class="row justify-content-center">
-                                                                      <input #name (keyup.enter)="apellidop.focus()"  [(ngModel)]="cliente['nombre']" name="nombre" type="text" 
+                                                                      <input (keypress)="omit_special_char($event)" #name (keyup.enter)="apellidop.focus()"  [(ngModel)]="cliente['nombre']" name="nombre" type="text" 
                                                                       class="form-control input-small-text"  >
                                                                 </div>
                                                                 
@@ -45,7 +45,7 @@
                                                 <div class="form-group">
                                                                 <label >Apellido paterno</label>
                                                                 <div class="row justify-content-center">
-                                                                      <input (keyup.enter)="apellidom.focus()"  #apellidop  [(ngModel)]="cliente['ap_paterno']" name="apellido_paterno" type="text" 
+                                                                      <input (keypress)="omit_special_char($event)" (keyup.enter)="apellidom.focus()"  #apellidop  [(ngModel)]="cliente['ap_paterno']" name="apellido_paterno" type="text" 
                                                                       class="form-control input-small-text"  >
                                                                 </div>
                                                 </div>
@@ -55,7 +55,7 @@
                                                 <div class="form-group">
                                                                 <label >Apellido materno</label>
                                                                 <div class="row justify-content-center">
-                                                                      <input #apellidom (keyup.enter)="email.focus()"   [(ngModel)]="cliente['ap_materno']" name="apellido_materno" type="text" 
+                                                                      <input (keypress)="omit_special_char($event)" #apellidom (keyup.enter)="email.focus()"   [(ngModel)]="cliente['ap_materno']" name="apellido_materno" type="text" 
                                                                       class="form-control input-small-text"  >
                                                                 </div>
                                                 </div>
@@ -74,7 +74,7 @@
                 </div>
         </div>
 
-        <div class="row justify-content-center" style="margin-top:70px;">
+        <div class="row justify-content-center" style="margin-top:70px; margin-bottom: 10px;">
                 <h5 style="text-align: center;">Direccion del cliente</h5>
         </div>
 
@@ -83,9 +83,19 @@
                         <div class="form-group">
                                 <label >Calle</label>
                                 <div class="row justify-content-center">
-                                        <input #calle (keyup.enter)="ciudad.focus()"  
+                                        <input (keypress)="omit_special_char($event)" #calle (keyup.enter)="numero.focus()"  
                                         [(ngModel)]="cliente['calle']" name="calle" type="text" 
                                         class="form-control input-small-text" >
+                                </div>
+                        </div>
+                </div>
+                <div class="col-md-1">
+                        <div class="form-group">
+                                <label >Numero</label>
+                                <div class="row justify-content-center">
+                                        <input  #numero (keyup.enter)="ciudad.focus()"  
+                                        [(ngModel)]="numeroDir" name="numerodir" type="number" min="0"
+                                        class="form-control" >
                                 </div>
                         </div>
                 </div>
@@ -93,7 +103,7 @@
                         <div class="form-group">
                                 <label >Ciudad</label>
                                 <div class="row justify-content-center">
-                                <input #ciudad (keyup.enter)="estado.focus()"  
+                                <input (keypress)="omit_special_char($event)" #ciudad (keyup.enter)="estado.focus()"  
                                 [(ngModel)]="cliente['ciudad']" name="ciudad" type="text" 
                                 class="form-control input-small-text"  >
                                 </div>
@@ -104,15 +114,15 @@
                         <div class="form-group">
                                 <label >Estado</label>
                                 <div class="row justify-content-center">
-                                        <input #estado (keyup.enter)="cp.focus()"  
+                                        <input (keypress)="omit_special_char($event)" #estado (keyup.enter)="cp.focus()"  
                                         [(ngModel)]="cliente['estado']" name="estado" type="text" 
                                         class="form-control input-small-text" >
                                 </div>
                         </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                         <div class="form-group">
-                                <label >Codigo postal</label>
+                                <label >C.P</label>
                                 <div class="row justify-content-center">
                                         <input #cp  [(ngModel)]="cliente['cp']"
                                          name="cp" type="text" 
@@ -123,7 +133,7 @@
                 </div>
         </div>
 
-        <div class="row" style="margin-top:30px;">
+        <div class="row" style="margin-top:90px;">
                 <div class="col-md-6">
                     <div class="row justify-content-center">
                           <button  [routerLink]="['/']" class="btn btn-danger colord">Cancelar</button> 
