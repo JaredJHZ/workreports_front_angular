@@ -4,6 +4,7 @@ export interface Usuario {
     usuario?:String;
     password?:String;
     privilegios?:String;
+    user?:String;
 }
 
 export interface Token {

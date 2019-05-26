@@ -52,8 +52,15 @@ export class ModificarOrdenComponent implements OnInit {
               this.orden.id = orden.id;
               this.orden.cliente = orden.id_cliente;
               this.orden.empleado = orden.id_empleado;
-              this.nombreCliente = orden.cliente;
-              this.nombreEmpleado = orden.empleado;
+              this.clientesService.getCliente(this.orden.cliente)
+                  .subscribe(
+                    (data:Respuesta) => this.nombreCliente = data.cliente.nombre.concat(' '+data.cliente.ap_paterno + ' '+ data.cliente.ap_materno)
+                  )
+              
+              this.empleadosService.getEmpleado(this.orden.empleado)
+                    .subscribe(
+                      (data:Respuesta) => this.nombreEmpleado = data.empleado.nombre.concat(' '+data.empleado.ap_paterno + ' '+data.empleado.ap_materno)
+                    )
             }
           )
         }
@@ -112,6 +119,28 @@ export class ModificarOrdenComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+  
+  noNegatives(event)
+  {   
+     let k;  
+     k = event.charCode;
+     console.log((Number(event.key)));
+     if (Number(event.key) < 0) {
+       return false;
+     }
+     return((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57)); 
+  }
+
+
+  omit_special_char(event)
+  {   
+     let k;  
+     k = event.charCode;
+     if (Number(event.key)) {
+       return false;
+     }
+     return((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57)); 
   }
 
 }

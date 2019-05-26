@@ -8,6 +8,7 @@
               <label style="color:black; margin:auto;">Nombre</label>
             <div class="row justify-content-center">
                 <input
+                (keypress)="omit_special_char($event)"
                 (keyup.enter)="apellidop.focus()"  
                 name="busqueda" [(ngModel)]="nombreBuscado" (keyup)="refrescarBusqueda()"
                 type="text" class="form-control input-small-text">
@@ -22,6 +23,7 @@
               <label style="color:black; margin:auto;">Apellido paterno</label>
               <div class="row justify-content-center">
                   <input #apellidop name="busqueda"
+                  (keypress)="omit_special_char($event)"
                   (keyup.enter)="apellidom.focus()"  [(ngModel)]="apellidopBuscado" (keyup)="refrescarBusqueda()"
                   type="text" class="form-control input-small-text" >
               </div>
@@ -36,6 +38,7 @@
               <div class="row justify-content-center">
                   <input name="busqueda" 
                   #apellidom
+                  (keypress)="omit_special_char($event)"
                   [(ngModel)]="apellidomBuscado" (keyup)="refrescarBusqueda()"
                   type="text" class="form-control input-small-text">
               </div>

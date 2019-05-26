@@ -72,7 +72,7 @@
                         <div class="form-group">
                                 <label>Estado de la tarea</label>
                                 <div class="row justify-content-center">
-                                    <select #estado (keyup.enter)="horas.focus()" [(ngModel)]="tarea['estado']" class="form-control input-id"  name="estado" id="estado">
+                                    <select #estado  [(ngModel)]="tarea['estado']" class="form-control input-id"  name="estado" id="estado">
                                         <option *ngFor="let estado of estados;" value={{estado}}>{{estado}}</option>
                                     </select>
                                 </div>
@@ -85,7 +85,7 @@
                                 <label>Horas que se llevo la tarea</label>
                                 <div class="row justify-content-center">
                                     <input  (keypress)="noNegatives($event)" #horas (keyup.enter)="fecha.focus()"
-                                    [(ngModel)]="horas_reales" name="horas_relaes"
+                                    [(ngModel)]="horas_reales" name="horas"
                                      type="number" class="form-control input-id"
                                      id="estimado_horas" 
                                      >

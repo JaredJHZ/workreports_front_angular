@@ -9,7 +9,7 @@ import { Usuario } from '../interfaces/interfaces';
 export class LoginService {
   private url:string = 'http://127.0.0.1:5000/login/';
 
-  //url:string = 'http://ec2-3-121-195-173.eu-central-1.compute.amazonaws.com/login/'
+  //url:string = 'https://54.234.35.145/login/'
 
 
 

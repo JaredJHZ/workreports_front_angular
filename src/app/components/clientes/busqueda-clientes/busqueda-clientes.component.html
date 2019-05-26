@@ -9,6 +9,7 @@
                   <label for="">Nombre del cliente</label>
                   <div class="row justify-content-center">
                       <input
+                      (keypress)="omit_special_char($event)"
                       #nombre 
                       (keyup.enter)="apellidop.focus()"
                       class="form-control input-small-text" [(ngModel)]="nombreCliente" 
@@ -24,6 +25,7 @@
                   <label for="">Apellido paterno del cliente</label>
                   <div class="row justify-content-center">
                       <input
+                      (keypress)="omit_special_char($event)"
                       #apellidop (keyup.enter)="apellidom.focus()"
                       class="form-control input-small-text" 
                       [(ngModel)]="apellidoPCliente" (keyup)="cambiarBusqueda()"
@@ -38,6 +40,7 @@
                   <label for="">Apellido materno del cliente</label>
                   <div class="row justify-content-center">
                       <input 
+                      (keypress)="omit_special_char($event)"
                       #apellidom
                       class="form-control input-small-text" 
                       [(ngModel)]="apellidoMCliente" (keyup)="cambiarBusqueda()"
@@ -48,13 +51,21 @@
         </div>
       </div>
     
-      <div style="margin:20px;" class="row justify-content-center">
-          <button [routerLink]="['/']" style="margin:5px;" class="btn colord">Cancelar</button>
-          <button (click)="busqueda(nombre)" style="margin:5px;" class="btn colorb">Buscar</button>              
-      </div>
   </div>
 </div>
 
+<div style="margin:20px;" class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="row justify-content-center">
+            <button [routerLink]="['/']" style="margin:5px;" class="btn colord">Cancelar</button>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="row justify-content-center">
+            <button (click)="busqueda(nombre)" style="margin:5px;" class="btn colorb">Buscar</button>   
+        </div>
+    </div>           
+  </div>
 
 
 <div class="row justify-content-center">

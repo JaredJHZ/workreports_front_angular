@@ -25,7 +25,7 @@
                                                     <input disabled  
                                                      [(ngModel)]="nombreCliente"
                                                       name="nombrec" type="text" 
-                                                    class="form-control input-id">
+                                                    class="form-control input-long-text">
                                         </div>    
                                 </div>
                     </div>
@@ -56,7 +56,7 @@
                                             <input disabled   
                                             [(ngModel)]="nombreEmpleado" 
                                             name="nombre_empleado" type="text" 
-                                            class="form-control input-id">
+                                            class="form-control input-long-text">
                                         </div>    
                             </div>
                     </div>
@@ -84,6 +84,7 @@
                                                <label >Ciudad</label>    
                                                <div  class="row justify-content-center">
                                                <input #ciudad 
+                                               (keypress)="omit_special_char($event)"
                                                (keyup.enter)="estado.focus()"
                                               [(ngModel)]="orden['ciudad']" 
                                                name="ciudad" type="text" 
@@ -98,6 +99,7 @@
                                                <label >Estado</label>    
                                                <div  class="row justify-content-center">
                                                <input #estado 
+                                               (keypress)="omit_special_char($event)"
                                                (keyup.enter)="cp.focus()"
                                               [(ngModel)]="orden['estado']" 
                                                name="direccion" type="text" 
@@ -112,6 +114,7 @@
                                                <label >Codigo postal</label>    
                                                <div  class="row justify-content-center">
                                                <input #cp 
+                                               (keypress)="noNegatives($event)" 
                                               [(ngModel)]="orden['cp']" 
                                                name="direccion" type="text" 
                                                class="form-control input-id">
@@ -126,12 +129,12 @@
 <div style="margin-top:130px; margin-bottom: 50px; border-top: 3px solid white; padding: 30px;" class="row justify-content-center">
     <div class="col-md-6">
       <div class="row justify-content-center">
-          <button style="margin-left:550px;" type="button" routerLink="['/']" class="btn colord">Cancelar</button>
+          <button  type="button" routerLink="['/']" class="btn colord">Cancelar</button>
       </div>
     </div>
     <div class="col-md-6">
       <div class="row justify-content-center">
-          <button style="margin-right:500px;" type="button" (click)="modificarOrden()" class="btn colorb">Modificar</button>
+          <button type="button" (click)="modificarOrden()" class="btn colorb">Modificar</button>
       </div>
     </div>
 </div>

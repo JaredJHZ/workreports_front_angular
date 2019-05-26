@@ -7,7 +7,7 @@
           <label for="">Nombre del empleado</label>
           
           <div class="row justify-content-center">
-              <input name="busqueda" [(ngModel)]="terminoBuscado" (keyup)="refrescarBusqueda()"
+              <input (keypress)="omit_special_char($event)" name="busqueda" [(ngModel)]="terminoBuscado" (keyup)="refrescarBusqueda()"
               type="text" class="form-control">
           </div>
       
