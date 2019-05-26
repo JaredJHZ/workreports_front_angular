@@ -65,19 +65,23 @@ const routes: Routes = [
   },
   {
     component:BusquedaUsuariosComponent,
-    path:'busqueda/usuarios/:tipo'
+    path:'busqueda/usuarios/:tipo',
+    canActivate:[GuardGuard]
   },
   {
     component: BajaUsuariosComponent,
-    path:'usuarios/bajas/:termino/:id'
+    path:'usuarios/bajas/:termino/:id',
+    canActivate:[GuardGuard]
   },
   {
     component: ModificarUsuarioComponent,
-    path:'usuarios/modificaciones/:termino/:id'
+    path:'usuarios/modificaciones/:termino/:id',
+    canActivate:[GuardGuard]
   },
   {
     component:ConsultaUsuariosComponent,
-    path:'consulta/usuarios'
+    path:'consulta/usuarios',
+    canActivate:[GuardGuard]
   },
   {
     component:AltaMaterialComponent,
@@ -86,109 +90,135 @@ const routes: Routes = [
   },
   {
     component:BusquedaMaterialesComponent,
-    path:'busqueda/materiales/:tipo'
+    path:'busqueda/materiales/:tipo',
+    canActivate:[GuardGuard]
   }
   ,
   {
     component: BajaMaterialesComponent,
-    path:'materiales/bajas/:termino/:id'
+    path:'materiales/bajas/:termino/:id',
+    canActivate:[GuardGuard]
   },
   {
     component: ModificarMaterialComponent,
-    path:'materiales/modificaciones/:termino/:id'
+    path:'materiales/modificaciones/:termino/:id',
+    canActivate:[GuardGuard]
   },
   {
     component:ConsultaMaterialesComponent,
-    path:'consulta/materiales'
+    path:'consulta/materiales',
+    canActivate:[GuardGuard]
   },
   {
     component:AltasEmpleadosComponent,
-    path:'alta/empleados'
+    path:'alta/empleados',
+    canActivate:[GuardGuard]
   },
   {
     component:BusquedaEmpleadosComponent,
-    path:'busqueda/empleados/:tipo'
+    path:'busqueda/empleados/:tipo',
+    canActivate:[GuardGuard]
   },
   {
     component:BajaEmpleadosComponent,
-    path:'empleados/bajas/:apellidop/:apellidom/:nombre/:id'
+    path:'empleados/bajas/:apellidop/:apellidom/:nombre/:id',
+    canActivate:[GuardGuard]
   },
   {
     component:ModificarEmpleadoComponent,
-    path:'empleados/modificaciones/:apellidop/:apellidom/:nombre/:id'
+    path:'empleados/modificaciones/:apellidop/:apellidom/:nombre/:id',
+    canActivate:[GuardGuard]
   },
   {
     component:ConsultaEmpleadosComponent,
-    path:'consulta/empleados'
+    path:'consulta/empleados',
+    canActivate:[GuardGuard]
   },
   {
     component:AltaClientesComponent,
-    path:'alta/clientes'
+    path:'alta/clientes',
+    canActivate:[GuardGuard]
   },
   {
     component:BusquedaClientesComponent,
-    path:'busqueda/clientes/:tipo'
+    path:'busqueda/clientes/:tipo',
+    canActivate:[GuardGuard]
   },
   {
     component:BajaClientesComponent,
-    path:'clientes/bajas/:apellidop/:apellidom/:nombre/:id'
+    path:'clientes/bajas/:apellidop/:apellidom/:nombre/:id',
+    canActivate:[GuardGuard]
   },
   {
     component:ModificarClienteComponent,
-    path:'clientes/modificaciones/:apellidop/:apellidom/:nombre/:id'
+    path:'clientes/modificaciones/:apellidop/:apellidom/:nombre/:id',
+    canActivate:[GuardGuard]
   },
   {
     component:ConsultaClientesComponent,
-    path:'consulta/clientes'
+    path:'consulta/clientes',
+    canActivate:[GuardGuard]
   },
   {
     component:AltasTareasComponent,
-    path:'alta/tareas'
+    path:'alta/tareas',
+    canActivate:[GuardGuard]
   },
   {
     component:BusquedaTareasComponent,
-    path:'busqueda/tareas/:tipo'
+    path:'busqueda/tareas/:tipo',
+    canActivate:[GuardGuard]
   },
   {
     component:ModificarTareasComponent,
-    path:'tareas/modificaciones/:termino/:id'
+    path:'tareas/modificaciones/:termino/:id',
+    canActivate:[GuardGuard]
   },
   {
     component:BajaTareasComponent,
-    path:'tareas/bajas/:termino/:id'
+    path:'tareas/bajas/:termino/:id',
+    canActivate:[GuardGuard]
   },
   {
     component:ConsultaTareasComponent,
-    path:'consulta/tareas'
+    path:'consulta/tareas',
+    canActivate:[GuardGuard]
   },
   {
     component:AltaOrdenesComponent,
-    path:"alta/ordenes"
+    path:"alta/ordenes",
+    canActivate:[GuardGuard]
   },
   {
     component:BusquedaOrdenesComponent,
-    path:'busqueda/ordenes/:tipo'
+    path:'busqueda/ordenes/:tipo',
+    canActivate:[GuardGuard]
   },
   {
     component:BajaOrdenComponent,
-    path:'ordenes/bajas/:termino/:id'
+    path:'ordenes/bajas/:termino/:id',
+    canActivate:[GuardGuard]
   },
   {
     component:ModificarOrdenComponent,
-    path:'ordenes/modificaciones/:termino/:id'
+    path:'ordenes/modificaciones/:termino/:id',
+    canActivate:[GuardGuard]
   },
   {
     component: BusquedaTareaOrdenComponent,
-    path:':tipo/tareaordenes'
+    path:':tipo/tareaordenes',
+    canActivate:[GuardGuard]
   },
   {
     component: BusquedaMaterialesOrdenComponent,
-    path:':tipo/materialordenes'
+    path:':tipo/materialordenes',
+    canActivate:[GuardGuard]
   }
   ,
   {
     component:ConsultaOrdenesComponent,
-    path:'consulta/ordenes'
+    path:'consulta/ordenes',
+    canActivate:[GuardGuard]
   },
   {
     path:'**',

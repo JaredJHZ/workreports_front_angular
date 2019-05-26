@@ -7,9 +7,9 @@ import { Usuario } from '../interfaces/interfaces';
   providedIn: 'root'
 })
 export class LoginService {
-  private url:string = 'http://127.0.0.1:5000/login/';
+  //private url:string = 'http://127.0.0.1:5000/login/';
 
-  //url:string = 'https://54.234.35.145/login/'
+  url:string = 'https://54.234.35.145/login/'
 
 
 

@@ -12,7 +12,9 @@ import {saveAs} from 'file-saver';
 })
 export class OrdenesService {
 
-  url:string = 'http://127.0.0.1:5000/ordenes/';
+  //url:string = 'http://127.0.0.1:5000/ordenes/';
+
+  url:string = 'https://54.234.35.145/ordenes/'
 
   constructor(private loginService: LoginService, private http: HttpClient) {
 
@@ -50,8 +52,8 @@ export class OrdenesService {
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.append('authentication',this.loginService.getToken());
 
-    let pdfUrl = 'http://127.0.0.1:5000/pdf/'+id;
-
+    //let pdfUrl = 'http://127.0.0.1:5000/pdf/'+id;
+    let pdfUrl:string = 'https://54.234.35.145/pdf/+id';
     var mediaType = 'application/pdf';
 
     let name = "reporte-"+id+" fecha-"+Date.now();

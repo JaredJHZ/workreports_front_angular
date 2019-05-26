@@ -7,8 +7,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class UsuariosService {
 
-  url:string = 'http://127.0.0.1:5000/usuarios/';
-  //url:string = 'http://ec2-3-121-195-173.eu-central-1.compute.amazonaws.com/usuario/'
+  //url:string = 'http://127.0.0.1:5000/usuarios/';
+  url:string = 'https://54.234.35.145/usuarios/'
 
   constructor(private loginService:LoginService, private http: HttpClient) {
       
